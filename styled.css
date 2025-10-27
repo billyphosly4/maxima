@@ -9,16 +9,16 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(rgb(128, 121, 121));
+   background: #454C98;
 
 .wrapper{
-    width: 300px;
+    width: 400px;
     background: #fff;
     border-radius: 12px;
     color: #333;
     padding: 30px 30px 25px;
     margin-top: 40px;
-    
+    height:700px;
 }
 
 }
@@ -38,7 +38,7 @@ body{
 }
 
 .input-box .input-field{
-    position: relative;
+    position: relative;#7C7FA3
     width: 100%;
     height: 48px;
     background: #f3f3f3;
@@ -105,6 +105,15 @@ body{
 .wrapper .btn:hover {
     background: linear-gradient(135deg, #8f94fb 0%, #4e54c8 100%);
 }
+.footer{
+    background-color:red;
+    width: 700px ;
+    height: 15px;
+    font-size: 15px;
+    
+}
+    
+}
 
 @media screen and (max-width:650px) {
     
@@ -114,3 +123,22 @@ body{
     padding-top: 60px;
     padding-bottom: 30px;
 }
+   /* Default styles */
+   body {
+     font-size: 16px;
+   }
+   
+   /* Styles for screens smaller than 768px (e.g., mobile devices) */
+   @media (max-width: 768px) {
+     body {
+       font-size: 14px;
+     }
+   }
+   
+   /* Styles for screens larger than 1200px (e.g., desktops) */
+   @media (min-width: 1200px) {
+     body {
+       font-size: 18px;
+     }
+   }
+   
