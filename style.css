@@ -118,20 +118,19 @@ header h1{
   background-color: #023e8a;
 }
 
-/* Footer */
-footer {
-  background-color: red;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 40px;
-  position: sticky;
-  z-index: 1000 ;
+
+
+footer { 
+   background: linear-gradient(135deg, #0077b6, #0096c7);  
+  padding: 20px;
   bottom: 0;
-}
+  color:black;
+  text-align: center;
+  font-weight: 1000;
    /* Default styles */
    body {
-     font-size: 16px;
+     font-size: 14px;
+     
    }
    
    /* Styles for screens smaller than 768px (e.g., mobile devices) */
@@ -141,60 +140,54 @@ footer {
       
      }
     .placeholder {
-       font-size: 6px;
+       font-size: 4px;
      }
-     header{
-       
-       
-     }
+     
     .navbar a{
-      font-size:8px;
+      font-size:10px;
       
     }
    .header h1{
-     font-size:30px;
+     font-size:32px;
    } 
   .header h2{
-    font-size: 18px;
+    font-size: 20px;
      color: black;
   }
  .header h3{
-   font-size: 12px;
+   font-size: 15px;
    color: #000;
  }
   .header p{
-    font-size:10px;
+    font-size:13px;
   }
  .products h2{
-   font-size: 14px;
+   font-size: 16px;
  }
 .products p{
-  font-size:10px;
+  font-size:12px;
 }
 .products button{
-    font-size: 8px;
+    font-size: 10px;
   }
   .products {
   display: grid;
   padding: 70px;
 }
 footer p{
-  font-size:9px;
+  font-size:20px;
    }
 .search-bar{
-  font-size:3px;
+  font-size:4px;
 } 
 
 
    /* Styles for screens larger than 1200px (e.g., desktops) */
    @media (min-width: 1200px) {
      body {
-       font-size: 18px;
+       font-size: 20px;
      }
-       body {
-       font-size:16px;
-      
-     }
+
     .placeholder {
        font-size: 2px;
      }
@@ -203,45 +196,40 @@ footer p{
        
      }
     .navbar a{
-      font-size:10px;
+      font-size:12px;
       
     }
    .header h1{
-     font-size:30px;
+     font-size:32px;
    } 
   .header h2{
-    font-size: 17px;
+    font-size: 18px;
   }
  .header h3{
-   font-size: 12px;
+   font-size: 14px;
  }
   .header p{
-    font-size:15px;
+    font-size:16px;
   }
  .products h2{
-   font-size: 11px;
+   font-size: 13px;
  }
 .products p{
-  font-size: 9px;
+  font-size: 11px;
 }
 .products button{
-    font-size: 8px;
+    font-size: 10px;
   }
   .products {
   display: grid;
   padding: 70px;
 }
 footer p{
-  font-size:2px;
+  font-size:20px;
    }
 .search-bar{
-  font-size:3px;
+  font-size:5px;
 }
-
-   } 
-   
-
-
-
-
+} 
+} 
 } 

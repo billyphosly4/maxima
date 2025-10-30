@@ -21,12 +21,12 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: blue;
+   background: linear-gradient(135deg, #0077b6);  
 }
 
 marquee {
   top:0;
-  background-color: yellow;
+  background-color: lightblue;
   color: black;
 }
 
@@ -210,33 +210,14 @@ marquee {
 
 
 /*==== SECTION ABOUT US, QUICK LINKS AND CONTACTS ====*/
-.section1 {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  align-items: center;
-  align-content: center;
-  background-color: white;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border-radius: 20px;
-}
-
-.section1:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-}
 
 /*==== section container ====*/
 #about {
-  background-color: #47742C;
   text-align: justify;
-  color: black;
-  text-wrap: wrap;
-  height: 300px;
-  padding: 30px;
+  color: black ;
+  padding:30px ;
   width: 100%;
+  font-weight:500;
 }
 
 #about h2 {
@@ -247,11 +228,11 @@ marquee {
 }
 /*  SECTION- QUICK LINKS*/
 #quick-links {
-  background: #3E6B26;
   width: 100%;
   margin-top:0; 
   height: 300px ;
   padding-top: 100px;
+  padding-right:2px;
 }
 #quick-links h2 {
   text-align: center;
@@ -273,23 +254,23 @@ marquee {
 #quick-links li i {
   margin-left: 20px;
   margin-right: 10px;
-  color: #1da1f2;
+  color: gold;
 }
 
 #quick-links li a {
   text-decoration: none;
-  color: #333;
-  font-size: 16px;
+  color: black ;
+  font-size: 16p;
+  font-weight:500;
 }
 
 #quick-links li a:hover {
   text-decoration: underline;
-  color: blue;
+  color: darkgreen;
 }
 
 /*  SECTION- CONTACT*/
 #contact-info {
-  background:#3E8E43 ;
   width:100%;
 
 }
@@ -297,29 +278,38 @@ marquee {
 #contact-info h2 {
   text-align: center;
   font-size: 15px;
-  margin-bottom: 15px;
+  margin-top: 35px;
   text-decoration: underline;
+  font-weight:1000;
 }
 
 #contact-info p {
   margin: 10px 0;
   font-size: 16px;
   text-align:center;
+  color:black;
+  font-weight:500;
 }
 
 #contact-info i {
   margin-right: 10px;
-  color: #1da1f2;
+  color: gold;
 }
 
-footer {
-  background-color: red;
+footer { 
+   background: linear-gradient(135deg, #0077b6, #0096c7);  
   padding: 20px;
-  position: sticky;
-  z-index: 1000;
   bottom: 0;
+  color:black;
+  text-align: center;
+  font-weight: 1000;
 }
-
+.section{
+  display:grid ;
+     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    background: linear-gradient(135deg, #0077b6, #0096c7);  
+    gap: 50px;
+}
 
 
 /* Default styles */
@@ -333,19 +323,19 @@ body {
     font-size: 20px;
   }
      #bill a{
-    font-size:8px;
+    font-size:9px;
     }
    .auth-buttons{
-     font-size: 6px;
+     font-size: 8px;
    }
  .hero h1{
-   font-size: 20px;
+   font-size: 22px;
  }
  .hero h2{
-   font-size: 10px;
+   font-size: 12px;
  }
   .hero p{
-  font-size: 8px;
+  font-size: 10px;
 }
 .categories h2{
   font-size: 20px;
@@ -354,30 +344,30 @@ body {
   font-size: 12px;
 }
 .categories a{
-  font-size: 8px;
+  font-size: 10px;
 }
 footer{
-  font-size: 10px;
+  font-size: 12px;
 } 
   #about p{
-    font-size:12px;
+    font-size:15px;
   }
   #about{
     height: 200px;
   }
 
 #contact-info p{
-  font-size: 12px;
+  font-size: 15px;
 }
 #quick-links li a{
-  font-size: 12px;
+  font-size: 15px;
 }
 #quick-links{
   height: 150px;
   padding-top: 20px;
 }
 marquee{
-  font-size: 13px;
+  font-size: 20px;
 }
 } 
 /* Styles for screens larger than 1200px (e.g., desktops) */
@@ -416,7 +406,7 @@ footer{
   font-size: 18px;
 }
 #contactinfo p{
-  font-size: 18px;
+  font-size: 20px;
 }
 #quick-links li a{
   font-size: 18px;
