@@ -127,6 +127,9 @@ footer {
   color:black;
   text-align: center;
   font-weight: 1000;
+  position:sticky;
+  z-index: 1000;
+} 
    /* Default styles */
    body {
      font-size: 14px;
