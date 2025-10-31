@@ -18,7 +18,7 @@ body{
     color: #333;
     padding: 30px 30px 25px;
     margin-top: 40px;
-    height:700px;
+    height:800px;
 }
 
 }
@@ -106,13 +106,12 @@ body{
     background: linear-gradient(135deg, #8f94fb 0%, #4e54c8 100%);
 }
 .footer{
-    width: 10pxpx ;
-    height: 15px;
     font-size: 15px;
-    
+    top: 0;
 }
 .footer p{
     color:red;
+    
 }
     
 
