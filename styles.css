@@ -63,33 +63,6 @@ marquee {
   border-radius: 50%;
 }
 
-#search-form {
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 300px;
-}
-
-#search-input {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  font-size: 16px;
-}
-
-#search-button {
-  padding: 10px;
-  border: none;
-  background-color: #4CAF50;
-  color: #fff;
-  cursor: pointer;
-}
-
-#search-results {
-  padding: 20px;
-}
 .nav-links {
   list-style: none;
   display: flex;
@@ -276,7 +249,7 @@ marquee {
 }
 
 #contact-info h2 {
-  text-align: center;
+  text-align:center;
   font-size: 15px;
   margin-top: 120px;
   text-decoration: underline;
@@ -284,9 +257,9 @@ marquee {
 }
 
 #contact-info p {
-  margin: 10px 0;
+  margin:2px;
   font-size: 16px;
-  text-align:center;
+  padding: 15px;
   color:black;
   font-weight:500;
 }
