@@ -26,6 +26,7 @@ header {
 
 marquee {
   background-color: lightblue;
+  padding:10px;
   color: black;
 }
 
