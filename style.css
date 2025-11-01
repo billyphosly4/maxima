@@ -121,8 +121,8 @@ header h1{
 
 
 footer { 
-   background: linear-gradient(135deg, #0077b6, #0096c7);  
-  padding: 20px;
+   background: linear-gradient(135deg, #0077b6, #0096c7);
+   padding:10px;
   bottom: 0;
   color:black;
   text-align: center;
@@ -178,13 +178,13 @@ footer {
   padding: 70px;
 }
 footer p{
-  font-size:20px;
+  font-size:12px;
    }
 .search-bar{
   font-size:4px;
 } 
 
-
+}
    /* Styles for screens larger than 1200px (e.g., desktops) */
    @media (min-width: 1200px) {
      body {
@@ -228,11 +228,10 @@ footer p{
   padding: 70px;
 }
 footer p{
-  font-size:20px;
+  font-size:15px;
    }
 .search-bar{
   font-size:5px;
 }
 } 
-} 
-} 
+
