@@ -37,38 +37,44 @@
       <img src="img/Nissan Titan.jpeg" alt="Dell Laptop">
       <h2>Nissan Titan</h2>
       <p><strong>Price:</strong> $9000<br>Speed: 600km/hr | Cool engine </p>
-      <button onclick="alert('Item bought Successfully!')">Buy Now</button>
+       <button onclick="addToCart('Bedroom set', 35) ">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/BMW M4.jpg" alt="Printer">
       <h2>BMW M4</h2>
       <p><strong>Price:</strong> $12000<br>Speed:600km/hr<br> Cool Engine<br>Petroleum:300L</p>
-      <button onclick="alert('Item bought Successfully!')">Buy Now</button>
+     <button onclick="addToCart('BMW M4',12000) ">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/Porche.jpg" alt="Porche">
       <h2>Porche</h2>
       <p><strong>Price:</strong> $18808<br>Speed:900km/hr<br>Cool Engine<br>Petrolum:400L</p>
-      <button onclick="alert('Item bought Successfully!')">Buy Now</button>
+       <button onclick="addToCart('Porsche', 18808) ">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/Rangerover.jpeg" alt="Headphones">
       <h2>Rangerover</h2>
       <p><strong>Price:</strong> $11300<br>Speed: 900km/hr <br> Petrolium: 400l</p>
-      <button onclick="alert('Item bought Successfully!')">Buy Now</button>
+       <button onclick="addToCart('Rangerover', 11300) ">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/This Midnight Black TRD Pro trim was brought in to….jpeg" alt="Blender">
       <h2>TX 470 </h2>
       <p><strong>Price:</strong> $12300<br>Speed: 900km/hr</p>
-      <button onclick="alert('Item bought Successfully!')">Buy Now</button>
+     <button onclick="addToCart('TX 470',12300) ">Add to Cart</button>
     </div>
   </main>
 
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="total-price">0.00</span></p>
+        <button onclick="clearCart()">Clear Cart</button>
+    </div> <br>
   
 <hr>
   <!-- ===== FOOTER ===== -->
@@ -77,4 +83,5 @@
     </div>
   </footer>
 </body>
+  <script src="Cart.js"></script>
 </html>

@@ -20,13 +20,13 @@ header {
 .navbar {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-between ;
    background: linear-gradient(135deg, #0077b6);  
 }
 
 marquee {
-  top:0;
   background-color: lightblue;
+  padding:7px;
   color: black;
 }
 
@@ -37,14 +37,14 @@ marquee {
   padding: 0;
   background-color: #f9f2f2;
   display: flex;
-  border-radius: 10px;
+  border-radius: 2px;
   
 }
 
 #naf li a {
   display: block;
   color: black;
-  padding: 7px 9px;
+  padding: 5px 6px;
   text-decoration: none;
   
 
@@ -83,10 +83,10 @@ marquee {
   background-color: #00b4d8;
   border: none;
   margin-top: 20px;
-  border-radius: 8px;
-  padding: 6px 9px;
+  border-radius: 5px;
+  padding: 2px 5px;
   cursor: pointer;
-  margin-right: 8px;
+  margin-right: 5px;
 }
 
 .auth-buttons a {
@@ -110,8 +110,15 @@ marquee {
   color: black;
   font-size: 40px;
 }
+.hero-buttons{
+  display: flex;
+  justify-content:center ;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
 .hero-buttons button {
+ 
   margin: 20px;
   padding: 10px 20px;
   border: none;
@@ -186,13 +193,13 @@ marquee {
 
 /*==== section container ====*/
 #about {
-  text-align: justify;
-  color: black ;
-  padding:30px ;
-  width: 100%;
-  font-weight:500;
+  margin-top:20px ;
+  padding-left:15px;
+  padding-right: 10px;
 }
-
+#about p{
+  font-weight: 500;
+}
 #about h2 {
   color: black;
   text-decoration: underline;
@@ -201,40 +208,34 @@ marquee {
 }
 /*  SECTION- QUICK LINKS*/
 #quick-links {
-  width: 100%;
-  margin-top:0; 
-  height: 300px ;
-  padding-top: 100px;
-  padding-right:2px;
+  margin-top:20px; 
 }
 #quick-links h2 {
   text-align: center;
   font-size: 15px;
-  margin-bottom: 0px;
   text-decoration: underline;
 }
 
 #quick-links ul {
   list-style-type: none;
-  padding: 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-content: center;
-  padding: 10px;
+  align-items:center ;
 }
 
 #quick-links li i {
-  margin-left: 20px;
-  margin-right: 10px;
   color: gold;
+  margin-right: 8px;
+  margin-left: 8px;
 }
 
 #quick-links li a {
   text-decoration: none;
   color: black ;
-  font-size: 16p;
   font-weight:500;
+  text-align: center;
+  margin-bottom: 0px;
 }
 
 #quick-links li a:hover {
@@ -244,47 +245,48 @@ marquee {
 
 /*  SECTION- CONTACT*/
 #contact-info {
-  width:100%;
+padding-top:20px;
+ margin-bottom: 0;
 
 }
 
 #contact-info h2 {
   text-align:center;
-  font-size: 15px;
-  margin-top: 120px;
+    font-size: 15px;
   text-decoration: underline;
   font-weight:1000;
+
 }
 
 #contact-info p {
-  margin:2px;
-  font-size: 16px;
-  padding: 15px;
+  margin:4px;
   color:black;
   font-weight:500;
+  padding-left: 50px;
 }
 
 #contact-info i {
   margin-right: 10px;
   color: gold;
+  
 }
 
 footer { 
-   background: linear-gradient(135deg, #0077b6, #0096c7);  
-  padding: 20px;
-  bottom: 0;
+  background: linear-gradient(135deg, #0077b6, #0096c7);  
+  padding: 10px;
   color:black;
   text-align: center;
   font-weight: 1000;
+  position: sticky;
+  z-index: 1000;
+  bottom: 0;
 }
 .section{
   display:grid ;
-     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    background: linear-gradient(135deg, #0077b6, #0096c7);  
-    gap: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  background: linear-gradient(135deg, #0077b6, #0096c7);  
+  
 }
-
-
 /* Default styles */
 body {
   font-size: 12px;
@@ -295,11 +297,13 @@ body {
   body {
     font-size: 20px;
   }
-     #bill a{
+    #bill a{
     font-size:9px;
     }
    .auth-buttons{
-     font-size: 8px;
+    font-size: 4px;
+    padding: 0;
+    
    }
  .hero h1{
    font-size: 22px;
@@ -323,68 +327,60 @@ footer{
   font-size: 12px;
 } 
   #about p{
-    font-size:15px;
+    font-size:12px;
   }
-  #about{
-    height: 200px;
-  }
-
 #contact-info p{
-  font-size: 15px;
+  font-size: 12px;
 }
 #quick-links li a{
-  font-size: 15px;
-}
-#quick-links{
-  height: 150px;
-  padding-top: 20px;
+  font-size: 12px;
 }
 marquee{
-  font-size: 20px;
-}
+  font-size: 12px;
+} 
 } 
 /* Styles for screens larger than 1200px (e.g., desktops) */
 @media (min-width: 600px) {
   body {
-    font-size: 20px;
+    font-size: 18px;
   } 
   #bill a{
-    font-size:12px;
+    font-size:7px;
     }
    .auth-buttons{
-     font-size: 7px;
+     font-size: 3px;
    }
  .hero h1{
-   font-size: 35px;
+   font-size: 3%px;
  }
  .hero h2{
-   font-size: 20px;
+   font-size: 18px;
  }
   .hero p{
-  font-size: 18px;
-}
-.categories h2{
-  font-size: 25px;
-}
-.categories p{
-  font-size: 18px;
-}
-.categories a{
-  font-size: 12px;
-} 
-#about p{
   font-size: 15px;
 }
-footer{
-  font-size: 18px;
-}
-#contactinfo p{
+.categories h2{
   font-size: 20px;
 }
+.categories p{
+  font-size: 15px;
+}
+.categories a{
+  font-size: 10px;
+} 
+#about p{
+  font-size: 16px;
+ 
+}
+footer{
+  font-size: 14px;
+}
+#contactinfo p{
+  font-size: 16px;
+}
 #quick-links li a{
-  font-size: 18px;
+  font-size: 16px;
 }
-#about{
-  height: 150px;
+
 }
-}
+ 
