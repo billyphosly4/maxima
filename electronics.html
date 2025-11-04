@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Electronics | Better Gadgets</title>
   <link rel="stylesheet" href="style.css" />
+  
 </head>
 <body>
   <!-- Header -->
@@ -37,60 +38,63 @@
       <img src="img/dell.jpeg" alt="Dell Laptop">
       <h2>Dell Windows 11</h2>
       <p><strong>Price:</strong> $35<br>Core i5, 16GB RAM, 526GB Storage, 3000W</p>
-      <button onclick="alert('Item bought Successfully!@ $35')">Buy Now</button>
-    </div>
-
+        <button onclick="addToCart('Dell Windows 11', 35,)">Add to Cart</button>
+</div>
     <div class="product-card">
       <img src="img/printer.jpeg" alt="Printer">
       <h2>KLC Modern Printer</h2>
       <p><strong>Price:</strong> $32<br>Durable and efficient</p>
-      <button onclick="alert('Item bought Successfully!@ $32')">Buy Now</button>
+        <button onclick="addToCart('KLC Modern Printer', 32)">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/smartwatch.jpeg" alt="Smartwatch">
       <h2>Modern Smartwatch</h2>
       <p><strong>Price:</strong> $18<br>Bluetooth type, Durable</p>
-      <button onclick="alert('Item bought Successfully! @ $18')">Buy Now</button>
+        <button onclick="addToCart('Modern Smartwatch', 18)">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/headphone.jpeg" alt="Headphones">
       <h2>Headphone 121e Model</h2>
       <p><strong>Price:</strong> $20<br>240V Power</p>
-      <button onclick="alert('Item bought Successfully! @ $20')">Buy Now</button>
+<button onclick="addToCart('Headphones 121e Model', 20)">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/Watches.jpeg" alt="Nano Watch">
       <h2>Nano Watch</h2>
       <p><strong>Price:</strong> $15<br>Bluetooth type, Durable</p>
-      <button onclick="alert('Item bought Successfully! @ $15')">Buy Now</button>
+  <button onclick="addToCart('Nano Watch', 15)">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/Modified blender.jpeg" alt="Blender">
       <h2>HQ Modern Blender</h2>
-      <p><strong>Price:</strong> $25<br>2L, 240V<br>Durable</p>
-      <button onclick="alert('Item bought Successfully! @ $25')">Buy Now</button>
+      <p><strong>Price:</strong> $25, 2L, 240V<br>Durable</p>
+  <button onclick="addToCart('HQ Modern Blender', 25)">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/smartglasses.jpeg" alt="Smart Glasses">
       <h2>Smart Glasses</h2>
       <p><strong>Price:</strong> $37<br>Modern tech eyewear</p>
-      <button onclick="alert('Item bought Successfully! @ $37')">Buy Now</button>
+  <button onclick="addToCart('Smart Glasses', 37)">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/blender.jpg" alt="Blender">
       <h2>Blender</h2>
-      <p><strong>Price:</strong> $23<br>2L,240v<br>Good and wonderful</p>
-      <button onclick="alert('Item bought Successfully! @ $23')">Buy Now</button>
+      <p><strong>Price:</strong> $23,2L,240v<br>Good and wonderful</p>
+  <button onclick="addToCart('Blender', 23)">Add to Cart</button>
     </div>
   </main>
-
-  
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="total-price">0.00</span></p>
+        <button onclick="clearCart()">Clear Cart</button>
+    </div> <br>
 <hr>
   <!-- ===== FOOTER ===== -->
   <footer>
@@ -98,4 +102,5 @@
     </div>
   </footer>
 </body>
+  <script src="Cart.js"></script>
 </html>

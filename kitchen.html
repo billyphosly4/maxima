@@ -34,61 +34,59 @@
   <main class="products">
     <div class="product-card">
       <img src="img/Sufurias and lids.jpeg" alt="Sufuria with Lid">
-      <h2>Sufuria with Lid</h2>
-      <p><strong>Price:</strong>$15<br>Durable stainless steel, perfect for everyday cooking.</p>
-      <button onclick="alert('Item bought Successfully! @ $15')">Buy Now</button>
+  <h2>Sufuria and lids</h2>
+    <p>Price: $10.99</p>
+      <button onclick="addToCart('Bedroom set', 35) ">Add to Cart</button>
     </div>
-
-    <div class="product-card">
-      <img src="img/blender.jpg" alt="Modern Blender">
-      <h2>Modern Blender</h2>
-      <p><strong>Price:</strong>$23<br>2L Capacity | Heavy duty | Perfect for smoothies & sauces.</p>
-      <button onclick="alert('Item bought Successfully! @ $23')">Buy Now</button>
-    </div>
-
     <div class="product-card">
       <img src="img/Stainless Spoons and Fork.jpeg" alt="Cutlery Set">
     <h2>Stainless Cutlery Set</h2>
     <p><strong>Price:</strong>$13,set<br>Spoons and forks | High-quality stainless steel | Durable.</p>
-      <button onclick="alert('Item bought Successfully! @ $13')">Buy Now</button>
+     <button onclick="addToCart('Stainless cutlery Set', 13) ">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/Modified blender.jpeg" alt="Blender">
       <h2>HQ Modern Blender</h2>
       <p><strong>Price:</strong> $25<br> 2L Capacity | Heavy duty | Perfect for smoothies & sauces.</p>
-      <button onclick="alert('Item bought Successfully! @ $25')">Buy Now</button>
+       <button onclick="addToCart('HQ Modern Blender',25) ">Add to Cart</button>
     </div>
-    
     <div class="product-card">
       <img src="img/classic_knifes.jpeg" alt="Cutlery Set">
     <h2>Stainless Set Knives</h2>
     <p><strong>Price:</strong>$13,set<br>Knives and gauge  | High-quality stainless steel | Durable.</p>
-      <button onclick="alert('Item bought Successfully! @ $13')">Buy Now</button>
+       <button onclick="addToCart('Stainless Set Knives', 13) ">Add to Cart</button>
     </div>
-    
     <div class="product-card">
       <img src="img/design_knife - Copy.jpeg" alt="Cutlery Set">
     <h2>Stainless Cutlery Knives</h2>
     <p><strong>Price:</strong>$10,set<br>knives and gauge  | High-quality stainless steel | Durable.</p>
-      <button onclick="alert('Item bought Successfully! @ $10')">Buy Now</button>
+      <button onclick="addToCart('Stainless Cutlery Knives', 10) ">Add to Cart</button>
     </div>
     
     <div class="product-card">
       <img src="img/Mordern sufurias.jpeg" alt="Cutlery Set">
     <h2>Sufurias and Lids</h2>
     <p><strong>Price:</strong>$15,set<br>Sufurias and lids | High-quality stainless steel | Better for everyday cooking.</p>
-      <button onclick="alert('Item bought Successfully! @ $15')">Buy Now</button>
+       <button onclick="addToCart('Sufurias and Lids', 15) ">Add to Cart</button>
     </div>
     
     <div class="product-card">
       <img src="img/wooden spoons.jpeg" alt="Cutlery Set">
     <h2>Wooden Spoons</h2>
     <p><strong>Price:</strong>$8,set<br>Different sizes | High-quality wooden spoons| Durable.</p>
-      <button onclick="alert('Item bought Successfully!@ $8')">Buy Now</button>
+       <button onclick="addToCart('Wooden spoons', 8) ">Add to Cart</button>
+    </div>
+    
     </div>
   </main>
 
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="total-price">0.00</span></p>
+        <button onclick="clearCart()">Clear Cart</button>
+    </div> 
   
 <hr>
   <!-- ===== FOOTER ===== -->
@@ -97,4 +95,5 @@
     </div>
   </footer>
 </body>
+  <script src="Cart.js"></script>
 </html>

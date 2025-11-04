@@ -29,7 +29,7 @@
     <a href="kitchen.html">Kitchen</a>
     <a href="electronics.html">Electronics</a>
     <a href="motorvehicle.html">Motor Vehicles</a>
-    <a href="Bedroom_layout.html"  class="active">Bedroom Layouts</a>
+    <a href="Bedroom_layout.html">Bedroom layou</a>
   </nav>
 
   <!-- Main Section -->
@@ -38,45 +38,51 @@
       <img src="img/bed.jpeg" alt="Luxury Bed">
       <h2>Luxury Bed</h2>
       <p>King size bed with stylish design for your bedroom.</p>
-   <button onclick="alert('Item bought Successfully! ')">Buy Now</button>
+          <button onclick="addToCart('Luxury bed', 18)">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/African Ethnic Bedding Sets Duvet and Pillow….jpeg" alt="Memory Foam Mattress">
       <h2>Memory Foam Mattress</h2>
       <p>Comfortable foam mattress for a perfect night sleep.</p>
-      <button onclick="alert('Item bought Successfully!')">Buy Now</button>
+         <button onclick="addToCart('Memory Foam Mattress', 38)">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/Looking for Gray Bedroom Ideas_ These designs pair….jpeg" alt="Bedroom Set">
       <h2>Bedroom Set</h2>
       <p>Includes bed, wardrobe, and bedside tables in matching style.</p>
-      <button onclick="alert('Item bought Successfully!')">Buy Now</button>
+          <button onclick="addToCart('Bedroom set', 36)">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/Precisa de inspiração para um quarto moderno_….jpeg" alt="Dell Laptop">
       <h2>Bedroom Set</h2>
       <p><strong>Price:</strong> $35<br>Nice wardrobe</p>
-      <button onclick="alert('Item bought Successfully!')">Buy Now</button>
+        <button onclick="addToCart('Bedroom set', 35) ">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/Achieve balance with modern silver tones and….jpeg" alt="Printer">
       <h2>Bedroom Set</h2>
       <p><strong>Price:</strong> $32<br>Nice wardrobe</p>
-      <button onclick="alert('Item bought Successfully!')">Buy Now</button>
+        <button onclick="addToCart('Bedroom set', 32)">Add to Cart</button>
     </div>
 
     <div class="product-card">
       <img src="img/bed.jpeg" alt=" bed">
       <h2>Bedroom Set</h2>
       <p><strong>Price:</strong> $18<br>Nice bed</p>
-      <button onclick="alert('Item bought Successfully!')">Buy Now</button>
+          <button onclick="addToCart('Bedroom set', 18)">Add to Cart</button>
     </div>
   </main>
 
+    <div class="cart">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items"></ul>
+        <p>Total: $<span id="total-price">0.00</span></p>
+        <button onclick="clearCart()">Clear Cart</button>
+    </div> <br>
   
 <hr>
   <!-- ===== FOOTER ===== -->
@@ -85,4 +91,5 @@
     </div>
   </footer> 
 </body>
+  <script src="Cart.js"></script>
 </html>
