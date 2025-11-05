@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>        
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; /* space between text and remove button */
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 10px;
+        gap: 15px; /* spacing between image and text */
+        background-color: #fff;
+     }
+
+    .cart-item img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+    }
+
+    .card-details {
+        flex: 1; /* take up remaining space */
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .quantity-control button {
+        padding: 4px 8px;
+        border: 1px solid #ccc;
+        background: #f5f5f5;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .remove-btn {
+        align-self: flex-start;
+        background: #ff4d4d;
+        color: white;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-top: 8px;
+    }
+
+    .remove-btn:hover {
+        background: #d93636;
+    }
+
+    </style>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1> Your shopping cart </h1>
+        <a href="index.html">Continue Shopping</a>
+    </header>
+    
+    <main id="cardContainer"></main>
+
+    <div>
+        <button id="clearCart">Clear cart</button>
+        <p id="totalPrice"></p>
+    </div>
+
+    <script src="Cart.js"></script>
+</body>
+</html>
