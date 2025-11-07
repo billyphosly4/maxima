@@ -6,7 +6,7 @@ let cart = JSON.parse(localStorage.getItem("universalCart")) || [];
 
 function displayCart() {
   if (cart.length === 0) {
-    cartContainer.innerHTML = "<p>Your cart is empty 🛒</p>";
+    cartContainer.innerHTML = "<p>Your cart is empty 🛒, <span><a href='index.html'>Shop now</a></span></p>";
     totalPriceE1.textContent = "";
     return;
   }

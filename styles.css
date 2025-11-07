@@ -98,6 +98,33 @@ marquee {
   background-color: #0077b6;
 }
 
+/* ===== CART lINK ===== */
+    .cart-link {
+    float: right;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    transition: all 0.3s;
+}
+
+.cart-link:hover {
+    text-decoration: underline;
+    background: #ff6b00;
+    color: white;
+}
+
+.cart-count {
+    background: #ff6b00;
+    color: white;
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
 /* ===== HERO SECTION ===== */
 .hero {
   text-align: center;
