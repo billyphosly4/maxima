@@ -57,4 +57,22 @@ clearCartBtn.addEventListener("click", () => {
   displayCart();
 });
 
+// ===== SEARCH BAR FUNCTIONALITY =====
+const searchInput = document.querySelector('.search-bar input');
+const products = document.querySelectorAll('.product-card');
+
+searchInput.addEventListener('input', () => {
+  const searchText = searchInput.value.toLowerCase();
+
+  products.forEach(product => {
+    const productName = product.querySelector('h2').textContent.toLowerCase();
+    // Show or hide products based on search match
+    if (productName.includes(searchText)) {
+      product.style.display = 'block';
+    } else {
+      product.style.display = 'none';
+    }
+  });
+});
+
 displayCart();
