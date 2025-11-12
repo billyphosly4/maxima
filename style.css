@@ -146,8 +146,7 @@ header h1{
   background-color: #023e8a;
 }
 
-
-
+/* Footer */
 footer { 
    background: linear-gradient(135deg, #0077b6, #0096c7);
    padding:10px;
@@ -208,14 +207,24 @@ footer {
 footer p{
   font-size:12px;
    }
-.search-bar{
-  font-size:4px;
-} 
+
+    .search-bar {
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
 .cart {
     background-color: #4F88AF;
     padding: 20px;
     border: 1px solid darkblue;
-    width: 300px;
+    width: 2000px;
     margin-left: 10px;
     position:sticky;
     z-index:1000;
@@ -243,6 +252,26 @@ button {
     margin-top: 10px;
 }
 
+.cart-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #28a745; /* green */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  z-index: 1000;
+}
+.cart-alert.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
 }
    /* Styles for screens larger than 1200px (e.g., desktops) */
    @media (min-width: 1200px) {
@@ -253,9 +282,7 @@ button {
     .placeholder {
        font-size: 2px;
      }
-     header{
-       
-       
+   
      }
     .navbar a{
       font-size:12px;
@@ -292,5 +319,5 @@ footer p{
 .search-bar{
   font-size:5px;
 }
-} 
+
 
