@@ -97,6 +97,15 @@ header h1{
     font-size: 0.8rem;
     margin-left: 0.5rem;
 }
+#clearCart{
+background:#28a745;
+ color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
 
 /* Products Section */
 .products {
@@ -135,15 +144,19 @@ header h1{
 .product-card button {
   background-color: #0077b6;
   color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
+margin-left: 10px;
+border: none;
+padding: 6px 10px;
+border-radius: 6px;
+cursor: pointer;
+margin-top: 8px;
+align-content: center;
+ 
 }
 
 .product-card button:hover {
-  background-color: #023e8a;
+background-color: #023e8a;
+
 }
 
 /* Footer */

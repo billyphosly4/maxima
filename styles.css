@@ -104,25 +104,26 @@ marquee {
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    position: relative;
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
     transition: all 0.3s;
+    margin-top: 20px;
+    font-size: 14px;
 }
 
 .cart-link:hover {
     text-decoration: underline;
     background: #ff6b00;
     color: white;
+    padding: 8px;
+    border-radius: 8px;
 }
 
 .cart-count {
     background: #ff6b00;
     color: white;
-    border-radius: 50%;
-    padding: 0.2rem 0.5rem;
-    font-size: 0.8rem;
-    margin-left: 0.5rem;
+    border-radius: 40px;
+    font-size: 14px;
+    padding:5px;
+  
 }
 
 /* ===== HERO SECTION ===== */
@@ -330,7 +331,6 @@ body {
    .auth-buttons{
     font-size: 4px;
     padding: 0;
-    
    }
  .hero h1{
    font-size: 22px;
@@ -365,6 +365,9 @@ footer{
 marquee{
   font-size: 12px;
 } 
+#cart-logo{
+  height: 2px;
+}
 } 
 /* Styles for screens larger than 1200px (e.g., desktops) */
 @media (min-width: 600px) {

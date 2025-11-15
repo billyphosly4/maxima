@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!cartContainer) return;
 
     if (cart.length === 0) {
-      cartContainer.innerHTML = "<p>Your cart is empty 🛒, <span><a href='index.html'>Shop now</a></span></p>";
+      cartContainer.innerHTML = "<p>Your cart is empty 🛒, <span><a href='index.html'>Shop now</a></span></p>"
       totalPriceE1.textContent = "";
     } else {
       cartContainer.innerHTML = cart.map(item => {

@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
-    <style>        
+    <style>
+    h1{
+        text-align: center;
+        text-decoration: underline;
+    }       
     .cart-item {
         display: flex;
-        align-items: center;
+        align-items:center ;
         justify-content: space-between; /* space between text and remove button */
         border: 1px solid #ddd;
         border-radius: 10px;
@@ -46,7 +50,8 @@
     }
 
     .remove-btn {
-        align-self: flex-start;
+
+        align-self: start;
         background: #ff4d4d;
         color: white;
         border: none;
@@ -57,20 +62,26 @@
     }
 
     .remove-btn:hover {
-        background: #d93636;
-    }
-
+        background: #d93636
+     }
+     #totalPrice{
+        color: #d93636;
+        text-align: center;
+     }
+     .cart{
+        text-align: center;
+     }
     </style>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1> Your shopping cart </h1>
+        <h1> YOUR SHOPPING CART.</h1>
     </header>
     
     <main id="cardContainer"></main>
 
-    <div>
+    <div class="cart">
         <button id="clearCart">Clear cart</button>
         <p id="totalPrice"></p>
     </div>
