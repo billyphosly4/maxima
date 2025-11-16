@@ -97,15 +97,8 @@ header h1{
     font-size: 0.8rem;
     margin-left: 0.5rem;
 }
-#clearCart{
-background:#28a745;
- color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
+
+ 
 
 /* Products Section */
 .products {
@@ -232,19 +225,6 @@ footer p{
       border-radius: 5px;
       border: 1px solid #ccc;
     }
-
-.cart {
-    background-color: #4F88AF;
-    padding: 20px;
-    border: 1px solid darkblue;
-    width: 2000px;
-    margin-left: 10px;
-    position:sticky;
-    z-index:1000;
-    bottom:20px ;
-    border-radius:10px;
-
-}
 
 .cart h2 {
     margin-top: 0;
