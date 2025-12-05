@@ -8,7 +8,7 @@
 /* ===== GENERAL ===== */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
+  background-color: rgb(23, 12, 43);
   color: #333;
 }
 header {
@@ -21,13 +21,13 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between ;
-   background: linear-gradient(135deg, #0077b6);  
+   background:rgb(27, 9, 48);  
 }
 
 marquee {
-  background-color: lightblue;
+  background-color: rgb(27, 9, 48);
   padding:7px;
-  color: black;
+  color: white;
 }
 
 
@@ -35,7 +35,7 @@ marquee {
   list-style-type: none;
   margin-top: 20px;
   padding: 0;
-  background-color: #f9f2f2;
+  background-color:rgb(69, 69, 107);
   display: flex;
   border-radius: 2px;
   
@@ -43,7 +43,7 @@ marquee {
 
 #naf li a {
   display: block;
-  color: black;
+  color:white;
   padding: 5px 6px;
   text-decoration: none;
   
@@ -80,7 +80,7 @@ marquee {
 }
 
 .auth-buttons button {
-  background-color: #00b4d8;
+  background-color: rgb(69, 69, 107);
   border: none;
   margin-top: 20px;
   border-radius: 5px;
@@ -102,7 +102,7 @@ marquee {
     .cart-link {
     float: right;
     text-decoration: none;
-    color: #333;
+    color: white;
     font-weight: 500;
     transition: all 0.3s;
     margin-top: 20px;
@@ -111,7 +111,7 @@ marquee {
 
 .cart-link:hover {
     text-decoration: underline;
-    background: #ff6b00;
+    background: rgb(69, 69, 107);
     color: white;
     padding: 8px;
     border-radius: 8px;
@@ -130,12 +130,12 @@ marquee {
 .hero {
   text-align: center;
   padding: 40px 20px;
-  background: linear-gradient(135deg, #0077b6, #0096c7);
+  background:rgb(30, 16, 51);
   color: white;
 }
 
 .hero h1 {
-  color: black;
+  color:wheat;
   font-size: 40px;
 }
 .hero-buttons{
@@ -166,23 +166,29 @@ marquee {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 25px;
   padding: 40px;
-  background-color: #f8f9fa;
+  background-color:rgb(23, 12, 43);
   text-align: center;
 }
 
 .category-card {
-  background: white;
+  background:  rgb(20, 1, 87);
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
   cursor: pointer;
 }
+.category-card h2{
+  color:  #0077b6;
+}
+.category-card p{
+  color:  #023e8a;
+}
 
 .category-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  background: #e3f2fd;
+  background:  rgb(41, 20, 122);
 }
 
 .category-card img {
@@ -191,14 +197,15 @@ marquee {
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 10px;
+  border-bottom: #333;
 }
 
 .category-card a {
   display: inline-block;
-  background-color: #0077b6;
+  background-color:blue;
   color: white;
   padding: 10px 18px;
-  border-radius: 25px;
+  border-radius: 10px;
   text-decoration: none;
   font-weight: bold;
   transition: background 0.3s, transform 0.2s;
@@ -210,7 +217,7 @@ marquee {
 }
 
 .category-card button {
-  background-color: inherit;
+  background-color:inherit;
   border: none;
   color: white;
   font-weight: bold;
@@ -224,12 +231,13 @@ marquee {
   margin-top:20px ;
   padding-left:15px;
   padding-right: 10px;
+  color:rgb(194, 173, 173);
 }
 #about p{
-  font-weight: 500;
+  font-weight: 200;
 }
 #about h2 {
-  color: black;
+  color: rgb(207, 23, 23);
   text-decoration: underline;
   text-align: center ;
   font-size: 15px;
@@ -242,6 +250,7 @@ marquee {
   text-align: center;
   font-size: 15px;
   text-decoration: underline;
+  color:  rgb(207, 23, 23);
 }
 
 #quick-links ul {
@@ -260,7 +269,7 @@ marquee {
 
 #quick-links li a {
   text-decoration: none;
-  color: black ;
+  color:rgb(194, 173, 173);
   font-weight:500;
   text-align: center;
   margin-bottom: 0px;
@@ -283,12 +292,13 @@ padding-top:20px;
     font-size: 15px;
   text-decoration: underline;
   font-weight:1000;
+  color:  rgb(207, 23, 23);
 
 }
 
 #contact-info p {
   margin:4px;
-  color:black;
+  color:rgb(194, 173, 173);
   font-weight:500;
   padding-left: 50px;
 }
@@ -300,9 +310,9 @@ padding-top:20px;
 }
 
 footer { 
-  background: linear-gradient(135deg, #0077b6, #0096c7);  
+  background:rgb(34, 32, 41);
   padding: 10px;
-  color:black;
+  color:rgb(194, 173, 173);
   text-align: center;
   font-weight: 1000;
   position: sticky;
@@ -312,7 +322,7 @@ footer {
 .section{
   display:grid ;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  background: linear-gradient(135deg, #0077b6, #0096c7);  
+  background:rgb(16, 1, 56);  
   
 }
 /* Default styles */

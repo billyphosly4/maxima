@@ -8,7 +8,7 @@
 /* Body */
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color:rgb(23, 12, 43);
   color: #333;
   line-height: 1.6;
 }
@@ -16,13 +16,16 @@ body {
 /* Header */
 .header {
   text-align: center;
-  background-color: #0077b6;
+  background-color: rgb(27, 9, 48);
   color: white;
   padding: 20px;
   font-size: 15px;
 }
 header h1{
-  color:blue;
+  color:rgb(28, 15, 102);
+}
+header p{
+  color: #0f0d80f5;
 }
 
 
@@ -49,7 +52,7 @@ header h1{
 
 /* Navigation */
 .navbar {
-  background-color: #023e8a;
+  background-color: rgb(32, 22, 44);
   text-align: center;
   padding: 15px;
   position: sticky ;
@@ -60,7 +63,7 @@ header h1{
 }
 
 .navbar a {
-  color: white;
+  color:rgb(34, 34, 131);
   text-decoration: none;
   margin: 0 15px;
   font-weight: bold;
@@ -85,14 +88,15 @@ header h1{
 
 .cart-link:hover {
     text-decoration: underline;
-    background: #ff6b00;
+    background: rgb(10, 10, 51);
     color: white;
+    border: 10px;
 }
 
 .cart-count {
     background: #ff6b00;
     color: white;
-    border-radius: 50%;
+    border-radius:10px;
     padding: 0.2rem 0.5rem;
     font-size: 0.8rem;
     margin-left: 0.5rem;
@@ -109,7 +113,7 @@ header h1{
 }
 
 .product-card {
-  background: white;
+  background: rgb(20, 1, 87);
   border-radius: 12px;
   padding: 15px;
   text-align: center;
@@ -131,7 +135,11 @@ header h1{
 
 .product-card h2 {
   color: #0077b6;
-  margin: 10px 0;
+  margin:
+   10px 0;
+}
+.product-card p{
+  color: #023e8a;
 }
 
 .product-card button {
@@ -154,14 +162,14 @@ background-color: #023e8a;
 
 /* Footer */
 footer { 
-   background: linear-gradient(135deg, #0077b6, #0096c7);
-   padding:10px;
-  bottom: 0;
-  color:black;
+ background:rgb(34, 32, 41);
+  padding: 10px;
+  color:rgb(194, 173, 173);
   text-align: center;
   font-weight: 1000;
-  position:sticky;
+  position: sticky;
   z-index: 1000;
+  bottom: 0;
 } 
    /* Default styles */
    body {
