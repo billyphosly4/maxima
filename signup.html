@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
     <link rel="stylesheet" href="styled.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -22,22 +22,27 @@
                 <input id="fullName" type="text" placeholder="Full Name" required>
                 <i class='bx bxs-user'></i>
             </div>
+
             <div class="input-field">
                 <input id="username" type="text" placeholder="Username" required>
                 <i class='bx bxs-user'></i>
             </div>
+
             <div class="input-field">
                 <input id="email" type="email" placeholder="Email" required>
                 <i class='bx bxs-envelope'></i>
             </div>
+
             <div class="input-field">
                 <input id="phone" type="number" placeholder="Phone Number" required>
                 <i class='bx bxs-phone'></i>
             </div>
+
             <div class="input-field">
                 <input id="password" type="password" placeholder="Password" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
+
             <div class="input-field">
                 <input id="confirmPassword" type="password" placeholder="Confirm Password" required>
                 <i class='bx bxs-lock-alt'></i>
@@ -45,42 +50,23 @@
         </div>
 
         <label>
-          <input type="checkbox" id="agree"> I hereby declare that the information provided is true and correct.
+            <input type="checkbox" id="agree"> I hereby declare that the information provided is true and correct.
         </label>
 
-        <button type="submit" class="btn">Signup</button>
-
+        <button type="submit" class="btn">Signup</button>   
+        <label>Already have an account? <a href="login.html">Login</a></label>
         <div class="footer">
-            <p>&copy; 2025 Maximamall. All rights reserved. | Designed with Billy and White Wizard.</p>
+            <p>&copy; 2025 Maximamall. All rights reserved. | Designed by Billy and White Wizard.</p>
         </div>
     </form>
 </div>
 </center>
 
-<!-- Firebase Config -->
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-    import { getAuth } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyBYrk0pA2n36c-fk9NvpwJYw2mcTBYsAnc",
-        authDomain: "maxima-6f4dc.firebaseapp.com",
-        projectId: "maxima-6f4dc",
-        storageBucket: "maxima-6f4dc.firebasestorage.app",
-        messagingSenderId: "294387008300",
-        appId: "1:294387008300:web:6b276d0689742576432289",
-        measurementId: "G-D6W9MKN7PD"
-    };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    // Export auth for other scripts
-    window.auth = auth;
-</script>
-
-<!-- Signup functionality -->
+<!-- Signup Logic -->
 <script type="module" src="signup.js"></script>
 
 </body>
 </html>
+
