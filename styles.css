@@ -146,14 +146,17 @@ marquee {
 }
 
 .hero-buttons button {
- 
+ color:white ;
   margin: 20px;
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
-  background-color: #ffd60a;
+  background-color:blue ;
   font-weight: bold;
   cursor: pointer;
+}
+.hero-buttons button a {
+  color:white ;
 }
 
 .hero-buttons button:hover {
@@ -179,10 +182,10 @@ marquee {
   cursor: pointer;
 }
 .category-card h2{
-  color:  #0077b6;
+  color:  whitesmoke;
 }
 .category-card p{
-  color:  #023e8a;
+  color:  whitesmoke;
 }
 
 .category-card:hover {
@@ -311,13 +314,13 @@ padding-top:20px;
 
 footer { 
   background:rgb(34, 32, 41);
-  padding: 10px;
+  padding: 30px;
   color:rgb(194, 173, 173);
   text-align: center;
   font-weight: 1000;
   position: sticky;
   z-index: 1000;
-  bottom: 0;
+  bottom:0px;
 }
 .section{
   display:grid ;

@@ -22,10 +22,10 @@ body {
   font-size: 15px;
 }
 header h1{
-  color:rgb(28, 15, 102);
+  color:whitesmoke ;
 }
 header p{
-  color: #0f0d80f5;
+  color: whitesmoke ;
 }
 
 
@@ -63,7 +63,7 @@ header p{
 }
 
 .navbar a {
-  color:rgb(34, 34, 131);
+  color:whitesmoke;
   text-decoration: none;
   margin: 0 15px;
   font-weight: bold;
@@ -134,12 +134,12 @@ header p{
 }
 
 .product-card h2 {
-  color: #0077b6;
+  color: whitesmoke;
   margin:
    10px 0;
 }
 .product-card p{
-  color: #023e8a;
+  color: whitesmoke;
 }
 
 .product-card button {
