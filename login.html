@@ -5,48 +5,47 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Login Form</title>
-        <link rel="stylesheet"href="styled.css">
-        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Login Form</title>
+    <link rel="stylesheet" href="styled.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
 
-  <center> <div class="wrapper">
-        <form action="">
-            <h1>Login</h1>
+<center>
+<div class="wrapper">
+    <form id="loginForm">
+        <h1>Login</h1>
 
-
-            <div class="input-box">
-                <div class="input-field">
-                    <input type="email" placeholder="Email" required>
-                    <i class='bx bxs-envelope'></i>
-                </div>
-                <div class="input-field">
-                    <input type="password" placeholder="Password" required>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
+        <div class="input-box">
+            <div class="input-field">
+                <input id="loginEmail" type="email" placeholder="Email" required>
+                <i class='bx bxs-envelope'></i>
             </div>
+            <div class="input-field">
+                <input id="loginPassword" type="password" placeholder="Password" required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+        </div>
 
-            <label><input type="checkbox"> Remember me.</label>
-            <label><a href="#">Forgotten password?</a></label>
+        <label><input type="checkbox"> Remember me.</label>
+        <label><a href="#">Forgotten password?</a></label>
 
-            <button type="submit" class="btn">Login</button>
-               <label>Doesn't have account? <a href="signup.html">Signup</a></label>
+        <button type="submit" class="btn" id="loginBtn">Login</button>
+
+        <label>Doesn't have account? <a href="signup.html">Signup</a></label>
+
         <div class="footer">
-    <p>&copy; 2025 Maximamall. All rights reserved. | Designed with Billy and  White Wizard. <i class="fas fa-heart'style="color: redc;"></i></p>
-    </div>
-        </form>
-    </div>
-      </div>  
-</body><br>
+            <p>&copy; 2025 Maximamall. All rights reserved. | Designed with Billy and  White Wizard.</p>
+        </div>
+    </form>
+</div>
+</center>
+
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-  import { 
-    getAuth, 
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
-  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+  import { getAuth, signInWithEmailAndPassword } 
+    from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
   const firebaseConfig = {
     apiKey: "AIzaSyBYrk0pA2n36c-fk9NvpwJYw2mcTBYsAnc",
@@ -61,29 +60,23 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
 
-  // Signup
-  document.getElementById("signupBtn")?.addEventListener("click", () => {
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+  // LOGIN FUNCTION
+  document.getElementById("loginForm").addEventListener("submit", (e) => {
+    e.preventDefault(); // <-- stop page reload
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => alert("Signup Successful!"))
-      .catch(err => alert(err.message));
-  });
-
-  // Login
-  document.getElementById("loginBtn")?.addEventListener("click", () => {
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
 
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         alert("Login Successful!");
-        // window.location.href = "dashboard.html"; // optional redirect
+        window.location.href = "dashboard.html";  // redirect to dashboard
       })
-      .catch(err => alert(err.message));
+      .catch((err) => {
+        alert(err.message);
+      });
   });
 </script>
 
-    <script src="file.js"></script>
+</body>
 </html>
