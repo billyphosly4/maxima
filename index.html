@@ -16,30 +16,29 @@
       <div class="logo">
         <img src="img/logo.png" alt="Maximall Logo">
       </div>
-        <div id="bill">
-          <ul id="naf">
-             <li><a href="#">Home</a></li>
-             <li><a href="#about">About</a></li>
-             <li><a href="#contact-info">Contact</a></li>
-          </ul>
-        </div>
- 
- <div><a href="cart.html" class="cart-link">Cart <span id="cart-logo">🛒</span> <span id="cart-count" class="cart-count">0</span></a></div>
-    
-      <div class="auth-buttons">
-        <button><a href="login.html">Login</a></button>
-        <button><a href="signup.html">Signup</a></button>
+      <div id="bill">
+        <ul id="naf">
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact-info">Contact</a></li>
+        </ul>
       </div>
-     </nav>
-     <hr>
+
+      <div><a href="cart.html" class="cart-link">Cart <span id="cart-logo">🛒</span> <span id="cart-count" class="cart-count">0</span></a></div>
+      
+      <div class="auth-buttons">
+        <button id="loginBtnHome"><a href="login.html">Login</a></button>
+        <button id="signupBtnHome"><a href="signup.html">Signup</a></button>
+        <button id="dashboardBtn" style="display:none;"><a href="dashboard.html">Dashboard</a></button>
+      </div>
+    </nav>
+    <hr>
     <marquee behavior="scroll" direction="left">YOUR CAMPUS. YOUR PEOPLE. YOUR MARKETPLACE</marquee>
-    
   </header>
 
   <!-- ===== HERO SECTION ===== -->
   <section class="hero">
-    <h1>WELCOME TO 
-    MAXIMALL</h1><br>
+    <h1>WELCOME TO MAXIMALL</h1><br>
     <h2>Join thousands of customers in finding quality gadgets that last long.</h2><br>
 
     <div class="hero-buttons">
@@ -51,8 +50,7 @@
     <br>
     <p><b>These are some of the main product categories available on our platform.</b></p>
   </section>
-
-  <!-- ===== CATEGORY SECTION ===== -->
+ <!-- ===== CATEGORY SECTION ===== -->
    <section class="categories">
      <div class="category-card">
       <img src="img/printer.jpeg" alt="Electronics">
@@ -164,7 +162,63 @@
       alert("Please login first to start!!");
     }
   </script>
+
   <script src="Cart.js"></script>
+
+  
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged } 
+    from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBYrk0pA2n36c-fk9NvpwJYw2mcTBYsAnc",
+    authDomain: "maxima-6f4dc.firebaseapp.com",
+    projectId: "maxima-6f4dc",
+    storageBucket: "maxima-6f4dc.firebasestorage.app",
+    messagingSenderId: "294387008300",
+    appId: "1:294387008300:web:6b276d0689742576432289",
+    measurementId: "G-D6W9MKN7PD"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  let isUserLoggedIn = false;
+
+  // Check user login status
+  onAuthStateChanged(auth, (user) => {
+    isUserLoggedIn = !!user;
+
+    const loginBtn = document.getElementById("loginBtnHome");
+    const signupBtn = document.getElementById("signupBtnHome");
+    const dashboardBtn = document.getElementById("dashboardBtn");
+
+    if (user) {
+      loginBtn.style.display = "none";
+      signupBtn.style.display = "none";
+      dashboardBtn.style.display = "inline-block";
+    } else {
+      loginBtn.style.display = "inline-block";
+      signupBtn.style.display = "inline-block";
+      dashboardBtn.style.display = "none";
+    }
+  });
+
+  // Updated Start Now function
+  function showAlert() {
+    if (isUserLoggedIn) {
+      window.location.href = "dashboard.html"; // redirect to dashboard
+    } else {
+      alert("Please login first to start!!");
+    }
+  }
+
+  // Make sure this function is globally accessible for your button
+  window.showAlert = showAlert;
+</script>
+
+  </script>
+
 </body>
 </html>
- 
