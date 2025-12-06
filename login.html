@@ -40,5 +40,50 @@
     </div>
       </div>  
 </body><br>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { 
+    getAuth, 
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBYrk0pA2n36c-fk9NvpwJYw2mcTBYsAnc",
+    authDomain: "maxima-6f4dc.firebaseapp.com",
+    projectId: "maxima-6f4dc",
+    storageBucket: "maxima-6f4dc.firebasestorage.app",
+    messagingSenderId: "294387008300",
+    appId: "1:294387008300:web:6b276d0689742576432289",
+    measurementId: "G-D6W9MKN7PD"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Signup
+  document.getElementById("signupBtn")?.addEventListener("click", () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => alert("Signup Successful!"))
+      .catch(err => alert(err.message));
+  });
+
+  // Login
+  document.getElementById("loginBtn")?.addEventListener("click", () => {
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        alert("Login Successful!");
+        // window.location.href = "dashboard.html"; // optional redirect
+      })
+      .catch(err => alert(err.message));
+  });
+</script>
+
     <script src="file.js"></script>
 </html>
