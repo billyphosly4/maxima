@@ -35,7 +35,7 @@ marquee {
   list-style-type: none;
   margin-top: 20px;
   padding: 0;
-  background-color:rgb(69, 69, 107);
+  background-color:blue;
   display: flex;
   border-radius: 2px;
   
@@ -80,7 +80,7 @@ marquee {
 }
 
 .auth-buttons button {
-  background-color: rgb(69, 69, 107);
+  background-color: blue;
   border: none;
   margin-top: 20px;
   border-radius: 5px;
