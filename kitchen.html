@@ -5,137 +5,167 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kitchen</title>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Style for buttons that have been clicked */
+    button.added {
+      background-color: #4CAF50;
+      color: white;
+      cursor: default;
+    }
+  </style>
 </head>
+
 <body>
-  <!-- Header -->
+
+<!-- Header -->
 <header class="header">
     <div class="logo">
       <img src="img/Sufurias and lids.jpeg" alt="Logo">
       <h1>Kitchen Essentials</h1>
-      <p>High-q  uality utensils and kitchen appliances.</p>
+      <p>High-quality utensils and kitchen appliances.</p>
     </div>
 
-    <!-- Search -->
     <div class="search-bar">
       <input type="search" placeholder="Search for an utensils..." />
     </div>
-  </header>
+</header>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="kitchen.html" class="active">Kitchen</a>
-    <a href="electronics.html">Electronics</a>
-    <a href="motorvehicle.html">Motor Vehicles</a>
-    <a href="Bedroom_layout.html">Bedroom Layouts</a>
-    <a href="cart.html" class="cart-link"><span id="cart-logo">🛒</span>Cart <span id="cart-count" class="cart-count">0</span></a>
-  </nav>
+<!-- Navigation -->
+<nav class="navbar">
+  <a href="index.html">Home</a>
+  <a href="kitchen.html" class="active">Kitchen</a>
+  <a href="electronics.html">Electronics</a>
+  <a href="motorvehicle.html">Motor Vehicles</a>
+  <a href="Bedroom_layout.html">Bedroom Layouts</a>
+  <a href="cart.html" class="cart-link">
+    <span id="cart-logo">🛒</span>Cart <span id="cart-count" class="cart-count">0</span>
+  </a>
+</nav>
 
-  <!-- Main Section -->
-  <main class="products">
-    <div class="product-card">
-      <img src="img/Sufurias and lids.jpeg" alt="Sufuria with Lid">
-  <h2>Sufuria and lids</h2>
-    <p>Price: $10.99</p>
-      <button onclick="addToCart({
-        id: 1, name: 'Sufuria and lids', price: 35, image: 'img/wooden spoons.jpeg'})">
-        Add to Cart
-      </button>
-    </div>
+<!-- Main Section -->
+<main class="products">
 
-    <div class="product-card">
-      <img src="img/Stainless Spoons and Fork.jpeg" alt="Cutlery Set">
+  <div class="product-card">
+    <img src="img/Sufurias and lids.jpeg" alt="Sufuria with Lid">
+    <h2>Sufuria and lids</h2>
+    <p>Price: $35</p>
+    <button data-id="1"
+      onclick="addToCart({ id: 1, name: 'Sufuria and lids', price: 35, image: 'img/Sufurias and lids.jpeg' }, this)">
+      Add to Cart
+    </button>
+  </div>
+
+  <div class="product-card">
+    <img src="img/Stainless Spoons and Fork.jpeg" alt="Cutlery Set">
     <h2>Stainless Cutlery Set</h2>
-    <p><strong>Price:</strong>$13,set<br>Spoons and forks | High-quality stainless steel | Durable.</p>
-     <button onclick="addToCart({
-        id: 2, name: 'Stainless cutlery Set', price: 13, image: 'Stainless Spoons and Fork.jpeg'})">
-        Add to Cart
-      </button>
-    </div>
+    <p><strong>Price:</strong>$13</p>
+    <button data-id="2"
+      onclick="addToCart({ id: 2, name: 'Stainless Cutlery Set', price: 13, image: 'img/Stainless Spoons and Fork.jpeg' }, this)">
+      Add to Cart
+    </button>
+  </div>
 
-    <div class="product-card">
-      <img src="img/Modified blender.jpeg" alt="Blender">
-      <h2>HQ Modern Blender</h2>
-      <p><strong>Price:</strong> $25<br> 2L Capacity | Heavy duty | Perfect for smoothies & sauces.</p>
-       <button onclick="addToCart({
-        id: 3, name: 'HQ Modern Blender', price: 25, image: 'img/Modified blender.jpeg'})">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/Modified blender.jpeg" alt="Blender">
+    <h2>HQ Modern Blender</h2>
+    <p><strong>Price:</strong>$25</p>
+    <button data-id="3"
+      onclick="addToCart({ id: 3, name: 'HQ Modern Blender', price: 25, image: 'img/Modified blender.jpeg' }, this)">
+      Add to Cart
+    </button>
+  </div>
 
-    <div class="product-card">
-      <img src="img/classic_knifes.jpeg" alt="Cutlery Set">
+  <div class="product-card">
+    <img src="img/classic_knifes.jpeg" alt="Knives">
     <h2>Stainless Set Knives</h2>
-    <p><strong>Price:</strong>$13,set<br>Knives and gauge  | High-quality stainless steel | Durable.</p>
-      <button onclick="addToCart({
-        id: 4, name: 'Stainless Set Knives', price: 13, image: 'img/classic_knifes.jpeg'})">
-        Add to Cart
-      </button>
-    </div>
+    <p><strong>Price:</strong>$13</p>
+    <button data-id="4"
+      onclick="addToCart({ id: 4, name: 'Stainless Set Knives', price: 13, image: 'img/classic_knifes.jpeg' }, this)">
+      Add to Cart
+    </button>
+  </div>
 
-    <div class="product-card">
-      <img src="img/design_knife - Copy.jpeg" alt="Cutlery Set">
+  <div class="product-card">
+    <img src="img/design_knife - Copy.jpeg" alt="Cutlery Knives">
     <h2>Stainless Cutlery Knives</h2>
-    <p><strong>Price:</strong>$10,set<br>knives and gauge  | High-quality stainless steel | Durable.</p>
-      <button onclick="addToCart({
-        id: 5, name: 'Stainless Cutlery Knives', price: 10, image: 'img/design_knife - Copy.jpeg'})">
-        Add to Cart
-      </button>
-    </div>
-    
-    <div class="product-card">
-      <img src="img/Mordern sufurias.jpeg" alt="Cutlery Set">
+    <p><strong>Price:</strong>$10</p>
+    <button data-id="5"
+      onclick="addToCart({ id: 5, name: 'Stainless Cutlery Knives', price: 10, image: 'img/design_knife - Copy.jpeg' }, this)">
+      Add to Cart
+    </button>
+  </div>
+
+  <div class="product-card">
+    <img src="img/Mordern sufurias.jpeg" alt="Sufurias">
     <h2>Sufurias and Lids</h2>
-    <p><strong>Price:</strong>$15,set<br>Sufurias and lids | High-quality stainless steel | Better for everyday cooking.</p>
-      <button onclick="addToCart({
-        id: 6, name: 'Sufurias and Lids', price: 15, image: 'img/Mordern sufurias.jpeg'})">
-        Add to Cart
-      </button>
-    </div>
-    
-    <div class="product-card">
-      <img src="img/wooden spoons.jpeg" alt="Cutlery Set">
+    <p><strong>Price:</strong>$15</p>
+    <button data-id="6"
+      onclick="addToCart({ id: 6, name: 'Sufurias and Lids', price: 15, image: 'img/Mordern sufurias.jpeg' }, this)">
+      Add to Cart
+    </button>
+  </div>
+
+  <div class="product-card">
+    <img src="img/wooden spoons.jpeg" alt="Spoons">
     <h2>Wooden Spoons</h2>
-    <p><strong>Price:</strong>$8,set<br>Different sizes | High-quality wooden spoons| Durable.</p>
-     <button onclick="addToCart({
-        id: 7, name: 'Wooden spoons', price: 18, image: 'img/wooden spoons.jpeg'})">
-        Add to Cart
-      </button>
-    </div>
-    
-    </div>
-    
-    <div id="cart-alert" class="cart-alert"></div>
-  </main>
+    <p><strong>Price:</strong>$18</p>
+    <button data-id="7"
+      onclick="addToCart({ id: 7, name: 'Wooden Spoons', price: 18, image: 'img/wooden spoons.jpeg' }, this)">
+      Add to Cart
+    </button>
+  </div>
+
+</main>
 
 <hr>
-  <!-- ===== FOOTER ===== -->
-  <footer>
-      <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
-    </div>
-  </footer>
 
-  <script>
-// script.js — for product pages only
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
+</footer>
 
-// Adds a product to the cart in localStorage
-function addToCart(product) {
-  let cart = JSON.parse(localStorage.getItem("universalCart")) || [];
+<!-- ========================= -->
+<!--      CART / BUTTON JS     -->
+<!-- ========================= -->
+<script>
 
-  // check if already exists
-  const existing = cart.find(item => item.id === product.id);
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
+// Add product to cart and instantly update button
+function addToCart(product, button) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Save to localStorage
-  localStorage.setItem("universalCart", JSON.stringify(cart));
+    // Add item (duplicates allowed)
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
 
-  alert(`${product.name} added to cart!`);
+    // Update button immediately
+    button.textContent = "Added to Cart";
+    button.classList.add("added");
+    button.disabled = true;
+
+    updateCartCount();
 }
+
+// Update cart number
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cart-count").textContent = cart.length;
+}
+
+// On load reset buttons back to Add to Cart
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Reset button appearance
+    document.querySelectorAll("button[data-id]").forEach(button => {
+        button.textContent = "Add to Cart";
+        button.classList.remove("added");
+        button.disabled = false;
+    });
+
+    updateCartCount();
+});
 </script>
-  <script src="Cart.js"></script>
+ <script src="Cart.js"></script>
 </body>
 </html>
+

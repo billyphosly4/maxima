@@ -3,21 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Moter Vehicles</title>
+  <title>Motor Vehicles</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <img src="img/BMW M4.jpg" alt="Logo">
-      <h1>Motervehicles</h1>
+      <img src="img/BMW M4.jpg" alt="Logo" />
+      <h1>Motor Vehicles</h1>
       <p>Our website. Our marketplace. Our goods.</p>
     </div>
 
     <!-- Search -->
     <div class="search-bar">
-      <input type="search" placeholder="Search for Motervehicles..." />
+      <input type="search" placeholder="Search for Motor Vehicles..." />
     </div>
   </header>
 
@@ -30,86 +30,99 @@
     <a href="Bedroom_layout.html">Bedroom Layouts</a>
     <a href="cart.html" class="cart-link"><span id="cart-logo">🛒</span>Cart <span id="cart-count" class="cart-count">0</span></a>
   </nav>
-  </nav>
 
   <!-- Main Section -->
   <main class="products">
     <div class="product-card">
-      <img src="img/Nissan Titan.jpeg" alt="Dell Laptop">
+      <img src="img/Nissan Titan.jpeg" alt="Nissan Titan" />
       <h2>Nissan Titan</h2>
-      <p><strong>Price:</strong> $9000<br>Speed: 600km/hr | Cool engine </p>
-      <button onclick="addToCart({
-        id: 1, name: 'Nissan Titan', price: 35, image: 'img/Nissan Titan.jpeg'})">
+      <p><strong>Price:</strong> $9000<br>Speed: 600 km/hr | Cool engine</p>
+      <button data-id="$1" onclick="addToCart({ id: 1, name: 'Nissan Titan', price: 9000, image: 'img/Nissan Titan.jpeg' })">
         Add to Cart
       </button>
     </div>
 
     <div class="product-card">
-      <img src="img/BMW M4.jpg" alt="Printer">
+      <img src="img/BMW M4.jpg" alt="BMW M4" />
       <h2>BMW M4</h2>
-      <p><strong>Price:</strong> $12000<br>Speed:600km/hr<br> Cool Engine<br>Petroleum:300L</p>
-      <button onclick="addToCart({
-        id: 2, name: 'BMW M4', price: 12000, image: 'img/BMW M4.jpg'})">
+      <p><strong>Price:</strong> $12000<br>Speed: 600 km/hr<br>Cool Engine<br>Petroleum: 300L</p>
+      <button data-id="$1" onclick="addToCart({ id: 2, name: 'BMW M4', price: 12000, image: 'img/BMW M4.jpg' })">
         Add to Cart
       </button>
     </div>
 
     <div class="product-card">
-      <img src="img/Porche.jpg" alt="Porche">
-      <h2>Porche</h2>
-      <p><strong>Price:</strong> $18808<br>Speed:900km/hr<br>Cool Engine<br>Petrolum:400L</p>
-      <button onclick="addToCart({
-        id: 3, name: 'Porche', price: 18808, image: 'img/Porche.jpg'})">
+      <img src="img/Porche.jpg" alt="Porsche" />
+      <h2>Porsche</h2>
+      <p><strong>Price:</strong> $18808<br>Speed: 900 km/hr<br>Cool Engine<br>Petroleum: 400L</p>
+      <button data-id="$1" onclick="addToCart({ id: 3, name: 'Porsche', price: 18808, image: 'img/Porche.jpg' })">
         Add to Cart
       </button>
     </div>
 
     <div class="product-card">
-      <img src="img/Rangerover.jpeg" alt="Headphones">
-      <h2>Rangerover</h2>
-      <p><strong>Price:</strong> $11300<br>Speed: 900km/hr <br> Petrolium: 400l</p>
-      <button onclick="addToCart({
-        id: 4, name: 'Rangerover', price: 11300, image: 'img/Rangerover.jpeg'})">
+      <img src="img/Rangerover.jpeg" alt="Range Rover" />
+      <h2>Range Rover</h2>
+      <p><strong>Price:</strong> $11300<br>Speed: 900 km/hr<br>Petroleum: 400L</p>
+      <button data-id="$1" onclick="addToCart({ id: 4, name: 'Range Rover', price: 11300, image: 'img/Rangerover.jpeg' })">
         Add to Cart
       </button>
     </div>
 
     <div class="product-card">
-      <img src="img/This Midnight Black TRD Pro trim was brought in to….jpeg" alt="Blender">
-      <h2>TX 470 </h2>
-      <p><strong>Price:</strong> $12300<br>Speed: 900km/hr</p>
-      <button onclick="addToCart({
-        id: 5, name: 'TX 470', price: 12300, image: 'img/This Midnight Black TRD Pro trim was brought in to….jpeg'})">
+      <img src="img/This Midnight Black TRD Pro trim was brought in to….jpeg" alt="TX 470" />
+      <h2>TX 470</h2>
+      <p><strong>Price:</strong> $12300<br>Speed: 900 km/hr</p>
+      <button data-id="$1" onclick="addToCart({ id: 5, name: 'TX 470', price: 12300, image: 'img/This Midnight Black TRD Pro trim was brought in to….jpeg' })">
         Add to Cart
       </button>
     </div>
   </main>
-  
-  <!-- ===== FOOTER ===== -->
+
+  <!-- Footer -->
   <footer>
-      <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
-    </div>
-  </footer> 
-  
-<script>
-// Adds a product to the cart in localStorage
-function addToCart(product) {
-  let cart = JSON.parse(localStorage.getItem("universalCart")) || [];
+    <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
+  </footer>
 
-  // check if already exists
-  const existing = cart.find(item => item.id === product.id);
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
+  <script>
+    function addToCart(product, button) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Save to localStorage
-  localStorage.setItem("universalCart", JSON.stringify(cart));
+    // Add item only once
+    if (!cart.some(item => item.id === product.id)) {
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
 
-  alert(`${product.name} added to cart!`);
+    // Instantly update button
+    button.textContent = "Added to Cart";
+    button.classList.add("added");
+    button.disabled = true;
+
+    updateCartCount();
 }
-</script>
+
+// Updates cart counter
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cart-count").textContent = cart.length;
+}
+
+// Reset buttons after page reload
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Reset all buttons to default state
+    document.querySelectorAll("button[data-id]").forEach(button => {
+        button.textContent = "Add to Cart";
+        button.classList.remove("added");
+        button.disabled = false;
+    });
+
+    // Cart count remains correct
+    updateCartCount();
+});
+  </script>
   <script src="Cart.js"></script>
 </body>
 </html>
+

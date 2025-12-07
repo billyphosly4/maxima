@@ -5,18 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Electronics | Better Gadgets</title>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    button.added {
+      background-color: #4CAF50 !important;
+      color: white !important;
+      cursor: not-allowed;
+      border: none;
+      transition: 0.3s ease;
+    }
+  </style>
 </head>
+
 <body>
+
   <!-- Header -->
   <header class="header">
     <div class="logo">
       <img src="img/printer.jpeg" alt="Logo">
       <h1>Better Electronic Gadgets</h1>
       <h2>Our website. Our marketplace. Our goods.</h2>
-      <h3>Discover top Electronics -Laptops,Printers.</h3>
+      <h3>Discover top Electronics - Laptops, Printers, Smart Tech.</h3>
     </div>
 
-    <!-- Search -->
     <div class="search-bar">
       <input type="search" placeholder="Search for an electronic..." />
     </div>
@@ -29,27 +40,29 @@
     <a href="electronics.html" class="active">Electronics</a>
     <a href="motorvehicle.html">Motor Vehicles</a>
     <a href="Bedroom_layout.html">Bedroom Layouts</a>
-    <a href="cart.html" class="cart-link"><span id="cart-logo">🛒</span>Cart <span id="cart-count" class="cart-count">0</span></a>
+    <a href="cart.html" class="cart-link">
+      <span id="cart-logo">🛒</span>Cart 
+      <span id="cart-count" class="cart-count">0</span>
+    </a>
   </nav>
 
   <!-- Main Section -->
   <main class="products">
+
     <div class="product-card">
       <img src="img/dell.jpeg" alt="Dell Laptop">
       <h2>Dell Windows 11</h2>
       <p><strong>Price:</strong> $35<br>Core i5, 16GB RAM, 526GB Storage, 3000W</p>
-      <button onclick="addToCart({
-        id: 1, name: 'Dell Windows 11', price: 35, image: 'img/dell.jpeg'})">
+      <button data-id="1" onclick="addToCart({id:1,name:'Dell Windows 11',price:35,image:'img/dell.jpeg'}, this)">
         Add to Cart
       </button>
-  </div>
+    </div>
 
     <div class="product-card">
       <img src="img/printer.jpeg" alt="Printer">
       <h2>KLC Modern Printer</h2>
       <p><strong>Price:</strong> $32<br>Durable and efficient</p>
-      <button onclick="addToCart({
-        id: 2, name: 'KLC Modern Printer', price: 32, image: 'img/printer.jpeg'})">
+      <button data-id="2" onclick="addToCart({id:2,name:'KLC Modern Printer',price:32,image:'img/printer.jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -58,8 +71,7 @@
       <img src="img/smartwatch.jpeg" alt="Smartwatch">
       <h2>Modern Smartwatch</h2>
       <p><strong>Price:</strong> $18<br>Bluetooth type, Durable</p>
-        <button onclick="addToCart({
-        id: 3, name: 'Modern Smartwatch', price: 18, image: 'img/smartwatch.jpeg'})">
+      <button data-id="3" onclick="addToCart({id:3,name:'Modern Smartwatch',price:18,image:'img/smartwatch.jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -68,8 +80,7 @@
       <img src="img/headphone.jpeg" alt="Headphones">
       <h2>Headphone 121e Model</h2>
       <p><strong>Price:</strong> $20<br>240V Power</p>
-<button onclick="addToCart({
-        id: 4, name: 'Headphones 121e Model', price: 20, image: 'img/headphone.jpeg'})">
+      <button data-id="4" onclick="addToCart({id:4,name:'Headphones 121e Model',price:20,image:'img/headphone.jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -78,8 +89,7 @@
       <img src="img/Watches.jpeg" alt="Nano Watch">
       <h2>Nano Watch</h2>
       <p><strong>Price:</strong> $15<br>Bluetooth type, Durable</p>
-  <button onclick="addToCart({
-        id: 5, name: 'Nano Watch', price: 15, image: 'img/Watches.jpeg'})">
+      <button data-id="5" onclick="addToCart({id:5,name:'Nano Watch',price:15,image:'img/Watches.jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -88,8 +98,7 @@
       <img src="img/Modified blender.jpeg" alt="Blender">
       <h2>HQ Modern Blender</h2>
       <p><strong>Price:</strong> $25, 2L, 240V<br>Durable</p>
-  <button onclick="addToCart({
-        id: 6, name: 'HQ Modern Blender', price: 25, image: 'img/Modified blender.jpeg'})">
+      <button data-id="6" onclick="addToCart({id:6,name:'HQ Modern Blender',price:25,image:'img/Modified blender.jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -98,8 +107,7 @@
       <img src="img/smartglasses.jpeg" alt="Smart Glasses">
       <h2>Smart Glasses</h2>
       <p><strong>Price:</strong> $37<br>Modern tech eyewear</p>
-  <button onclick="addToCart({
-        id: 7, name: 'Smart Glasses', price: 37, image: 'img/smartglasses.jpeg'})">
+      <button data-id="7" onclick="addToCart({id:7,name:'Smart Glasses',price:37,image:'img/smartglasses.jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -107,42 +115,61 @@
     <div class="product-card">
       <img src="img/blender.jpg" alt="Blender">
       <h2>Blender</h2>
-      <p><strong>Price:</strong> $23,2L,240v<br>Good and wonderful</p>
-      <button onclick="addToCart({
-        id: 8, name: 'Blender', price: 250, image: 'img/blender.jpg'})">
+      <p><strong>Price:</strong> $23, 2L, 240V<br>Good and wonderful</p>
+      <button data-id="8" onclick="addToCart({id:8,name:'Blender',price:23,image:'img/blender.jpg'}, this)">
         Add to Cart
       </button>
     </div>
+
   </main>
 
- 
-  <!-- ===== FOOTER ===== -->
+  <!-- Footer -->
   <footer>
-      <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
-    </div>
+    <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
   </footer>
 
+
+<!-- ============================== -->
+<!-- FINAL CART SCRIPT (BUTTON RESET VERSION) -->
+<!-- ============================== -->
 <script>
-// script.js — for product pages only
+function addToCart(product, button) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Adds a product to the cart in localStorage
-function addToCart(product) {
-  let cart = JSON.parse(localStorage.getItem("universalCart")) || [];
+    // Add item only once
+    if (!cart.some(item => item.id === product.id)) {
+        cart.push(product);
+        localStorage.setItem("cart", JSON.stringify(cart));
+    }
 
-  // check if already exists
-  const existing = cart.find(item => item.id === product.id);
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
+    // Instantly update button
+    button.textContent = "Added to Cart";
+    button.classList.add("added");
+    button.disabled = true;
 
-  // Save to localStorage
-  localStorage.setItem("universalCart", JSON.stringify(cart));
-
-  alert(`${product.name} added to cart!`);
+    updateCartCount();
 }
+
+// Updates cart counter
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cart-count").textContent = cart.length;
+}
+
+// Reset buttons after page reload
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Reset all buttons to default state
+    document.querySelectorAll("button[data-id]").forEach(button => {
+        button.textContent = "Add to Cart";
+        button.classList.remove("added");
+        button.disabled = false;
+    });
+
+    // Cart count remains correct
+    updateCartCount();
+});
 </script>
-  <script src="Cart.js"></script>
+ <script src="Cart.js"></script>
 </body>
 </html>

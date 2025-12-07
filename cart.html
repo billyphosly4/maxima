@@ -1,100 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    <style>
-    h1{
-        text-align: center;
-        text-decoration: underline;
-    }       
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .cart-container { max-width: 900px; margin: auto; }
     .cart-item {
-        display: flex;
-        align-items:center ;
-        justify-content: space-between; /* space between text and remove button */
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 10px;
-        margin-bottom: 10px;
-        gap: 15px; /* spacing between image and text */
-        background-color: #fff;
-     }
-
-    .cart-item img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 8px;
+      display: flex; align-items: center;
+      border-bottom: 1px solid #ccc; padding: 10px 0;
     }
-
-    .card-details {
-        flex: 1; /* take up remaining space */
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .quantity-control {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .quantity-control button {
-        padding: 4px 8px;
-        border: 1px solid #ccc;
-        background: #f5f5f5;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .remove-btn {
-
-        align-self: start;
-        background: #ff4d4d;
-        color: white;
-        border: none;
-        padding: 6px 10px;
-        border-radius: 6px;
-        cursor: pointer;
-        margin-top: 8px;
-    }
-
-    .remove-btn:hover {
-        background: #d93636
-     }
-     #totalPrice{
-        color: #d93636;
-        text-align: center;
-     }
-     .cart{
-        text-align: center;
-     }
-     #clearCart{
-        background:#28a745;
-        color: white;
-        border: none;
-        padding: 8px 15px;
-        border-radius: 8px;
-        cursor: pointer;
-         transition: background 0.3s;
-}  
-    </style>
-    <link rel="stylesheet" href="style.css">
+    .cart-item img { width: 100px; margin-right: 20px; border-radius: 8px; }
+    .item-info { flex: 1; }
+    .item-controls { text-align: right; }
+    button { padding: 6px 12px; }
+    .qty-btn { padding: 4px 10px; }
+    #total { font-weight: bold; font-size: 20px; margin-top: 20px; }
+    .empty { text-align: center; margin-top: 40px; font-size: 24px; }
+  </style>
 </head>
+
 <body>
-    <header>
-        <h1> YOUR SHOPPING CART.</h1>
-    </header>
-    
-    <main id="cardContainer"></main>
 
-    <div class="cart">
-        <button id="clearCart">Clear cart</button>
-        <p id="totalPrice"></p>
-    </div>
+<h1>Your Shopping Cart</h1>
 
-    <script src="Cart.js"></script>
+<div class="cart-container" id="cart-items"></div>
+
+<h2 id="total">Total: $0</h2>
+
+<button onclick="clearCart()" style="background:red;color:white;margin-top:20px;">
+  Clear Cart
+</button>
+
+<script src="cart.js"></script>
+
 </body>
 </html>
