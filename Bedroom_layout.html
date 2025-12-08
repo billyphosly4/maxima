@@ -40,7 +40,7 @@
       <h2>Luxury Bed</h2>
       <p>King size bed with stylish design for your bedroom.</p>
       <button onclick="addToCart({
-        id: 1, name: 'Luxury bed', price: 18, image: 'img/bed.jpeg'})">
+        id: 1, name: 'Luxury bed', price: 18, image: 'img/bed.jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -50,7 +50,7 @@
       <h2>Memory Foam Mattress</h2>
       <p>Comfortable foam mattress for a perfect night sleep.</p>
       <button onclick="addToCart({
-        id: 2, name: 'Memory Foam Mattress', price: 38, image: 'img/African Ethnic Bedding Sets Duvet and Pillow….jpeg'})">
+        id: 2, name: 'Memory Foam Mattress', price: 38, image: 'img/African Ethnic Bedding Sets Duvet and Pillow….jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -60,7 +60,7 @@
       <h2>Bedroom Set</h2>
       <p>Includes bed, wardrobe, and bedside tables in matching style.</p>
       <button onclick="addToCart({
-        id: 3, name: 'Bedroom set', price: 38, image: 'img/Looking for Gray Bedroom Ideas_ These designs pair….jpeg'})">
+        id: 3, name: 'Bedroom set', price: 38, image: 'img/Looking for Gray Bedroom Ideas_ These designs pair….jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -70,7 +70,7 @@
       <h2>Bedroom Set</h2>
       <p><strong>Price:</strong> $35<br>Nice wardrobe</p>
       <button onclick="addToCart({
-        id: 4, name: 'Bedroom set', price: 35, image: 'img/Precisa de inspiração para um quarto moderno_….jpeg'})">
+        id: 4, name: 'Bedroom set', price: 35, image: 'img/Precisa de inspiração para um quarto moderno_….jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -80,7 +80,7 @@
       <h2>Bedroom Set</h2>
       <p><strong>Price:</strong> $32<br>Nice wardrobe</p>
       <button onclick="addToCart({
-        id: 5, name: 'Bedroom set', price: 32, image: 'img/Achieve balance with modern silver tones and….jpeg'})">
+        id: 5, name: 'Bedroom set', price: 32, image: 'img/Achieve balance with modern silver tones and….jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -90,7 +90,7 @@
       <h2>Bedroom Set</h2>
       <p><strong>Price:</strong> $18<br>Nice bed</p>
       <button onclick="addToCart({
-        id: 6, name: 'Bedroom set', price: 18, image: 'img/bed.jpeg'})">
+        id: 6, name: 'Bedroom set', price: 18, image: 'img/bed.jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -101,26 +101,48 @@
       <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
     </div>
   </footer>
-
+<!-- ========================= -->
+<!--      CART / BUTTON JS     -->
+<!-- ========================= -->
 <script>
-// Adds a product to the cart in localStorage
-function addToCart(product) {
-  let cart = JSON.parse(localStorage.getItem("universalCart")) || [];
 
-  // check if already exists
-  const existing = cart.find(item => item.id === product.id);
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({ ...product, quantity: 1 });
-  }
+// Add product to cart and instantly update button
+function addToCart(product, button) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Save to localStorage
-  localStorage.setItem("universalCart", JSON.stringify(cart));
+    // Add item (duplicates allowed)
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
 
-  alert(`${product.name} added to cart!`);
+    // Update button immediately
+    button.textContent = "Added to Cart";
+    button.classList.add("added");
+    button.disabled = true;
+
+    updateCartCount();
 }
+
+// Update cart number
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cart-count").textContent = cart.length;
+}
+
+// On load reset buttons back to Add to Cart
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Reset button appearance
+    document.querySelectorAll("button[data-id]").forEach(button => {
+        button.textContent = "Add to Cart";
+        button.classList.remove("added");
+        button.disabled = false;
+    });
+
+    updateCartCount();
+});
+
 </script>
+
   <script src="Cart.js"></script>
 </body>
 </html>

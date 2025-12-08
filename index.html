@@ -24,7 +24,10 @@
         </ul>
       </div>
 
-      <div><a href="cart.html" class="cart-link">Cart <span id="cart-logo">🛒</span> <span id="cart-count" class="cart-count">0</span></a></div>
+        <a href="cart.html" class="cart-link">
+    <span id="cart-logo">🛒</span>Cart <span id="cart-count" class="cart-count">0</span>
+  </a>
+       
       
       <div class="auth-buttons">
         <button id="loginBtnHome"><a href="login.html">Login</a></button>
@@ -216,9 +219,48 @@
 
   // Make sure this function is globally accessible for your button
   window.showAlert = showAlert;
+
+
+// Add product to cart and instantly update button
+function addToCart(product, button) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Add item (duplicates allowed)
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Update button immediately
+    button.textContent = "Added to Cart";
+    button.classList.add("added");
+    button.disabled = true;
+
+    updateCartCount();
+}
+
+// Update cart number
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cart-count").textContent = cart.length;
+}
+
+// On load reset buttons back to Add to Cart
+document.addEventListener("DOMContentLoaded", () => {
+
+    // Reset button appearance
+    document.querySelectorAll("button[data-id]").forEach(button => {
+        button.textContent = "Add to Cart";
+        button.classList.remove("added");
+        button.disabled = false;
+    });
+
+    updateCartCount();
+});
+
+
+
 </script>
 
-  </script>
+   <script src="Cart.js"></script>
 
 </body>
 </html>

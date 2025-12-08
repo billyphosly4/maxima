@@ -7,7 +7,7 @@ function loadCart() {
     container.innerHTML = "";
 
     if (cart.length === 0) {
-        container.innerHTML = `<p class="empty">Your cart is empty 🛒</p>`;
+        container.innerHTML = `<p class="empty">Your cart is empty 🛒 <a href="electronics.html">Shop now</a></p>`;
         document.getElementById("total").textContent = "Total: $0";
         return;
     }
@@ -31,7 +31,7 @@ function loadCart() {
                     <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
                     <br><br>
                     <button onclick="removeItem(${index})"
-                      style="background:#e60000;color:white;">Remove</button>
+                      style="background:blue;color:white;border-radius:10px;">Remove</button>
                 </div>
             </div>
         `;
@@ -39,6 +39,7 @@ function loadCart() {
 
     document.getElementById("total").textContent = `Total: $${total}`;
 }
+
 
 // Update quantity (+ or -)
 function updateQty(index, change) {
