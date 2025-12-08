@@ -1,70 +1,97 @@
 // Load and display cart items
-document.addEventListener("DOMContentLoaded", loadCart);
+document.addEventListener("DOMContentLoaded", () => {
+    displayCart();
+    updateCartCount();
+});
 
-function loadCart() {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+// Get cart from localStorage
+function getCart() {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+// Save cart to localStorage
+function saveCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+// Display cart items
+function displayCart() {
+    let cart = getCart();
     let container = document.getElementById("cart-items");
-    container.innerHTML = "";
+    let totalDisplay = document.getElementById("total");
 
     if (cart.length === 0) {
-        container.innerHTML = `<p class="empty">Your cart is empty 🛒 <a href="electronics.html">Shop now</a></p>`;
-        document.getElementById("total").textContent = "Total: $0";
+        container.innerHTML = `<p class="empty-cart">Your cart is empty.
+        <a href="kitchen.html">Shop now<a></p>`;
+        totalDisplay.textContent = "Total: $0";
         return;
     }
 
+    let html = "";
     let total = 0;
 
     cart.forEach((item, index) => {
-        total += item.price * item.qty;
+        total += item.price * (item.qty || 1);
 
-        container.innerHTML += `
-            <div class="cart-item">
-                <img src="${item.image}" alt="${item.name}">
-                <div class="item-info">
-                    <h3>${item.name}</h3>
-                    <p>Unit Price: $${item.price}</p>
-                    <p>Quantity: ${item.qty}</p>
-                </div>
-
-                <div class="item-controls">
-                    <button class="qty-btn" onclick="updateQty(${index}, -1)">-</button>
-                    <button class="qty-btn" onclick="updateQty(${index}, 1)">+</button>
-                    <br><br>
-                    <button onclick="removeItem(${index})"
-                      style="background:blue;color:white;border-radius:10px;">Remove</button>
-                </div>
+        html += `
+        <div class="cart-item">
+            <img src="${item.image}" alt="Product">
+            
+            <div class="item-details">
+                <h3>${item.name}</h3>
+                <p>Price: $${item.price}</p>
             </div>
+
+            <div class="qty-control">
+                <button onclick="changeQty(${index}, -1)">-</button>
+                <span>${item.qty || 1}</span>
+                <button onclick="changeQty(${index}, 1)">+</button>
+            </div>
+
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+        </div>
         `;
     });
 
-    document.getElementById("total").textContent = `Total: $${total}`;
+    container.innerHTML = html;
+    totalDisplay.textContent = `Total: $${total}`;
 }
 
+// Change quantity
+function changeQty(index, amount) {
+    let cart = getCart();
 
-// Update quantity (+ or -)
-function updateQty(index, change) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (!cart[index].qty) cart[index].qty = 1;
 
-    cart[index].qty += change;
+    cart[index].qty += amount;
 
     if (cart[index].qty <= 0) {
-        cart.splice(index, 1);  // remove item
+        cart.splice(index, 1);
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    loadCart();
+    saveCart(cart);
+    displayCart();
+    updateCartCount();
 }
 
-// Remove item fully
+// Remove one item
 function removeItem(index) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let cart = getCart();
     cart.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    loadCart();
+    saveCart(cart);
+    displayCart();
+    updateCartCount();
 }
 
-// Clear all
+// 🆕 CLEAR ENTIRE CART
 function clearCart() {
-    localStorage.removeItem("cart");
-    loadCart();
+    localStorage.removeItem("cart");  // Delete all cart data
+    displayCart();                    // Refresh cart display
+    updateCartCount();                // Reset count to 0
+}
+
+// Update cart count
+function updateCartCount() {
+    let cart = getCart();
+    document.getElementById("cart-count").textContent = cart.length;
 }

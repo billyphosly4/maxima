@@ -52,7 +52,7 @@
     <div class="product-card">
       <img src="img/dell.jpeg" alt="Dell Laptop">
       <h2>Dell Windows 11</h2>
-      <p><strong>Price:</strong> $35<br>Core i5, 16GB RAM, 526GB Storage, 3000W</p>
+      <p><strong>Price:</strong> $35<br>Core i5, 16GB RAM, 526GB Storage</p>
       <button data-id="1" onclick="addToCart({id:1,name:'Dell Windows 11',price:35,image:'img/dell.jpeg'}, this)">
         Add to Cart
       </button>
@@ -80,25 +80,25 @@
       <img src="img/headphone.jpeg" alt="Headphones">
       <h2>Headphone 121e Model</h2>
       <p><strong>Price:</strong> $20<br>240V Power</p>
-      <button data-id="4" onclick="addToCart({id:4,name:'Headphones 121e Model',price:20,image:'img/headphone.jpeg'}, this)">
+      <button data-id="4" onclick="addToCart({id:4,name:'Headphone 121e Model',price:20,image:'img/headphone.jpeg'}, this)">
         Add to Cart
       </button>
     </div>
 
     <div class="product-card">
-      <img src="img/Watches.jpeg" alt="Nano Watch">
+      <img src="img/watches.jpeg" alt="Nano Watch">
       <h2>Nano Watch</h2>
       <p><strong>Price:</strong> $15<br>Bluetooth type, Durable</p>
-      <button data-id="5" onclick="addToCart({id:5,name:'Nano Watch',price:15,image:'img/Watches.jpeg'}, this)">
+      <button data-id="5" onclick="addToCart({id:5,name:'Nano Watch',price:15,image:'img/watches.jpeg'}, this)">
         Add to Cart
       </button>
     </div>
 
     <div class="product-card">
-      <img src="img/Modified blender.jpeg" alt="Blender">
+      <img src="img/modified_blender.jpeg" alt="Blender">
       <h2>HQ Modern Blender</h2>
       <p><strong>Price:</strong> $25, 2L, 240V<br>Durable</p>
-      <button data-id="6" onclick="addToCart({id:6,name:'HQ Modern Blender',price:25,image:'img/Modified blender.jpeg'}, this)">
+      <button data-id="6" onclick="addToCart({id:6,name:'HQ Modern Blender',price:25,image:'img/modified_blender.jpeg'}, this)">
         Add to Cart
       </button>
     </div>
@@ -128,9 +128,8 @@
     <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
   </footer>
 
-
 <!-- ============================== -->
-<!-- FINAL CART SCRIPT (BUTTON RESET VERSION) -->
+<!-- CART SCRIPT -->
 <!-- ============================== -->
 <script>
 function addToCart(product, button) {
@@ -142,7 +141,7 @@ function addToCart(product, button) {
         localStorage.setItem("cart", JSON.stringify(cart));
     }
 
-    // Instantly update button
+    // Update button instantly
     button.textContent = "Added to Cart";
     button.classList.add("added");
     button.disabled = true;
@@ -150,26 +149,22 @@ function addToCart(product, button) {
     updateCartCount();
 }
 
-// Updates cart counter
 function updateCartCount() {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     document.getElementById("cart-count").textContent = cart.length;
 }
 
-// Reset buttons after page reload
 document.addEventListener("DOMContentLoaded", () => {
-
-    // Reset all buttons to default state
     document.querySelectorAll("button[data-id]").forEach(button => {
         button.textContent = "Add to Cart";
         button.classList.remove("added");
         button.disabled = false;
     });
 
-    // Cart count remains correct
     updateCartCount();
 });
 </script>
- <script src="Cart.js"></script>
+
+<script src="cart.js"></script>
 </body>
 </html>
