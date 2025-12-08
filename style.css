@@ -8,33 +8,33 @@
 /* Body */
 body {
   font-family: Arial, sans-serif;
-  background-color:rgb(23, 12, 43);
-  color: #333;
+  background-color:#ffffff;   /* white */
+  color: #2b2b2b;            /* dark text */
   line-height: 1.6;
 }
 
 /* Header */
 .header {
   text-align: center;
-  background-color: rgb(27, 9, 48);
-  color: white;
+  background-color: #ffffff; /* white */
+  color: #2b2b2b;
   padding: 20px;
   font-size: 15px;
+  border-bottom: 1px solid #f1e5ac; /* light gold line */
 }
 header h1{
-  color:whitesmoke ;
+  color:#b8860b ;           /* gold */
 }
 header p{
-  color: whitesmoke ;
+  color: #7a6a2f ;          /* muted gold */
 }
-
 
 .logo img {
   width: 200px;
   height: 200px;
   border-radius: 20%;
-  border: 3px solid #ff5500;
-  background-color: aqua;
+  border: 3px solid #d4af37; /* gold */
+  background-color: #ffffff;
   padding: 5px;
 }
 
@@ -48,11 +48,13 @@ header p{
   border-radius: 10px;
   border: none;
   outline: none;
+  background-color: #fffaf0; /* warm white */
+  color: #2b2b2b;
 }
 
 /* Navigation */
 .navbar {
-  background-color: rgb(32, 22, 44);
+  background-color: #ffffff;
   text-align: center;
   padding: 15px;
   position: sticky ;
@@ -60,10 +62,11 @@ header p{
   top: 0;
   overflow-x: auto;
   white-space: nowrap;
+  border-bottom: 1px solid #f1e5ac; /* light gold */
 }
 
 .navbar a {
-  color:whitesmoke;
+  color:#2b2b2b;
   text-decoration: none;
   margin: 0 15px;
   font-weight: bold;
@@ -72,13 +75,13 @@ header p{
 
 .navbar a:hover,
 .navbar a.active {
-  color: #ffd60a;
+  color: #d4af37; /* gold */
 }
 
 /* Cart Section */
-    .cart-link {
+.cart-link {
     text-decoration: none;
-    color: #333;
+    color: #2b2b2b;
     font-weight: 500;
     position: relative;
     padding: 0.5rem 1rem;
@@ -88,21 +91,19 @@ header p{
 
 .cart-link:hover {
     text-decoration: underline;
-    background: rgb(10, 10, 51);
-    color: white;
+    background: #fff6d6; /* soft gold bg */
+    color: #b8860b;      /* gold text */
     border: 10px;
 }
 
 .cart-count {
-    background: #ff6b00;
-    color: white;
+    background: #d4af37; /* gold */
+    color: #ffffff;
     border-radius:10px;
     padding: 0.2rem 0.5rem;
     font-size: 0.8rem;
     margin-left: 0.5rem;
 }
-
- 
 
 /* Products Section */
 .products {
@@ -113,17 +114,18 @@ header p{
 }
 
 .product-card {
-  background: rgb(20, 1, 87);
+  background: #ffffff;
   border-radius: 12px;
   padding: 15px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
   transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #f1e5ac; /* gold tint */
 }
 
 .product-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .product-card img {
@@ -134,191 +136,71 @@ header p{
 }
 
 .product-card h2 {
-  color: whitesmoke;
-  margin:
-   10px 0;
+  color: #2b2b2b;
+  margin:10px 0;
 }
+
 .product-card p{
-  color: whitesmoke;
+  color: #7a6a2f; /* muted gold */
 }
 
 .product-card button {
-  background-color: #0077b6;
-  color: white;
-margin-left: 10px;
-border: none;
-padding: 6px 10px;
-border-radius: 6px;
-cursor: pointer;
-margin-top: 8px;
-align-content: center;
- 
+  background-color: #d4af37; /* gold */
+  color: #ffffff;
+  margin-left: 10px;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 8px;
+  align-content: center;
 }
 
 .product-card button:hover {
-background-color: #023e8a;
-
+  background-color: #b8860b; /* darker gold */
 }
 
 /* Footer */
 footer { 
- background:rgb(34, 32, 41);
+  background:#ffffff;
   padding: 10px;
-  color:rgb(194, 173, 173);
+  color:#7a6a2f;
   text-align: center;
   font-weight: 1000;
   position: sticky;
   z-index: 1000;
   bottom: 0;
+  border-top: 1px solid #f1e5ac; /* light gold */
 } 
-   /* Default styles */
-   body {
-     font-size: 14px;
-     
-   }
-   
-   /* Styles for screens smaller than 768px (e.g., mobile devices) */
-   @media (max-width: 768px) {
-     body {
-       font-size:26px;
-      
-     }
-    .placeholder {
-       font-size: 4px;
-     }
-     
-    .navbar a{
-      font-size:10px;
-      
-    }
-   .header h1{
-     font-size:32px;
-   } 
+
+/* Default styles */
+body {
+  font-size: 14px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
   .header h2{
+    color: #2b2b2b;
+  }
+
+  .header h3{
+    color: #2b2b2b;
+  }
+
+  .search-bar input {
+    border: 1px solid #f1e5ac;
+  }
+
+  .cart-alert {
+    background-color: #d4af37;
+    color: #ffffff;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1200px) {
+  body {
     font-size: 20px;
-     color: black;
   }
- .header h3{
-   font-size: 15px;
-   color: #000;
- }
-  .header p{
-    font-size:13px;
-  }
- .products h2{
-   font-size: 16px;
- }
-.products p{
-  font-size:12px;
 }
-.products button{
-    font-size: 10px;
-  }
-  .products {
-  display: grid;
-  padding: 70px;
-}
-footer p{
-  font-size:12px;
-   }
-
-    .search-bar {
-      margin-bottom: 20px;
-    }
-
-    .search-bar input {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-
-.cart h2 {
-    margin-top: 0;
-    
-}
-
-#cart-items {
-    list-style-type: none;
-    padding: 0;
-}
-
-#cart-items li {
-    padding: 5px 0;
-    border-bottom: 1px solid #ddd;
-}
-
-button {
-    margin-top: 10px;
-}
-
-.cart-alert {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #28a745; /* green */
-  color: white;
-  padding: 12px 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s;
-  z-index: 1000;
-}
-.cart-alert.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-
-}
-   /* Styles for screens larger than 1200px (e.g., desktops) */
-   @media (min-width: 1200px) {
-     body {
-       font-size: 20px;
-     }
-
-    .placeholder {
-       font-size: 2px;
-     }
-   
-     }
-    .navbar a{
-      font-size:12px;
-      
-    }
-   .header h1{
-     font-size:32px;
-   } 
-  .header h2{
-    font-size: 18px;
-  }
- .header h3{
-   font-size: 14px;
- }
-  .header p{
-    font-size:16px;
-  }
- .products h2{
-   font-size: 13px;
- }
-.products p{
-  font-size: 11px;
-}
-.products button{
-    font-size: 10px;
-  }
-  .products {
-  display: grid;
-  padding: 70px;
-}
-footer p{
-  font-size:15px;
-   }
-.search-bar{
-  font-size:5px;
-}
-
-

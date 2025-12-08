@@ -9,25 +9,25 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-   background: #454C98;
+    background: #ffffff;        /* white background */
+}
 
 .wrapper{
     width: 400px;
-    background: #fff;
+    background: #fffaf0;       /* soft warm white */
     border-radius: 12px;
-    color: #333;
+    color: #2b2b2b;            /* dark text */
     padding: 30px 30px 25px;
     margin-top: 40px;
     height:800px;
 }
 
-}
 .wrapper h1{
     font-size: 2rem;
     text-align: center;
     margin-bottom: 24px;
     font-weight: 700;
-    color: #4e54c8;
+    color: #d4af37;            /* gold */
 }
 
 .wrapper .input-box{
@@ -41,29 +41,26 @@ body{
     position: relative;
     width:100%;
     height: 48px;
-    background: #f3f3f3;
+    background: #fff7d6;       /* very light gold */
     border-radius: 6px;
     display: flex;
     align-items: center;
 }
 
-
 .input-box .input-field input{
     width: 100%;
     height: 100%;
     background: transparent;
-    border: none; /* Removes underline/border */
+    border: none;
     outline: none;
     font-size: 16px;
-    color: #333;
+    color: #2b2b2b;
     border-radius: 6px;
     padding: 0 15px 0 40px;
 }
 
-
-
 .input-box .input-field input::placeholder{
-    color: #888;
+    color: #b8860b;           /* gold */
 }
 
 .input-box .input-field i{
@@ -72,75 +69,71 @@ body{
     top: 50%;
     transform: translateY(-50%);
     font-size: 18px;
-    color: #4e54c8;
-
+    color: #d4af37;           /* gold */
 }
 
 .wrapper label{
     display: block;
     font-size: 14px;
     margin: 10px 0 18px;
-    color: #555;
+    color: #7a6514;           /* muted gold */
 }
 
 .wrapper label input{
-    accent-color: #4e54c8;
+    accent-color: #d4af37;    /* gold */
     margin-right: 7px;
 }
 
 .wrapper .btn{
     width: 100%;
     height: 45px;
-    background: linear-gradient(135deg, #4e54c8 0%, #8f94fb 100%);
+    background: linear-gradient(135deg, #d4af37 0%, #f5d76e 100%); /* gold gradient */
     border: none;
     outline: none;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(31, 38, 135, 0.1);
     cursor: pointer;
     font-size: 16px;
-    color: #fff;
+    color: #000;               /* dark text */
     font-weight: 600;
     transition: background 0.2s;
 }
 .wrapper .btn:hover {
-    background: linear-gradient(135deg, #8f94fb 0%, #4e54c8 100%);
+    background: linear-gradient(135deg, #f5d76e 0%, #d4af37 100%); /* reversed gold gradient */
 }
+
 .footer{
     font-size: 15px;
     top: 0;
-    
 }
-.footer p{
-    color:red;
-    
-}
-    
 
+.footer p{
+    color:#d4af37;            /* gold */
+}
 
 @media screen and (max-width:650px) {
-    
-    
 }
+
 .footer{
     padding-top: 60px;
     padding-bottom: 30px;
 }
-   /* Default styles */
-   body {
+
+/* Default styles */
+body {
      font-size: 16px;
-   }
-   
-   /* Styles for screens smaller than 768px (e.g., mobile devices) */
-   @media (max-width: 768px) {
+}
+
+/* Mobile screens */
+@media (max-width: 768px) {
      body {
        font-size: 14px;
      }
-   }
-   
-   /* Styles for screens larger than 1200px (e.g., desktops) */
-   @media (min-width: 1200px) {
+}
+
+/* Desktop screens */
+@media (min-width: 1200px) {
      body {
        font-size: 18px;
      }
-   }
-   
+}

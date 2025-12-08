@@ -1,4 +1,4 @@
- /* ===== RESET ===== */
+/* ===== RESET ===== */
 * {
   margin: 0;
   padding: 0;
@@ -8,79 +8,72 @@
 /* ===== GENERAL ===== */
 body {
   font-family: Arial, sans-serif;
-  background-color: rgb(23, 12, 43);
-  color: #333;
+  background-color: #ffffff;   /* white background */
+  color: #2b2b2b;              /* dark text */
 }
 header {
   position: sticky;
   top: 0;
   z-index: 1000;
 }
+
 /* ===== NAVBAR ===== */
 .navbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between ;
-   background:rgb(27, 9, 48);  
+  background:#fffaf0;          /* light warm white */
 }
 
 marquee {
-  background-color: rgb(27, 9, 48);
+  background-color: #fffaf0;
   padding:7px;
-  color: white;
+  color: #d4af37;              /* gold */
 }
-
 
 #naf {
   list-style-type: none;
   margin-top: 20px;
   padding: 0;
-  background-color:blue;
+  background-color: #d4af37;   /* gold */
   display: flex;
   border-radius: 2px;
-  
 }
 
 #naf li a {
   display: block;
-  color:white;
+  color:#000;
   padding: 5px 6px;
   text-decoration: none;
-  
-
 }
 
 #naf li a:hover {
-  background-color: rgb(136, 103, 103);
+  background-color: #b8860b;   /* darker gold */
   text-decoration: underline;
 }
 
-
+/* LOGO */
 .logo img {
   height: 70px;
   width: 70px;
-  border: 2px solid #90e0ef;
+  border: 2px solid #d4af37;   /* gold */
   border-radius: 50%;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-}
-
+/* LINKS */
 .nav-links a {
   text-decoration: none;
-  color: white;
+  color: #2b2b2b;               /* dark text */
   font-weight: bold;
 }
 
 .nav-links a:hover {
-  color: #ffd60a;
+  color: #d4af37;               /* gold */
 }
 
+/* AUTH BUTTONS */
 .auth-buttons button {
-  background-color: blue;
+  background-color: #d4af37;    /* gold */
   border: none;
   margin-top: 20px;
   border-radius: 5px;
@@ -90,19 +83,19 @@ marquee {
 }
 
 .auth-buttons a {
-  color: white;
+  color: black;
   text-decoration: none;
 }
 
 .auth-buttons button:hover {
-  background-color: #0077b6;
+  background-color: #b8860b;    /* darker gold */
 }
 
 /* ===== CART lINK ===== */
-    .cart-link {
+.cart-link {
     float: right;
     text-decoration: none;
-    color: white;
+    color: #2b2b2b;             /* dark text */
     font-weight: 500;
     transition: all 0.3s;
     margin-top: 20px;
@@ -111,31 +104,30 @@ marquee {
 
 .cart-link:hover {
     text-decoration: underline;
-    background: rgb(69, 69, 107);
-    color: white;
+    background: #fff7e6;        /* soft gold highlight */
+    color: #d4af37;             /* gold */
     padding: 8px;
     border-radius: 8px;
 }
 
 .cart-count {
-    background: #ff6b00;
-    color: white;
+    background: #d4af37;        /* gold */
+    color: black;
     border-radius: 40px;
     font-size: 14px;
     padding:5px;
-  
 }
 
 /* ===== HERO SECTION ===== */
 .hero {
   text-align: center;
   padding: 40px 20px;
-  background:rgb(30, 16, 51);
-  color: white;
+  background:#fffaf0;           /* light warm white */
+  color: #2b2b2b;               /* dark text */
 }
 
 .hero h1 {
-  color:wheat;
+  color:#d4af37;                /* gold */
   font-size: 40px;
 }
 .hero-buttons{
@@ -146,21 +138,21 @@ marquee {
 }
 
 .hero-buttons button {
- color:white ;
+ color:black ;
   margin: 20px;
   padding: 10px 20px;
   border: none;
   border-radius: 8px;
-  background-color:blue ;
+  background-color:#d4af37 ;   /* gold */
   font-weight: bold;
   cursor: pointer;
 }
 .hero-buttons button a {
-  color:white ;
+  color:black ;
 }
 
 .hero-buttons button:hover {
-  background-color: #ffb703;
+  background-color: #b8860b;    /* darker gold */
 }
 
 /* ===== CATEGORY SECTION ===== */
@@ -169,12 +161,12 @@ marquee {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 25px;
   padding: 40px;
-  background-color:rgb(23, 12, 43);
+  background-color:#ffffff;      /* white */
   text-align: center;
 }
 
 .category-card {
-  background:  rgb(20, 1, 87);
+  background:  #fff7e6;          /* soft gold */
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -182,16 +174,16 @@ marquee {
   cursor: pointer;
 }
 .category-card h2{
-  color:  whitesmoke;
+  color:  #2b2b2b;              /* dark text */
 }
 .category-card p{
-  color:  whitesmoke;
+  color:  #2b2b2b;              /* dark text */
 }
 
 .category-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  background:  rgb(41, 20, 122);
+  background:  #f5e1a0;          /* slightly darker gold */
 }
 
 .category-card img {
@@ -205,8 +197,8 @@ marquee {
 
 .category-card a {
   display: inline-block;
-  background-color:blue;
-  color: white;
+  background-color:#d4af37;      /* gold */
+  color: black;
   padding: 10px 18px;
   border-radius: 10px;
   text-decoration: none;
@@ -215,45 +207,39 @@ marquee {
 }
 
 .category-card a:hover {
-  background-color: #023e8a;
+  background-color: #b8860b;     /* darker gold */
   transform: scale(1.05);
 }
 
 .category-card button {
   background-color:inherit;
   border: none;
-  color: white;
+  color: #2b2b2b;                /* dark text */
   font-weight: bold;
 }
 
-
 /*==== SECTION ABOUT US, QUICK LINKS AND CONTACTS ====*/
-
-/*==== section container ====*/
 #about {
   margin-top:20px ;
   padding-left:15px;
   padding-right: 10px;
-  color:rgb(194, 173, 173);
+  color:#2b2b2b;                 /* dark text */
 }
 #about p{
   font-weight: 200;
 }
 #about h2 {
-  color: rgb(207, 23, 23);
+  color: #d4af37;                /* gold */
   text-decoration: underline;
   text-align: center ;
   font-size: 15px;
 }
-/*  SECTION- QUICK LINKS*/
-#quick-links {
-  margin-top:20px; 
-}
+
 #quick-links h2 {
   text-align: center;
   font-size: 15px;
   text-decoration: underline;
-  color:  rgb(207, 23, 23);
+  color:  #d4af37;               /* gold */
 }
 
 #quick-links ul {
@@ -265,14 +251,14 @@ marquee {
 }
 
 #quick-links li i {
-  color: gold;
+  color: #d4af37;                /* gold */
   margin-right: 8px;
   margin-left: 8px;
 }
 
 #quick-links li a {
   text-decoration: none;
-  color:rgb(194, 173, 173);
+  color:#2b2b2b;                 /* dark text */
   font-weight:500;
   text-align: center;
   margin-bottom: 0px;
@@ -280,150 +266,47 @@ marquee {
 
 #quick-links li a:hover {
   text-decoration: underline;
-  color: darkgreen;
+  color: #d4af37;                /* gold */
 }
 
-/*  SECTION- CONTACT*/
 #contact-info {
 padding-top:20px;
  margin-bottom: 0;
-
 }
 
 #contact-info h2 {
   text-align:center;
-    font-size: 15px;
+  font-size: 15px;
   text-decoration: underline;
   font-weight:1000;
-  color:  rgb(207, 23, 23);
-
+  color:  #d4af37;               /* gold */
 }
 
 #contact-info p {
   margin:4px;
-  color:rgb(194, 173, 173);
+  color:#2b2b2b;                 /* dark text */
   font-weight:500;
   padding-left: 50px;
 }
 
 #contact-info i {
   margin-right: 10px;
-  color: gold;
-  
+  color: #d4af37;                /* gold */
 }
 
 footer { 
-  background:rgb(34, 32, 41);
+  background:#fffaf0;            /* light warm white */
   padding: 30px;
-  color:rgb(194, 173, 173);
+  color:#2b2b2b;                 /* dark text */
   text-align: center;
   font-weight: 1000;
   position: sticky;
   z-index: 1000;
   bottom:0px;
 }
+
 .section{
   display:grid ;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  background:rgb(16, 1, 56);  
-  
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  background:#fff7e6;           /* soft gold */
 }
-/* Default styles */
-body {
-  font-size: 12px;
-}
-
-/* Styles for screens smaller than 768px (e.g., mobile devices) */
-@media (max-width: 768px) {
-  body {
-    font-size: 20px;
-  }
-    #bill a{
-    font-size:9px;
-    }
-   .auth-buttons{
-    font-size: 4px;
-    padding: 0;
-   }
- .hero h1{
-   font-size: 22px;
- }
- .hero h2{
-   font-size: 12px;
- }
-  .hero p{
-  font-size: 10px;
-}
-.categories h2{
-  font-size: 20px;
-}
-.categories p{
-  font-size: 12px;
-}
-.categories a{
-  font-size: 10px;
-}
-footer{
-  font-size: 12px;
-} 
-  #about p{
-    font-size:12px;
-  }
-#contact-info p{
-  font-size: 12px;
-}
-#quick-links li a{
-  font-size: 12px;
-}
-marquee{
-  font-size: 12px;
-} 
-#cart-logo{
-  height: 2px;
-}
-} 
-/* Styles for screens larger than 1200px (e.g., desktops) */
-@media (min-width: 600px) {
-  body {
-    font-size: 18px;
-  } 
-  #bill a{
-    font-size:7px;
-    }
-   .auth-buttons{
-     font-size: 3px;
-   }
- .hero h1{
-   font-size: 3%px;
- }
- .hero h2{
-   font-size: 18px;
- }
-  .hero p{
-  font-size: 15px;
-}
-.categories h2{
-  font-size: 20px;
-}
-.categories p{
-  font-size: 15px;
-}
-.categories a{
-  font-size: 10px;
-} 
-#about p{
-  font-size: 16px;
- 
-}
-footer{
-  font-size: 14px;
-}
-#contactinfo p{
-  font-size: 16px;
-}
-#quick-links li a{
-  font-size: 16px;
-}
-
-}
- 
