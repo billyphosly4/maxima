@@ -291,7 +291,7 @@ footer {
 @media (max-width: 480px) {
 
   .navbar {
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
     padding: 15px;
     text-align: center;
