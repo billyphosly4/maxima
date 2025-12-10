@@ -41,7 +41,7 @@
     <a href="motorvehicle.html">Motor Vehicles</a>
     <a href="Bedroom_layout.html">Bedroom Layouts</a>
     <a href="cart.html" class="cart-link">
-      <span id="cart-logo">🛒</span>Cart 
+      <span id="cart-logo">🛒</span> Cart 
       <span id="cart-count" class="cart-count">0</span>
     </a>
   </nav>
@@ -50,7 +50,7 @@
   <main class="products">
 
     <div class="product-card">
-      <img src="./img/dell.jpeg" alt="Dell Laptop">
+      <img src="img/dell.jpeg" alt="Dell Laptop">
       <h2>Dell Windows 11</h2>
       <p><strong>Price:</strong> $35<br>Core i5, 16GB RAM, 526GB Storage</p>
       <button data-id="1" onclick="addToCart({id:1,name:'Dell Windows 11',price:35,image:'img/dell.jpeg'}, this)">
@@ -59,7 +59,7 @@
     </div>
 
     <div class="product-card">
-      <img src="./img/printer.jpeg" alt="Printer">
+      <img src="img/printer.jpeg" alt="Printer">
       <h2>KLC Modern Printer</h2>
       <p><strong>Price:</strong> $32<br>Durable and efficient</p>
       <button data-id="2" onclick="addToCart({id:2,name:'KLC Modern Printer',price:32,image:'img/printer.jpeg'}, this)">
@@ -68,7 +68,7 @@
     </div>
 
     <div class="product-card">
-      <img src="./img/smartwatch.jpeg" alt="Smartwatch">
+      <img src="img/smartwatch.jpeg" alt="Smartwatch">
       <h2>Modern Smartwatch</h2>
       <p><strong>Price:</strong> $18<br>Bluetooth type, Durable</p>
       <button data-id="3" onclick="addToCart({id:3,name:'Modern Smartwatch',price:18,image:'img/smartwatch.jpeg'}, this)">
@@ -77,7 +77,7 @@
     </div>
 
     <div class="product-card">
-      <img src="./img/headphone.jpeg" alt="Headphones">
+      <img src="img/headphone.jpeg" alt="Headphones">
       <h2>Headphone 121e Model</h2>
       <p><strong>Price:</strong> $20<br>240V Power</p>
       <button data-id="4" onclick="addToCart({id:4,name:'Headphone 121e Model',price:20,image:'img/headphone.jpeg'}, this)">
@@ -86,7 +86,7 @@
     </div>
 
     <div class="product-card">
-      <img src="./img/watches.jpeg" alt="Nano Watch">
+      <img src="img/watches.jpeg" alt="Nano Watch">
       <h2>Nano Watch</h2>
       <p><strong>Price:</strong> $15<br>Bluetooth type, Durable</p>
       <button data-id="5" onclick="addToCart({id:5,name:'Nano Watch',price:15,image:'img/watches.jpeg'}, this)">
@@ -95,7 +95,7 @@
     </div>
 
     <div class="product-card">
-      <img src="./img/modified_blender.jpeg" alt="Blender">
+      <img src="img/modified_blender.jpeg" alt="Blender">
       <h2>HQ Modern Blender</h2>
       <p><strong>Price:</strong> $25, 2L, 240V<br>Durable</p>
       <button data-id="6" onclick="addToCart({id:6,name:'HQ Modern Blender',price:25,image:'img/modified_blender.jpeg'}, this)">
@@ -104,7 +104,7 @@
     </div>
 
     <div class="product-card">
-      <img src="./img/smartglasses.jpeg" alt="Smart Glasses">
+      <img src="img/smartglasses.jpeg" alt="Smart Glasses">
       <h2>Smart Glasses</h2>
       <p><strong>Price:</strong> $37<br>Modern tech eyewear</p>
       <button data-id="7" onclick="addToCart({id:7,name:'Smart Glasses',price:37,image:'img/smartglasses.jpeg'}, this)">
@@ -113,7 +113,7 @@
     </div>
 
     <div class="product-card">
-      <img src="./img/blender.jpg" alt="Blender">
+      <img src="img/blender.jpg" alt="Blender">
       <h2>Blender</h2>
       <p><strong>Price:</strong> $23, 2L, 240V<br>Good and wonderful</p>
       <button data-id="8" onclick="addToCart({id:8,name:'Blender',price:23,image:'img/blender.jpg'}, this)">
@@ -135,13 +135,11 @@
 function addToCart(product, button) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    // Add item only once
     if (!cart.some(item => item.id === product.id)) {
         cart.push(product);
         localStorage.setItem("cart", JSON.stringify(cart));
     }
 
-    // Update button instantly
     button.textContent = "Added to Cart";
     button.classList.add("added");
     button.disabled = true;
@@ -155,16 +153,23 @@ function updateCartCount() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("button[data-id]").forEach(button => {
-        button.textContent = "Add to Cart";
-        button.classList.remove("added");
-        button.disabled = false;
-    });
-
     updateCartCount();
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    document.querySelectorAll("button[data-id]").forEach(button => {
+        let id = Number(button.getAttribute("data-id"));
+        if (cart.some(item => item.id === id)) {
+            button.textContent = "Added to Cart";
+            button.classList.add("added");
+            button.disabled = true;
+        }
+    });
 });
 </script>
 
-<script src="./cart.js"></script>
+<!-- FIXED SCRIPT PATH -->
+<script src="cart.js"></script>
+
 </body>
 </html>

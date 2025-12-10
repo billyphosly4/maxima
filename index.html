@@ -71,74 +71,72 @@
   <section class="categories">
 
     <div class="category-card">
-      <img src="img/printer.jpeg" alt="">
+      <img src="img/printer.jpeg" alt="Printer">
       <h2>Electronics</h2>
       <p>High-quality laptops, smartwatches, printers and more.</p><br>
-     <a href="electronics.html"><button class="buy-btn">Explore</button></a>
+      <a href="electronics.html"><button class="buy-btn">Explore</button></a>
     </div>
 
     <div class="category-card">
-      <img src="img/bed.jpeg" alt="">
+      <img src="img/bed.jpeg" alt="Bed">
       <h2>Bedding</h2>
       <p>Comfortable beds, mattresses, and stylish bedroom sets.</p><br>
       <a href="Bedroom_layout.html"><button class="buy-btn">Explore</button></a>
     </div>
 
     <div class="category-card">
-      <img src="img/sufurias_and_lids.jpeg" alt="">
+      <img src="img/sufurias_and_lids.jpeg" alt="Kitchen Supplies">
       <h2>Kitchen</h2>
       <p>Utensils, blenders, and cooking essentials.</p><br>
       <a href="kitchen.html"><button>Explore</button></a>
     </div>
 
     <div class="category-card">
-      <img src="img/cars.jpeg" alt="">
+      <img src="img/cars.jpeg" alt="Cars">
       <h2>Motor Vehicles</h2>
       <p>Cars, bikes, and trucks at great prices.</p><br>
       <a href="motorvehicle.html"><button>Explore</button></a>
     </div>
 
     <div class="category-card">
-      <img src="img/Decoration.jpeg" alt="">
+      <img src="img/Decoration.jpeg" alt="Decor">
       <h2>House Decorators</h2>
       <p>Quality pictures, models, and photo labs.</p><br>
       <a href="#"><button class="buy-btn">Explore</button></a>
     </div>
 
     <div class="category-card">
-      <img src="img/food.jpeg" alt="">
+      <img src="img/food.jpeg" alt="Food">
       <h2>Delicacy</h2>
       <p>Quality packaged foods and more.</p><br>
-    <a href="#">  <button class="buy-btn">Explore</button></a>
+      <a href="#"><button class="buy-btn">Explore</button></a>
     </div>
 
     <div class="category-card">
-      <img src="img/Wallpapers.jpeg" alt="">
+      <img src="img/Wallpapers.jpeg" alt="Wallpapers">
       <h2>Wallpapers</h2>
       <p>Indoor wallpapers and decor sheets.</p><br>
-     <a href="#"> <button class="buy-btn">Explore</button></a>
+      <a href="#"><button class="buy-btn">Explore</button></a>
     </div>
 
     <div class="category-card">
-      <img src="img/wrist royalty.jpeg" alt="">
+      <img src="img/wrist royalty.jpeg" alt="Watches">
       <h2>Watches</h2>
       <p>Smartwatches & classic premium watches.</p><br>
-     <a href="#">  <button class="buy-btn">Explore</button></a>
-
+      <a href="#"><button class="buy-btn">Explore</button></a>
     </div>
 
     <div class="category-card">
-      <img src="img/headphone.jpeg" alt="">
+      <img src="img/headphone.jpeg" alt="Headphones">
       <h2>Headphones</h2>
       <p>Quality headphones and earphones.</p><br>
-     <a href="#">  <button class="buy-btn">Explore</button></a>
+      <a href="#"><button class="buy-btn">Explore</button></a>
     </div>
 
   </section>
 
 
   <!-- ================= ABOUT + CONTACT ================= -->
-  <!-- ================= BLOG STYLE INFO SECTION ================= -->
 <section class="blog-wrapper">
   <div class="blog-cards">
 
@@ -183,15 +181,16 @@
   </footer>
 
 
-  <!-- ================= FIREBASE + CART + LOGIN LOGIC ================= -->
+
+  <!-- ================= FIREBASE + CART LOGIC ================= -->
   <script type="module">
 
-    /* ---------- FIREBASE IMPORT ---------- */
+    // ---------------- FIREBASE IMPORT ----------------
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
     import { getAuth, onAuthStateChanged } 
       from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-    /* ---------- FIREBASE CONFIG ---------- */
+    // ---------------- FIREBASE CONFIG ----------------
     const firebaseConfig = {
       apiKey: "AIzaSyBYrk0pA2n36c-fk9NvpwJYw2mcTBYsAnc",
       authDomain: "maxima-6f4dc.firebaseapp.com",
@@ -205,7 +204,7 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    /* ---------- UPDATE UI BASED ON USER ---------- */
+    // ---------------- UPDATE UI BASED ON USER ----------------
     let isUserLoggedIn = false;
 
     onAuthStateChanged(auth, (user) => {
@@ -226,8 +225,8 @@
       }
     });
 
-    /* ---------- START NOW BEHAVIOR ---------- */
-    function showAlert() {
+    // ---------------- START NOW BUTTON ----------------
+    window.showAlert = function () {
       if (isUserLoggedIn) {
         window.location.href = "dashboard.html";
       } else {
@@ -235,18 +234,13 @@
       }
     }
 
-    window.showAlert = showAlert;
-
-    /* ---------- CART FUNCTIONS ---------- */
-
+    // ---------------- CART COUNT ----------------
     function updateCartCount() {
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
       document.getElementById("cart-count").textContent = cart.length;
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      updateCartCount();
-    });
+    document.addEventListener("DOMContentLoaded", updateCartCount);
 
   </script>
 
