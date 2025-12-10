@@ -1,97 +1,51 @@
-// Load and display cart items
-document.addEventListener("DOMContentLoaded", () => {
-    displayCart();
-    updateCartCount();
-});
+// Load cart items from localStorage
+function loadCart() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItemsContainer = document.getElementById("cart-items");
+    const cartCount = document.getElementById("cart-count");
+    const totalPriceElement = document.getElementById("total-price");
 
-// Get cart from localStorage
-function getCart() {
-    return JSON.parse(localStorage.getItem("cart")) || [];
-}
+    cartItemsContainer.innerHTML = "";
+    cartCount.textContent = cart.length;
 
-// Save cart to localStorage
-function saveCart(cart) {
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-// Display cart items
-function displayCart() {
-    let cart = getCart();
-    let container = document.getElementById("cart-items");
-    let totalDisplay = document.getElementById("total");
-
-    if (cart.length === 0) {
-        container.innerHTML = `<p class="empty-cart">Your cart is empty.
-        <a href="kitchen.html">Shop now<a></p>`;
-        totalDisplay.textContent = "Total: $0";
-        return;
-    }
-
-    let html = "";
     let total = 0;
 
     cart.forEach((item, index) => {
-        total += item.price * (item.qty || 1);
+        total += item.price;
 
-        html += `
-        <div class="cart-item">
-            <img src="${item.image}" alt="Product">
-            
-            <div class="item-details">
+        const div = document.createElement("div");
+        div.classList.add("cart-item");
+
+        div.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div style="flex: 1;">
                 <h3>${item.name}</h3>
                 <p>Price: $${item.price}</p>
             </div>
-
-            <div class="qty-control">
-                <button onclick="changeQty(${index}, -1)">-</button>
-                <span>${item.qty || 1}</span>
-                <button onclick="changeQty(${index}, 1)">+</button>
+            <div class="cart-actions">
+                <button onclick="removeItem(${index})">Remove</button>
             </div>
-
-            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
-        </div>
         `;
+
+        cartItemsContainer.appendChild(div);
     });
 
-    container.innerHTML = html;
-    totalDisplay.textContent = `Total: $${total}`;
+    totalPriceElement.textContent = total;
 }
 
-// Change quantity
-function changeQty(index, amount) {
-    let cart = getCart();
-
-    if (!cart[index].qty) cart[index].qty = 1;
-
-    cart[index].qty += amount;
-
-    if (cart[index].qty <= 0) {
-        cart.splice(index, 1);
-    }
-
-    saveCart(cart);
-    displayCart();
-    updateCartCount();
-}
-
-// Remove one item
+// Remove item by index
 function removeItem(index) {
-    let cart = getCart();
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.splice(index, 1);
-    saveCart(cart);
-    displayCart();
-    updateCartCount();
+    localStorage.setItem("cart", JSON.stringify(cart));
+    loadCart();
 }
 
-// 🆕 CLEAR ENTIRE CART
-function clearCart() {
-    localStorage.removeItem("cart");  // Delete all cart data
-    displayCart();                    // Refresh cart display
-    updateCartCount();                // Reset count to 0
-}
+// Clear entire cart
+document.getElementById("clear-cart").addEventListener("click", () => {
+    localStorage.removeItem("cart");
+    loadCart();
+});
 
-// Update cart count
-function updateCartCount() {
-    let cart = getCart();
-    document.getElementById("cart-count").textContent = cart.length;
-}
+// Load cart on page start
+document.addEventListener("DOMContentLoaded", loadCart);
