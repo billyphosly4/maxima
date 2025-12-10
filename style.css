@@ -179,6 +179,9 @@ footer {
   text-align: center;
   font-size: 14px;
   border-top: 4px solid #F26A21;
+  position:sticky ;
+  bottom:0;
+  z-index: 1000 ;
 }
 
 /* =====================================

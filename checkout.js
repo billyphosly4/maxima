@@ -1,64 +1,56 @@
 document.addEventListener("DOMContentLoaded", () => {
-    loadOrderSummary();
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-    document.getElementById("checkout-form").addEventListener("submit", function(e) {
-        e.preventDefault();
-        placeOrder();
-    });
-});
+  const checkoutItems = document.getElementById("checkout-items");
+  const checkoutTotal = document.getElementById("checkout-total");
 
-function loadOrderSummary() {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let summaryBox = document.getElementById("order-summary");
-
-    summaryBox.innerHTML = "";
+  function loadCheckout() {
+    checkoutItems.innerHTML = "";
     let total = 0;
 
-    if (cart.length === 0) {
-        summaryBox.innerHTML = "<p>Your cart is empty.</p>";
-        return;
-    }
-
-    // Display all items
     cart.forEach(item => {
-        total += Number(item.price);
+      const li = document.createElement("li");
+      li.textContent = `${item.name} x${item.quantity} — $${item.price * item.quantity}`;
+      checkoutItems.appendChild(li);
 
-        summaryBox.innerHTML += `
-        <div class="order-item">
-            <strong>${item.name}</strong>
-            <span>$${item.price}</span>
-        </div>
-        `;
+      total += item.price * item.quantity;
     });
 
-    summaryBox.innerHTML += `
-        <div class="total">
-            Total: $${total}
-        </div>
-    `;
-}
+    checkoutTotal.textContent = total.toFixed(2);
+  }
 
-function placeOrder() {
-    let name = document.getElementById("name").value.trim();
-    let phone = document.getElementById("phone").value.trim();
-    let location = document.getElementById("location").value.trim();
+  loadCheckout();
 
-    if (!name || !phone || !location) {
-        alert("Please fill in all details.");
-        return;
+  // PLACE ORDER BUTTON
+  document.getElementById("place-order").addEventListener("click", () => {
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const msg = document.getElementById("order-message");
+
+    if (!name || !phone || !address) {
+      msg.style.color = "red";
+      msg.textContent = "Please fill in all fields.";
+      return;
     }
 
-    // Clear cart after order
+    if (cart.length === 0) {
+      msg.style.color = "red";
+      msg.textContent = "Your cart is empty!";
+      return;
+    }
+
+    // Simulate checkout success
+    msg.style.color = "green";
+    msg.textContent = "Order placed successfully!";
+
+    // Clear cart
     localStorage.removeItem("cart");
 
-    // Show success message
-    document.getElementById("success-box").innerHTML = `
-      <p class="success-message">
-        🎉 Order placed successfully!<br>
-        Thank you, ${name}. Your items will be delivered to ${location}.
-      </p>
-    `;
+    // Optional redirect after 2 seconds:
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 2000);
+  });
+});
 
-    // Reset form
-    document.getElementById("checkout-form").reset();
-}
