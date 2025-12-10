@@ -3,173 +3,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Electronics | Better Gadgets</title>
+  <title>Electronics</title>
   <link rel="stylesheet" href="style.css" />
 
   <style>
+    /* Same as kitchen.html */
     button.added {
-      background-color: #4CAF50 !important;
-      color: white !important;
-      cursor: not-allowed;
-      border: none;
-      transition: 0.3s ease;
+      background-color: #4CAF50;
+      color: white;
+      cursor: default;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Header -->
-  <header class="header">
+<!-- Header -->
+<header class="header">
     <div class="logo">
       <img src="img/printer.jpeg" alt="Logo">
       <h1>Better Electronic Gadgets</h1>
-      <h2>Our website. Our marketplace. Our goods.</h2>
-      <h3>Discover top Electronics - Laptops, Printers, Smart Tech.</h3>
+      <p>High-quality laptops, printers, smart tech & more.</p>
     </div>
 
     <div class="search-bar">
       <input type="search" placeholder="Search for an electronic..." />
     </div>
-  </header>
+</header>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="kitchen.html">Kitchen</a>
-    <a href="electronics.html" class="active">Electronics</a>
-    <a href="motorvehicle.html">Motor Vehicles</a>
-    <a href="Bedroom_layout.html">Bedroom Layouts</a>
-    <a href="cart.html" class="cart-link">
-      <span id="cart-logo">🛒</span> Cart 
-      <span id="cart-count" class="cart-count">0</span>
-    </a>
-  </nav>
+<!-- Navigation -->
+<nav class="navbar">
+  <a href="index.html">Home</a>
+  <a href="kitchen.html">Kitchen</a>
+  <a href="electronics.html" class="active">Electronics</a>
+  <a href="motorvehicle.html">Motor Vehicles</a>
+  <a href="Bedroom_layout.html">Bedroom Layouts</a>
+  <a href="cart.html" class="cart-link">
+    <span id="cart-logo">🛒</span> Cart 
+    <span id="cart-count" class="cart-count">0</span>
+  </a>
+</nav>
 
-  <!-- Main Section -->
-  <main class="products">
+<!-- Main Section -->
+<main class="products">
 
-    <div class="product-card">
-      <img src="img/dell.jpeg" alt="Dell Laptop">
-      <h2>Dell Windows 11</h2>
-      <p><strong>Price:</strong> $35<br>Core i5, 16GB RAM, 526GB Storage</p>
-      <button data-id="1" onclick="addToCart({id:1,name:'Dell Windows 11',price:35,image:'img/dell.jpeg'}, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/dell.jpeg" alt="Dell Laptop">
+    <h2>Dell Windows 11</h2>
+    <p>Price: $35</p>
+    <button class="add-to-cart"
+      data-id="101"
+      data-name="Dell Windows 11"
+      data-price="35"
+      data-image="img/dell.jpeg">
+      Add to Cart
+    </button>
+  </div>
 
-    <div class="product-card">
-      <img src="img/printer.jpeg" alt="Printer">
-      <h2>KLC Modern Printer</h2>
-      <p><strong>Price:</strong> $32<br>Durable and efficient</p>
-      <button data-id="2" onclick="addToCart({id:2,name:'KLC Modern Printer',price:32,image:'img/printer.jpeg'}, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/printer.jpeg" alt="Printer">
+    <h2>KLC Modern Printer</h2>
+    <p>Price: $32</p>
+    <button class="add-to-cart"
+      data-id="102"
+      data-name="KLC Modern Printer"
+      data-price="32"
+      data-image="img/printer.jpeg">
+      Add to Cart
+    </button>
+  </div>
 
-    <div class="product-card">
-      <img src="img/smartwatch.jpeg" alt="Smartwatch">
-      <h2>Modern Smartwatch</h2>
-      <p><strong>Price:</strong> $18<br>Bluetooth type, Durable</p>
-      <button data-id="3" onclick="addToCart({id:3,name:'Modern Smartwatch',price:18,image:'img/smartwatch.jpeg'}, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/smartwatch.jpeg" alt="Smartwatch">
+    <h2>Modern Smartwatch</h2>
+    <p>Price: $18</p>
+    <button class="add-to-cart"
+      data-id="103"
+      data-name="Modern Smartwatch"
+      data-price="18"
+      data-image="img/smartwatch.jpeg">
+      Add to Cart
+    </button>
+  </div>
 
-    <div class="product-card">
-      <img src="img/headphone.jpeg" alt="Headphones">
-      <h2>Headphone 121e Model</h2>
-      <p><strong>Price:</strong> $20<br>240V Power</p>
-      <button data-id="4" onclick="addToCart({id:4,name:'Headphone 121e Model',price:20,image:'img/headphone.jpeg'}, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/headphone.jpeg" alt="Headphones">
+    <h2>Headphone 121e Model</h2>
+    <p>Price: $20</p>
+    <button class="add-to-cart"
+      data-id="104"
+      data-name="Headphone 121e Model"
+      data-price="20"
+      data-image="img/headphone.jpeg">
+      Add to Cart
+    </button>
+  </div>
 
-    <div class="product-card">
-      <img src="img/watches.jpeg" alt="Nano Watch">
-      <h2>Nano Watch</h2>
-      <p><strong>Price:</strong> $15<br>Bluetooth type, Durable</p>
-      <button data-id="5" onclick="addToCart({id:5,name:'Nano Watch',price:15,image:'img/watches.jpeg'}, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/watches.jpeg" alt="Nano Watch">
+    <h2>Nano Watch</h2>
+    <p>Price: $15</p>
+    <button class="add-to-cart"
+      data-id="105"
+      data-name="Nano Watch"
+      data-price="15"
+      data-image="img/watches.jpeg">
+      Add to Cart
+    </button>
+  </div>
 
-    <div class="product-card">
-      <img src="img/modified_blender.jpeg" alt="Blender">
-      <h2>HQ Modern Blender</h2>
-      <p><strong>Price:</strong> $25, 2L, 240V<br>Durable</p>
-      <button data-id="6" onclick="addToCart({id:6,name:'HQ Modern Blender',price:25,image:'img/modified_blender.jpeg'}, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/modified_blender.jpeg" alt="Blender">
+    <h2>HQ Modern Blender</h2>
+    <p>Price: $25</p>
+    <button class="add-to-cart"
+      data-id="106"
+      data-name="HQ Modern Blender"
+      data-price="25"
+      data-image="img/modified_blender.jpeg">
+      Add to Cart
+    </button>
+  </div>
 
-    <div class="product-card">
-      <img src="img/smartglasses.jpeg" alt="Smart Glasses">
-      <h2>Smart Glasses</h2>
-      <p><strong>Price:</strong> $37<br>Modern tech eyewear</p>
-      <button data-id="7" onclick="addToCart({id:7,name:'Smart Glasses',price:37,image:'img/smartglasses.jpeg'}, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/smartglasses.jpeg" alt="Smart Glasses">
+    <h2>Smart Glasses</h2>
+    <p>Price: $37</p>
+    <button class="add-to-cart"
+      data-id="107"
+      data-name="Smart Glasses"
+      data-price="37"
+      data-image="img/smartglasses.jpeg">
+      Add to Cart
+    </button>
+  </div>
 
-    <div class="product-card">
-      <img src="img/blender.jpg" alt="Blender">
-      <h2>Blender</h2>
-      <p><strong>Price:</strong> $23, 2L, 240V<br>Good and wonderful</p>
-      <button data-id="8" onclick="addToCart({id:8,name:'Blender',price:23,image:'img/blender.jpg'}, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/blender.jpg" alt="Blender">
+    <h2>Blender</h2>
+    <p>Price: $23</p>
+    <button class="add-to-cart"
+      data-id="108"
+      data-name="Blender"
+      data-price="23"
+      data-image="img/blender.jpg">
+      Add to Cart
+    </button>
+  </div>
 
-  </main>
+</main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
-  </footer>
+<hr>
 
-<!-- ============================== -->
-<!-- CART SCRIPT -->
-<!-- ============================== -->
-<script>
-function addToCart(product, button) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
+</footer>
 
-    if (!cart.some(item => item.id === product.id)) {
-        cart.push(product);
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }
-
-    button.textContent = "Added to Cart";
-    button.classList.add("added");
-    button.disabled = true;
-
-    updateCartCount();
-}
-
-function updateCartCount() {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    document.getElementById("cart-count").textContent = cart.length;
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    updateCartCount();
-
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    document.querySelectorAll("button[data-id]").forEach(button => {
-        let id = Number(button.getAttribute("data-id"));
-        if (cart.some(item => item.id === id)) {
-            button.textContent = "Added to Cart";
-            button.classList.add("added");
-            button.disabled = true;
-        }
-    });
-});
-</script>
-
-<!-- FIXED SCRIPT PATH -->
+<!-- Connect to global cart.js -->
 <script src="cart.js"></script>
 
 </body>
 </html>
+

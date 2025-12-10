@@ -55,7 +55,8 @@
       cursor: pointer;
     }
 
-    .clear-cart {
+    .clear-cart,
+    .checkout-btn {
       margin-top: 20px;
       padding: 12px 20px;
       width: 100%;
@@ -64,6 +65,11 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      font-size: 17px;
+    }
+
+    .checkout-btn {
+      background: green;
     }
 
     .empty {
@@ -95,6 +101,10 @@
     <div id="cart-items"></div>
 
     <button class="clear-cart" onclick="clearCart()">Clear Cart</button>
+
+    <a href="checkout.html">
+      <button class="checkout-btn">Proceed to Checkout</button>
+    </a>
   </div>
 
   <script src="cart.js"></script>

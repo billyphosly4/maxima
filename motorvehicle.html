@@ -5,134 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Motor Vehicles</title>
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Matches kitchen.html added button */
+    button.added {
+      background-color: #4CAF50;
+      color: white;
+      cursor: default;
+    }
+  </style>
 </head>
+
 <body>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="logo">
-      <img src="img/BMW M4.jpg" alt="Logo" />
-      <h1>Motor Vehicles</h1>
-      <p>Our website. Our marketplace. Our goods.</p>
-    </div>
+<!-- Header -->
+<header class="header">
+  <div class="logo">
+    <img src="img/BMW M4.jpg" alt="Logo" />
+    <h1>Motor Vehicles</h1>
+    <p>Explore the best vehicles in our marketplace.</p>
+  </div>
 
-    <!-- Search -->
-    <div class="search-bar">
-      <input type="search" placeholder="Search for Motor Vehicles..." />
-    </div>
-  </header>
+  <div class="search-bar">
+    <input type="search" placeholder="Search for Motor Vehicles..." />
+  </div>
+</header>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="kitchen.html">Kitchen</a>
-    <a href="electronics.html">Electronics</a>
-    <a href="motorvehicle.html" class="active">Motor Vehicles</a>
-    <a href="Bedroom_layout.html">Bedroom Layouts</a>
-    <a href="cart.html" class="cart-link">
-      <span id="cart-logo">🛒</span>Cart 
-      <span id="cart-count" class="cart-count">0</span>
-    </a>
-  </nav>
+<!-- Navigation -->
+<nav class="navbar">
+  <a href="index.html">Home</a>
+  <a href="kitchen.html">Kitchen</a>
+  <a href="electronics.html">Electronics</a>
+  <a href="motorvehicle.html" class="active">Motor Vehicles</a>
+  <a href="Bedroom_layout.html">Bedroom Layouts</a>
+  <a href="cart.html" class="cart-link">
+    <span id="cart-logo">🛒</span> Cart 
+    <span id="cart-count" class="cart-count">0</span>
+  </a>
+</nav>
 
-  <!-- Main Products -->
-  <main class="products">
+<!-- Main Products -->
+<main class="products">
 
-    <!-- Nissan Titan -->
-    <div class="product-card">
-      <img src="img/Nissan Titan.jpeg" alt="Nissan Titan" />
-      <h2>Nissan Titan</h2>
-      <p><strong>Price:</strong> $9000<br>Speed: 600 km/hr | Cool engine</p>
-      <button data-id="1"
-        onclick="addToCart({ id: 1, name: 'Nissan Titan', price: 9000, image: 'img/Nissan Titan.jpeg' }, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/Nissan Titan.jpeg" alt="Nissan Titan" />
+    <h2>Nissan Titan</h2>
+    <p>Price: $9000</p>
+    <button class="add-to-cart"
+      data-id="1"
+      data-name="Nissan Titan"
+      data-price="9000"
+      data-image="img/Nissan Titan.jpeg">
+      Add to Cart
+    </button>
+  </div>
 
-    <!-- BMW M4 -->
-    <div class="product-card">
-      <img src="img/BMW M4.jpg" alt="BMW M4" />
-      <h2>BMW M4</h2>
-      <p><strong>Price:</strong> $12000<br>Speed: 600 km/hr<br>Cool Engine<br>Petroleum: 300L</p>
-      <button data-id="2"
-        onclick="addToCart({ id: 2, name: 'BMW M4', price: 12000, image: 'img/BMW M4.jpg' }, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/BMW M4.jpg" alt="BMW M4" />
+    <h2>BMW M4</h2>
+    <p>Price: $12000</p>
+    <button class="add-to-cart"
+      data-id="2"
+      data-name="BMW M4"
+      data-price="12000"
+      data-image="img/BMW M4.jpg">
+      Add to Cart
+    </button>
+  </div>
 
-    <!-- Porsche -->
-    <div class="product-card">
-      <img src="img/Porche.jpg" alt="Porsche" />
-      <h2>Porsche</h2>
-      <p><strong>Price:</strong> $18808<br>Speed: 900 km/hr<br>Cool Engine<br>Petroleum: 400L</p>
-      <button data-id="3"
-        onclick="addToCart({ id: 3, name: 'Porsche', price: 18808, image: 'img/Porche.jpg' }, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/Porche.jpg" alt="Porsche" />
+    <h2>Porsche</h2>
+    <p>Price: $18808</p>
+    <button class="add-to-cart"
+      data-id="3"
+      data-name="Porsche"
+      data-price="18808"
+      data-image="img/Porche.jpg">
+      Add to Cart
+    </button>
+  </div>
 
-    <!-- Range Rover -->
-    <div class="product-card">
-      <img src="img/Rangerover.jpeg" alt="Range Rover" />
-      <h2>Range Rover</h2>
-      <p><strong>Price:</strong> $11300<br>Speed: 900 km/hr<br>Petroleum: 400L</p>
-      <button data-id="4"
-        onclick="addToCart({ id: 4, name: 'Range Rover', price: 11300, image: 'img/Rangerover.jpeg' }, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/Rangerover.jpeg" alt="Range Rover" />
+    <h2>Range Rover</h2>
+    <p>Price: $11300</p>
+    <button class="add-to-cart"
+      data-id="4"
+      data-name="Range Rover"
+      data-price="11300"
+      data-image="img/Rangerover.jpeg">
+      Add to Cart
+    </button>
+  </div>
 
-    <!-- TX 470 -->
-    <div class="product-card">
-      <img src="img/bid.jpeg" alt="TX 470" />
-      <h2>TX 470</h2>
-      <p><strong>Price:</strong> $12300<br>Speed: 900 km/hr</p>
-      <button data-id="5"
-        onclick="addToCart({ id: 5, name: 'TX 470', price: 12300, image: 'img/bid.jpeg' }, this)">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/bid.jpeg" alt="TX 470" />
+    <h2>TX 470</h2>
+    <p>Price: $12300</p>
+    <button class="add-to-cart"
+      data-id="5"
+      data-name="TX 470"
+      data-price="12300"
+      data-image="img/bid.jpeg">
+      Add to Cart
+    </button>
+  </div>
 
-  </main>
+</main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
-  </footer>
+<hr>
 
-  <!-- CART BUTTON LOGIC -->
-  <script>
-    function addToCart(product, button) {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
+</footer>
 
-      cart.push(product);
-      localStorage.setItem("cart", JSON.stringify(cart));
-
-      button.textContent = "Added to Cart";
-      button.classList.add("added");
-      button.disabled = true;
-
-      updateCartCount();
-    }
-
-    function updateCartCount() {
-      const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      document.getElementById("cart-count").textContent = cart.length;
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll("button[data-id]").forEach(button => {
-        button.textContent = "Add to Cart";
-        button.classList.remove("added");
-        button.disabled = false;
-      });
-
-      updateCartCount();
-    });
-  </script>
-
-  <script src="cart.js"></script>
+<!-- Connect to global cart.js -->
+<script src="cart.js"></script>
 
 </body>
 </html>
-

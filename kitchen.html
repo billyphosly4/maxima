@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    /* Style for buttons that have been clicked */
     button.added {
       background-color: #4CAF50;
       color: white;
@@ -51,8 +50,11 @@
     <img src="img/sufurias_and_lids.jpeg" alt="Sufuria with Lid">
     <h2>Sufuria and Lids</h2>
     <p>Price: $35</p>
-    <button data-id="1"
-      onclick="addToCart({ id: 1, name: 'Sufuria and lids', price: 35, image: 'img/sufurias_and_lids.jpeg' }, this)">
+    <button class="add-to-cart"
+      data-id="1"
+      data-name="Sufuria and Lids"
+      data-price="35"
+      data-image="img/sufurias_and_lids.jpeg">
       Add to Cart
     </button>
   </div>
@@ -61,8 +63,11 @@
     <img src="img/stainless_spoons_fork.jpeg" alt="Cutlery Set">
     <h2>Stainless Cutlery Set</h2>
     <p>Price: $13</p>
-    <button data-id="2"
-      onclick="addToCart({ id: 2, name: 'Stainless Cutlery Set', price: 13, image: 'img/stainless_spoons_fork.jpeg' }, this)">
+    <button class="add-to-cart"
+      data-id="2"
+      data-name="Stainless Cutlery Set"
+      data-price="13"
+      data-image="img/stainless_spoons_fork.jpeg">
       Add to Cart
     </button>
   </div>
@@ -71,8 +76,11 @@
     <img src="img/modified_blender.jpeg" alt="Blender">
     <h2>HQ Modern Blender</h2>
     <p>Price: $25</p>
-    <button data-id="3"
-      onclick="addToCart({ id: 3, name: 'HQ Modern Blender', price: 25, image: 'img/modified_blender.jpeg' }, this)">
+    <button class="add-to-cart"
+      data-id="3"
+      data-name="HQ Modern Blender"
+      data-price="25"
+      data-image="img/modified_blender.jpeg">
       Add to Cart
     </button>
   </div>
@@ -81,8 +89,11 @@
     <img src="img/classic_knives.jpeg" alt="Knives">
     <h2>Stainless Steel Knives</h2>
     <p>Price: $13</p>
-    <button data-id="4"
-      onclick="addToCart({ id: 4, name: 'Stainless Set Knives', price: 13, image: 'img/classic_knives.jpeg' }, this)">
+    <button class="add-to-cart"
+      data-id="4"
+      data-name="Stainless Set Knives"
+      data-price="13"
+      data-image="img/classic_knives.jpeg">
       Add to Cart
     </button>
   </div>
@@ -91,8 +102,11 @@
     <img src="img/design_knife.jpeg" alt="Cutlery Knives">
     <h2>Design Knife</h2>
     <p>Price: $10</p>
-    <button data-id="5"
-      onclick="addToCart({ id: 5, name: 'Stainless Cutlery Knives', price: 10, image: 'img/design_knife.jpeg' }, this)">
+    <button class="add-to-cart"
+      data-id="5"
+      data-name="Design Knife"
+      data-price="10"
+      data-image="img/design_knife.jpeg">
       Add to Cart
     </button>
   </div>
@@ -101,8 +115,11 @@
     <img src="img/modern_sufurias.jpeg" alt="Sufurias">
     <h2>Modern Sufurias</h2>
     <p>Price: $15</p>
-    <button data-id="6"
-      onclick="addToCart({ id: 6, name: 'Sufurias and Lids', price: 15, image: 'img/modern_sufurias.jpeg' }, this)">
+    <button class="add-to-cart"
+      data-id="6"
+      data-name="Modern Sufurias"
+      data-price="15"
+      data-image="img/modern_sufurias.jpeg">
       Add to Cart
     </button>
   </div>
@@ -111,8 +128,11 @@
     <img src="img/wooden_spoons.jpeg" alt="Spoons">
     <h2>Wooden Spoons</h2>
     <p>Price: $18</p>
-    <button data-id="7"
-      onclick="addToCart({ id: 7, name: 'Wooden Spoons', price: 18, image: 'img/wooden_spoons.jpeg' }, this)">
+    <button class="add-to-cart"
+      data-id="7"
+      data-name="Wooden Spoons"
+      data-price="18"
+      data-image="img/wooden_spoons.jpeg">
       Add to Cart
     </button>
   </div>
@@ -126,54 +146,7 @@
   <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
 </footer>
 
-<!-- ========================= -->
-<!--      CART / BUTTON JS     -->
-<!-- ========================= -->
-<script>
-
-// Add item to cart safely
-function addToCart(product, button) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    // Prevent duplicates
-    if (!cart.some(item => item.id === product.id)) {
-        cart.push(product);
-        localStorage.setItem("cart", JSON.stringify(cart));
-    }
-
-    // Button update
-    button.textContent = "Added to Cart";
-    button.classList.add("added");
-    button.disabled = true;
-
-    updateCartCount();
-}
-
-// Update cart count in navbar
-function updateCartCount() {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    document.getElementById("cart-count").textContent = cart.length;
-}
-
-// On page load, restore button state
-document.addEventListener("DOMContentLoaded", () => {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    document.querySelectorAll("button[data-id]").forEach(button => {
-        let id = Number(button.getAttribute("data-id"));
-
-        if (cart.some(item => item.id === id)) {
-            button.textContent = "Added to Cart";
-            button.classList.add("added");
-            button.disabled = true;
-        }
-    });
-
-    updateCartCount();
-});
-</script>
-
-<!-- Correct script path -->
+<!-- Connect to global cart.js -->
 <script src="cart.js"></script>
 
 </body>
