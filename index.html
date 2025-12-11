@@ -20,8 +20,6 @@
         <img src="img/logo.png" alt="Maximall Logo">
       </div>
 
-    
-
       <!-- Cart -->
       <a href="cart.html" class="cart-link">
         <span id="cart-logo">🛒</span>
@@ -52,8 +50,8 @@
     <h2>Join thousands of customers in finding quality gadgets that last long.</h2><br>
 
     <div class="hero-buttons">
-      <button onclick="showAlert()">Start Now →</button>
-      <button><a href="electronics.html">What's Trending</a></button>
+      <button id="startNowBtn">Start Now →</button>
+      <button id="trendingBtn" data-link="electronics.html">What's Trending</button>
     </div>
 
     <br><hr><br>
@@ -68,67 +66,66 @@
       <img src="img/printer.jpeg" alt="Printer">
       <h2>Electronics</h2>
       <p>High-quality laptops, smartwatches, printers and more.</p><br>
-      <a href="electronics.html"><button class="buy-btn">Explore</button></a>
+      <button class="buy-btn" data-link="electronics.html">Explore</button>
     </div>
 
     <div class="category-card">
       <img src="img/bed.jpeg" alt="Bed">
       <h2>Bedding</h2>
       <p>Comfortable beds, mattresses, and stylish bedroom sets.</p><br>
-      <a href="Bedroom_layout.html"><button class="buy-btn">Explore</button></a>
+      <button class="buy-btn" data-link="Bedroom_layout.html">Explore</button>
     </div>
 
     <div class="category-card">
       <img src="img/sufurias_and_lids.jpeg" alt="Kitchen Supplies">
       <h2>Kitchen</h2>
       <p>Utensils, blenders, and cooking essentials.</p><br>
-   <a href="kitchen.html" ><button class="buy-btn" >Explore</button></a>
+      <button class="buy-btn" data-link="kitchen.html">Explore</button>
     </div>
 
     <div class="category-card">
       <img src="img/cars.jpeg" alt="Cars">
       <h2>Motor Vehicles</h2>
       <p>Cars, bikes, and trucks at great prices.</p><br>
-      <a href="motorvehicle.html"><button class="buy-btn">Explore</button></a>
+      <button class="buy-btn" data-link="motorvehicle.html">Explore</button>
     </div>
 
     <div class="category-card">
       <img src="img/Decoration.jpeg" alt="Decor">
       <h2>House Decorators</h2>
       <p>Quality pictures, models, and photo labs.</p><br>
-      <a href="#"><button class="buy-btn">Explore</button></a>
+      <button class="buy-btn" data-link="#">Explore</button>
     </div>
 
     <div class="category-card">
       <img src="img/food.jpeg" alt="Food">
       <h2>Delicacy</h2>
       <p>Quality packaged foods and more.</p><br>
-      <a href="#"><button class="buy-btn">Explore</button></a>
+      <button class="buy-btn" data-link="#">Explore</button>
     </div>
 
     <div class="category-card">
       <img src="img/Wallpapers.jpeg" alt="Wallpapers">
       <h2>Wallpapers</h2>
       <p>Indoor wallpapers and decor sheets.</p><br>
-      <a href="#"><button class="buy-btn">Explore</button></a>
+      <button class="buy-btn" data-link="#">Explore</button>
     </div>
 
     <div class="category-card">
       <img src="img/wrist royalty.jpeg" alt="Watches">
       <h2>Watches</h2>
       <p>Smartwatches & classic premium watches.</p><br>
-      <a href="#"><button class="buy-btn">Explore</button></a>
+      <button class="buy-btn" data-link="#">Explore</button>
     </div>
 
     <div class="category-card">
       <img src="img/headphone.jpeg" alt="Headphones">
       <h2>Headphones</h2>
       <p>Quality headphones and earphones.</p><br>
-      <a href="#"><button class="buy-btn">Explore</button></a>
+      <button class="buy-btn" data-link="#">Explore</button>
     </div>
 
   </section>
-
 
   <!-- ================= ABOUT + CONTACT ================= -->
 <section class="blog-wrapper">
@@ -168,23 +165,16 @@
   </div>
 </section>
 
-
   <!-- ================= FOOTER ================= -->
   <footer>
     <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
   </footer>
 
-
-
   <!-- ================= FIREBASE + CART LOGIC ================= -->
   <script type="module">
-
-    // ---------------- FIREBASE IMPORT ----------------
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged } 
-      from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
-    // ---------------- FIREBASE CONFIG ----------------
     const firebaseConfig = {
       apiKey: "AIzaSyBYrk0pA2n36c-fk9NvpwJYw2mcTBYsAnc",
       authDomain: "maxima-6f4dc.firebaseapp.com",
@@ -198,12 +188,11 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // ---------------- UPDATE UI BASED ON USER ----------------
     let isUserLoggedIn = false;
 
+    // Update UI based on login
     onAuthStateChanged(auth, (user) => {
       isUserLoggedIn = !!user;
-
       const loginBtn = document.getElementById("loginBtnHome");
       const signupBtn = document.getElementById("signupBtnHome");
       const dashboardBtn = document.getElementById("dashboardBtn");
@@ -219,24 +208,49 @@
       }
     });
 
-    // ---------------- START NOW BUTTON ----------------
-    window.showAlert = function () {
-      if (isUserLoggedIn) {
-        window.location.href = "dashboard.html";
-      } else {
-        alert("Please login first to start!!");
-      }
-    }
+    // Handle button clicks
+    document.addEventListener("DOMContentLoaded", () => {
 
-    // ---------------- CART COUNT ----------------
-    function updateCartCount() {
-      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      // Start Now button
+      const startNowBtn = document.getElementById("startNowBtn");
+      startNowBtn.addEventListener("click", () => {
+        if (isUserLoggedIn) {
+          window.location.href = "dashboard.html";
+        } else {
+          alert("Please login first to start!!");
+        }
+      });
+
+      // Trending button
+      const trendingBtn = document.getElementById("trendingBtn");
+      trendingBtn.addEventListener("click", () => {
+        if (isUserLoggedIn) {
+          window.location.href = trendingBtn.dataset.link;
+        } else {
+          alert("Please login first to explore this category!");
+        }
+      });
+
+      // Category buttons
+      const categoryButtons = document.querySelectorAll(".category-card .buy-btn");
+      categoryButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          if (isUserLoggedIn) {
+            if (btn.dataset.link && btn.dataset.link !== "#") {
+              window.location.href = btn.dataset.link;
+            }
+          } else {
+            alert("Please login first to explore this category!");
+          }
+        });
+      });
+
+      // Update cart count
+      const cart = JSON.parse(localStorage.getItem("cart")) || [];
       document.getElementById("cart-count").textContent = cart.length;
-    }
-
-    document.addEventListener("DOMContentLoaded", updateCartCount);
-
+    });
   </script>
 
 </body>
 </html>
+
