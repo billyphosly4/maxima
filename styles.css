@@ -44,35 +44,6 @@ header {
   border-radius: 50%;
 }
 
-/* NAV MENU */
-#bill {
-  display: flex;
-  gap: 25px;
-  padding: 10px;
-  background-color: #F26A21;
-  border-radius: 8px;
-}
-#naf
-  {
-  display: flex;
-  gap: 25px;
-  padding: 10px;
-  background-color: #F26A21;
-  border-radius: 8px;
-}
-
-
-#naf li a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  font-size: 14px;
-  transition: 0.2s;
-}
-
-#naf li a:hover {
-  color: #00C8FF;
-}
 
 /* AUTH BUTTONS */
 .auth-buttons button {
@@ -158,7 +129,7 @@ header {
    CATEGORIES
 ========================================= */
 .categories {
-  padding: 40px 20px;
+  padding: 30px 20px;
   display: grid;
   gap: 25px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -195,10 +166,10 @@ header {
   font-size: 14px;
 }
 
-.category-card button {
+.buy-btn {
   background: #F26A21;
   color: white;
-  padding: 10px 16px;
+  padding: 8px 12px;
   border: none;
   border-radius: 6px;
   font-weight: bold;
@@ -236,6 +207,9 @@ header {
   font-weight: 900;
   text-align: center;
 }
+.blog-card i{
+  color: #F26A21;
+}
 
 /* =========================================
    FOOTER
@@ -252,111 +226,425 @@ footer {
 }
 
 /* =========================================
-   MEDIA QUERIES (ALL COMBINED, CLEAN)
+   RESPONSIVE MEDIA QUERIES (OPTIMIZED)
 ========================================= */
 
-/* 1440px */
+/* ---------- 1440px LARGE LAPTOPS ---------- */
 @media (max-width: 1440px) {
   body { font-size: 15px; }
-  #naf li a { font-size: 14px; }
+
   .logo img { width: 85px; }
+
+  #naf li a, .auth-buttons button, .hero-buttons button {
+    font-size: 14px;
+  }
 }
 
-/* 1024px */
+/* ---------- 1024px TABLETS / SMALL LAPTOPS ---------- */
 @media (max-width: 1024px) {
   body { font-size: 14px; }
 
-  .navbar { padding: 10px 15px; }
+  .navbar {
+    padding: 10px 12px;
+  }
+
+  .logo img { width: 75px; }
 
   #naf {
     gap: 18px;
     padding: 8px 12px;
   }
 
-  #naf li a { font-size: 13px; }
-  .auth-buttons button { font-size: 13px; }
-
-  .logo img { width: 75px; }
-
-  .hero h1 { font-size: 30px; }
-
+  #naf li a, 
+  .auth-buttons button, 
   .hero-buttons button {
-    font-size: 14px;
-    padding: 10px 20px;
-  }
-}
-
-/* 768px */
-@media (max-width: 768px) {
-  body { font-size: 13px; }
-
-  .navbar {
     font-size: 13px;
-    gap: 5px;
   }
-
-  #naf {
-    gap: 12px;
-    padding: 6px 10px;
-  }
-
-  .logo img { width: 70px; }
-  #naf li a { font-size: 12px; }
 
   .hero h1 { font-size: 28px; }
 
+  /* Ensure categories never fall below 2 columns */
   .categories {
-    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* 600px */
-@media (max-width: 600px) {
+/* ---------- 768px ANDROID PHONES / IPAD MINI ---------- */
+@media (max-width: 768px) {
   body { font-size: 12px; }
 
-  .navbar { font-size: 12px; }
-
-  #naf {
+  .navbar {
+    padding: 8px 10px;
     gap: 10px;
-    padding: 6px 8px;
   }
 
-  #naf li a { font-size: 11px; }
   .logo img { width: 65px; }
 
+  #naf {
+    gap: 8px;
+    padding: 3px 6px;
+  }
+
+  #naf li a {
+    font-size: 10px;
+  }
+
+  /* Auth + Hero buttons equal */
+  .auth-buttons button,
   .hero-buttons button {
-    width: 100%;
-    max-width: 250px;
-    font-size: 13px;
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .hero h1 { font-size: 22px; }
+
+  /* Always at least 2 columns */
+  .categories {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
   }
 }
 
-/* 480px */
-@media (max-width: 480px) {
+/* ---------- 600px SMALL PHONES ---------- */
+@media (max-width: 600px) {
   body { font-size: 11px; }
 
-  .navbar { font-size: 11px; padding: 8px 10px; }
+  .navbar {
+    padding: 8px;
+  }
 
   .logo img { width: 60px; }
 
-  #naf li a { font-size: 10px; }
+  #naf li a { font-size: 6px; }
 
-  /* Categories become 1-column */
+  .auth-buttons button,
+  .hero-buttons button {
+    font-size: 8px;
+    padding: 3px 7px;
+  }
+
+  .hero h1 { font-size: 20px; }
+
+  /* Minimum 2 columns enforced */
   .categories {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-/* 380px */
-@media (max-width: 380px) {
+/* ---------- 480px VERY SMALL PHONES ---------- */
+@media (max-width: 480px) {
   body { font-size: 10px; }
 
-  .navbar { font-size: 10px; padding: 8px; }
-
-  #naf li a { font-size: 9px; }
+  .navbar {
+    padding: 6px;
+  }
 
   .logo img { width: 55px; }
 
-  .hero h1 { font-size: 17px; }
-  .hero-buttons button { font-size: 11px; }
+  #naf {
+    gap: 10px;
+    padding: 4px 8px;
+  }
+
+  #naf li a { font-size: 9px; }
+
+  .auth-buttons button,
+  .hero-buttons button {
+    font-size: 9px;
+    padding: 5px 9px;
+  }
+
+  .hero h1 { font-size: 18px; }
+
+  /* Always 2 columns */
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
+
+/* ---------- 380px EXTRA SMALL / OLD PHONES ---------- */
+@media (max-width: 380px) {
+  body { font-size: 9px; }
+
+  .navbar {
+    padding: 5px;
+  }
+
+  .logo img { width: 50px; }
+
+  #naf li a {
+    font-size: 8px;
+  }
+
+  .auth-buttons button,
+  .hero-buttons button {
+    font-size: 8px;
+    padding: 5px 8px;
+  }
+
+  .hero h1 { font-size: 16px; }
+
+  /* Still enforce 2 columns */
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ---------- 320px SMALLEST SCREEN SUPPORT ---------- */
+@media (max-width: 320px) {
+  body { font-size: 8px; }
+
+  .logo img { width: 45px; }
+
+  #naf li a { font-size: 7px; }
+
+  .auth-buttons button,
+  .hero-buttons button {
+    font-size: 7px;
+    padding: 4px 7px;
+  }
+
+  /* Never drop below 2 columns */
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* =========================================
+   CATEGORY CARD SIZE VARIATION (MEDIA QUERIES)
+========================================= */
+
+/* ---------- 1024px ---------- */
+@media (max-width: 1024px) {
+  .categories {
+    grid-template-columns: repeat(2, minmax(180px, 1fr));
+  }
+
+  .category-card {
+    padding: 12px;
+  }
+
+  .category-card img {
+    height: 150px;
+  }
+
+  /* varying sizes */
+  .category-card:nth-child(3n) img {
+    height: 180px;
+  }
+}
+
+/* ---------- 768px ---------- */
+@media (max-width: 768px) {
+  .categories {
+    grid-template-columns: repeat(2, minmax(150px, 1fr));
+    gap: 18px;
+  }
+
+  .category-card {
+    padding: 10px;
+  }
+
+  .category-card img {
+    height: 130px;
+  }
+
+  /* variation pattern */
+  .category-card:nth-child(2n) img {
+    height: 160px;
+  }
+  .category-card:nth-child(4n) img {
+    height: 145px;
+  }
+}
+
+/* ---------- 600px ---------- */
+@media (max-width: 600px) {
+  .categories {
+    grid-template-columns: repeat(2, minmax(135px, 1fr));
+    gap: 15px;
+  }
+
+  .category-card img {
+    height: 120px;
+  }
+
+  .category-card:nth-child(3n) img {
+    height: 150px;
+  }
+}
+
+/* ---------- 480px ---------- */
+@media (max-width: 480px) {
+  .categories {
+    grid-template-columns: repeat(2, 1fr); /* never fall to 1 */
+    gap: 12px;
+  }
+
+  .category-card img {
+    height: 110px;
+  }
+
+  /* variation */
+  .category-card:nth-child(odd) img {
+    height: 130px;
+  }
+}
+
+/* ---------- 380px ---------- */
+@media (max-width: 380px) {
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .category-card img {
+    height: 100px;
+  }
+
+  .category-card:nth-child(3n) img {
+    height: 120px;
+  }
+}
+
+/* ---------- 320px ---------- */
+@media (max-width: 320px) {
+  .categories {
+    grid-template-columns: repeat(2, 1fr); /* enforce min 2 */
+    gap: 8px;
+  }
+
+  .category-card img {
+    height: 90px;
+  }
+
+  .category-card:nth-child(2n) img {
+    height: 110px;
+  }
+} 
+  /* =========================================
+   CATEGORY CARD TEXT & BUTTON VARIATION
+========================================= */
+
+/* ---------- 1024px ---------- */
+@media (max-width: 1024px) {
+  .category-card h2 {
+    font-size: 17px;
+  }
+
+  .category-card p {
+    font-size: 13px;
+  }
+
+  .buy-btn {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  /* variations */
+  .category-card:nth-child(3n) h2 { font-size: 18px; }
+  .category-card:nth-child(4n) p { font-size: 14px; }
+  .category-card:nth-child(5n) button { padding: 9px 16px; }
+}
+
+/* ---------- 768px ---------- */
+@media (max-width: 768px) {
+  .category-card h2 {
+    font-size: 15px;
+  }
+
+  .category-card p {
+    font-size: 12px;
+  }
+
+  .buy-btn  {
+    font-size: 11px;
+    padding: 7px 12px;
+  }
+
+  /* variations */
+  .category-card:nth-child(odd) h2 { font-size: 16px; }
+  .category-card:nth-child(2n) p { font-size: 11px; }
+  .category-card:nth-child(3n) button { font-size: 12px; }
+}
+
+/* ---------- 600px ---------- */
+@media (max-width: 600px) {
+  .category-card h2 {
+    font-size: 14px;
+  }
+
+  .category-card p {
+    font-size: 11px;
+  }
+
+  .buy-btn {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  /* variation patterns */
+  .category-card:nth-child(3n) h2 { font-size: 15px; }
+  .category-card:nth-child(4n) p { font-size: 12px; }
+}
+
+/* ---------- 480px ---------- */
+@media (max-width: 480px) {
+  .category-card h2 {
+    font-size: 13px;
+  }
+
+  .category-card p {
+    font-size: 10px;
+  }
+
+  .buy-btn {
+    font-size: 9px;
+    padding: 5px 9px;
+  }
+
+  /* variation */
+  .category-card:nth-child(odd) h2 { font-size: 14px; }
+  .category-card:nth-child(3n) p { font-size: 11px; }
+}
+
+/* ---------- 380px ---------- */
+@media (max-width: 380px) {
+  .category-card h2 {
+    font-size: 12px;
+  }
+
+  .category-card p {
+    font-size: 9px;
+  }
+
+  .buy-btn {
+    font-size: 8px;
+    padding: 5px 7px;
+  }
+
+  /* variation */
+  .category-card:nth-child(2n) h2 { font-size: 13px; }
+  .category-card:nth-child(3n) p { font-size: 10px; }
+}
+
+/* ---------- 320px ---------- */
+@media (max-width: 320px) {
+  .category-card h2 {
+    font-size: 11px;
+  }
+
+  .category-card p {
+    font-size: 8px;
+  }
+
+  .category-card button {
+    font-size: 7px;
+    padding: 4px 6px;
+  }
+
+  /* lighter variations */
+  .category-card:nth-child(odd) h2 { font-size: 12px; }
+  .category-card:nth-child(3n) p { font-size: 9px; }
+}
+} 
+
+
+

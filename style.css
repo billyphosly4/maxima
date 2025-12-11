@@ -183,154 +183,265 @@ footer {
   bottom:0;
   z-index: 1000 ;
 }
-
 /* =====================================
-   RESPONSIVE MEDIA QUERIES
+   RESPONSIVE DESIGN
 ===================================== */
 
-/* =====================================
-   DESKTOP LARGE (1200px+)
-===================================== */
+/* ---------- Large laptops & desktops (1200px+) ---------- */
 @media (min-width: 1200px) {
-  body { font-size: 18px; }
-  .navbar a { font-size: 16px; }
-  .logo img { width: 190px; }
+  body {
+    font-size: 18px;
+  }
+
+  .products {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .product-card img {
+    height: 190px;
+  }
+
+  .product-card button {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+
+  .search-bar input {
+    width: 50%;
+    padding: 14px;
+    font-size: 1rem;
+  }
 }
 
-/* =====================================
-   LAPTOPS & SMALL DESKTOPS (1024px)
-===================================== */
-@media (max-width: 1024px) {
-  body { font-size: 15px; }
+
+/* ---------- Laptops (992px–1199px) ---------- */
+@media (max-width: 1199px) {
+  body {
+    font-size: 17px;
+  }
+
+  .products {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+
+  .product-card img {
+    height: 180px;
+  }
+
+  .product-card button {
+    padding: 11px 18px;
+    font-size: 0.95rem;
+  }
+
+  .search-bar input {
+    width: 55%;
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+}
+
+
+/* ---------- Tablets (768px–991px) ---------- */
+@media (max-width: 991px) {
+  body {
+    font-size: 16px;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, 1fr);  /* Always 2 columns minimum */
+  }
+
+  .product-card img {
+    height: 160px;
+  }
+
+  .product-card button {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+  }
+
+  .search-bar input {
+    width: 65%;
+    padding: 11px;
+    font-size: 0.9rem;
+  }
+}
+
+
+/* ---------- Large phones (600px–767px) ---------- */
+@media (max-width: 767px) {
+  body {
+    font-size: 15px;
+  }
+
+  .navbar a {
+    margin: 0 10px;
+    font-size: 14px;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, 1fr); /* Keeps 2 columns */
+    gap: 18px;
+  }
+
+  .product-card img {
+    height: 150px;
+  }
+
+  .product-card button {
+    padding: 9px 14px;
+    font-size: 0.85rem;
+  }
+
+  .search-bar input {
+    width: 75%;
+    padding: 10px;
+    font-size: 0.85rem;
+  }
+}
+
+
+/* ---------- Phones (480px–599px) ---------- */
+@media (max-width: 599px) {
+  body {
+    font-size: 14px;
+  }
+
+  .navbar a {
+    margin: 0 8px;
+    font-size: 13px;
+  }
+
+  .products {
+    grid-template-columns: repeat(2, 1fr); /* Always stays at 2 min columns */
+    gap: 15px;
+  }
+
+  .product-card img {
+    height: 140px;
+  }
+
+  .product-card h2 {
+    font-size: 16px;
+  }
+
+  .product-card p {
+    font-size: 13px;
+  }
+
+  .product-card button {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  .search-bar input {
+    width: 80%;
+    padding: 9px;
+    font-size: 0.8rem;
+  }
+}
+
+
+/* ---------- Small Phones (max 479px) ---------- */
+@media (max-width: 479px) {
+  body {
+    font-size: 13px;
+  }
 
   .navbar {
     padding: 10px;
   }
 
   .navbar a {
-    font-size: 14px;
-    margin: 0 14px;
-  }
-
-  .logo img {
-    width: 150px;
+    margin: 0 6px;
+    font-size: 12px;
   }
 
   .products {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-}
-
-/* =====================================
-   TABLETS (768px)
-===================================== */
-@media (max-width: 768px) {
-
-  .header {
-    padding: 18px;
+    grid-template-columns: repeat(2, 1fr); /* Never drops below 2 columns */
+    gap: 12px;
   }
 
-  .logo img {
-    width: 130px;
+  .product-card {
+    padding: 12px;
+  }
+
+  .product-card img {
+    height: 120px;
+  }
+
+  .product-card h2 {
+    font-size: 14px;
+  }
+
+  .product-card p {
+    font-size: 12px;
+  }
+
+  .product-card button {
+    padding: 7px 10px;
+    font-size: 0.75rem;
   }
 
   .search-bar input {
     width: 90%;
-  }
-
-  .navbar {
-    font-size: 13px;
-  }
-
-  .navbar a {
-    margin: 0 10px;
-    font-size: 13px;
-  }
-
-  .products {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
-
-  .product-card img {
-    height: 140px;
-  }
-}
-
-/* =====================================
-   BIG PHONES (600px)
-===================================== */
-@media (max-width: 600px) {
-
-  body { font-size: 14px; }
-
-  .logo img {
-    width: 110px;
-  }
-
-  .navbar {
     padding: 8px;
+    font-size: 0.75rem;
   }
+}
+/* =====================================
+   RESPONSIVE LOGO
+===================================== */
 
-  .navbar a {
-    font-size: 12px;
-    margin: 0 8px;
-  }
-
-  .products {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  }
-
-  .product-card img {
-    height: 130px;
+/* Large desktops (1200px+) */
+@media (min-width: 1200px) {
+  .logo img {
+    width: 200px;
+    padding: 6px;
+    border-width: 4px;
   }
 }
 
-/* =====================================
-   SMALL PHONES (480px)
-===================================== */
-@media (max-width: 480px) {
+/* Laptops (992px–1199px) */
+@media (max-width: 1199px) {
+  .logo img {
+    width: 180px;
+    padding: 5px;
+    border-width: 3px;
+  }
+}
 
-  body { font-size: 13px; }
+/* Tablets (768px–991px) */
+@media (max-width: 991px) {
+  .logo img {
+    width: 150px;
+    padding: 5px;
+  }
+}
 
+/* Large Phones (600px–767px) */
+@media (max-width: 767px) {
+  .logo img {
+    width: 130px;
+    padding: 4px;
+  }
+}
+
+/* Phones (480px–599px) */
+@media (max-width: 599px) {
+  .logo img {
+    width: 115px;
+    padding: 4px;
+  }
+}
+
+/* Small Phones (max 479px) */
+@media (max-width: 479px) {
   .logo img {
     width: 95px;
-  }
-
-  .navbar a {
-    font-size: 11px;
-    margin: 0 6px;
-  }
-
-  .products {
-    grid-template-columns: 1fr;
-  }
-
-  .product-card img {
-    height: 125px;
+    padding: 3px;
+    border-width: 2px;
   }
 }
 
-/* =====================================
-   VERY SMALL PHONES (380px)
-===================================== */
-@media (max-width: 380px) {
 
-  body { font-size: 12px; }
-
-  .logo img {
-    width: 80px;
-  }
-
-  .navbar {
-    padding: 6px;
-  }
-
-  .navbar a {
-    font-size: 10px;
-    margin: 0 4px;
-  }
-
-  .product-card img {
-    height: 110px;
-  }
-}

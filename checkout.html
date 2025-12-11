@@ -66,20 +66,133 @@
       background-color: #25D366;
       color: white;
     }
+
+    /* Customer details form */
+    .customer-details {
+      margin-top: 25px;
+      margin-bottom: 20px;
+    }
+
+    .customer-details label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .customer-details input, 
+    .customer-details textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    .customer-details textarea {
+      resize: vertical;
+      min-height: 60px;
+    }
   </style>
 </head>
 <body>
 
 <div class="checkout-container">
   <h2>Checkout</h2>
+
   <div id="checkout-items"></div>
   <p class="checkout-total">Total: $<span id="checkout-total">0</span></p>
+
+  <!-- Customer Details Form -->
+  <div class="customer-details">
+    <h3>Your Details</h3>
+    <label for="customer-name">Name</label>
+    <input type="text" id="customer-name" placeholder="Your full name" required>
+
+    <label for="customer-phone">Phone</label>
+    <input type="tel" id="customer-phone" placeholder="e.g., +1234567890" required>
+
+    <label for="customer-email">Email</label>
+    <input type="email" id="customer-email" placeholder="Your email" required>
+
+    <label for="customer-address">Address</label>
+    <textarea id="customer-address" placeholder="Your delivery address" required></textarea>
+  </div>
+
   <button id="whatsapp-btn">Send Order via WhatsApp</button>
+
 </div>
 
-<script src="checkout.js"></script>
+<script>
+  // Load cart from localStorage
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const checkoutItemsContainer = document.getElementById("checkout-items");
+  const checkoutTotalElement = document.getElementById("checkout-total");
+
+  function loadCheckout() {
+    checkoutItemsContainer.innerHTML = "";
+    let total = 0;
+
+    if (cart.length === 0) {
+      checkoutItemsContainer.innerHTML = "<p>Your cart is empty <a href='kitchen.html'>Shop Now</a></p>";
+      checkoutTotalElement.textContent = "0.00";
+      return;
+    }
+
+    cart.forEach(item => {
+      const div = document.createElement("div");
+      div.classList.add("checkout-item");
+      div.innerHTML = `
+        <img src="${item.image}" alt="${item.name}">
+        <div class="checkout-item-info">
+          <h4>${item.name}</h4>
+          <p>Price: $${item.price} × ${item.quantity}</p>
+          <p>Subtotal: $${(item.price * item.quantity).toFixed(2)}</p>
+        </div>
+      `;
+      checkoutItemsContainer.appendChild(div);
+      total += item.price * item.quantity;
+    });
+
+    checkoutTotalElement.textContent = total.toFixed(2);
+  }
+
+  loadCheckout();
+
+  // WhatsApp order button
+  document.getElementById("whatsapp-btn").addEventListener("click", () => {
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    const name = document.getElementById("customer-name").value.trim();
+    const phone = document.getElementById("customer-phone").value.trim();
+    const email = document.getElementById("customer-email").value.trim();
+    const address = document.getElementById("customer-address").value.trim();
+
+    if (!name || !phone || !email || !address) {
+      alert("Please fill in all your details.");
+      return;
+    }
+
+    let message = `*New Order*\n\nCustomer Details:\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${address}\n\nOrder Items:\n`;
+
+    cart.forEach(item => {
+      message += `- ${item.name} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}\n`;
+    });
+
+    message += `\n*Total:* $${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappNumber = "+254 117345789 "; // Replace with your number
+    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
+  });
+</script>
+
 </body>
 </html>
+
 
  
 
