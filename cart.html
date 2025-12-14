@@ -143,7 +143,7 @@
 
   <div id="cart-items"></div>
 
-  <p class="cart-total">Total: $<span id="cart-total">0</span></p>
+  <p class="cart-total">Total: sh<span id="cart-total">0</span></p>
 
   <button id="checkout-btn">Proceed to Checkout</button>
   <button id="clear-btn">Clear Cart</button>
@@ -173,7 +173,7 @@ function loadCart() {
       <img src="${item.image}" alt="${item.name}">
       <div class="cart-item-info">
         <h3>${item.name}</h3>
-        <p class="price">Price: $${item.price}</p>
+        <p class="price">Price: sh${item.price}</p>
 
         <div class="qty-controls">
           <button class="qty-btn minus" data-id="${item.id}">-</button>

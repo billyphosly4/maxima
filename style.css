@@ -149,17 +149,6 @@ body {
   font-size: 14px;
 }
 
-/* ADD-TO-CART BUTTON */
-.product-card button {
-  background-color: #F26A21;
-  color: white;
-  padding: 10px 17px;
-  border-radius: 7px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
 
 .product-card button:hover {
   background-color: #d85c1e;
@@ -179,9 +168,6 @@ footer {
   text-align: center;
   font-size: 14px;
   border-top: 4px solid #F26A21;
-  position:sticky ;
-  bottom:0;
-  z-index: 1000 ;
 }
 /* =====================================
    RESPONSIVE DESIGN

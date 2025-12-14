@@ -11,26 +11,73 @@
       background-color: #4CAF50;
       color: white;
       cursor: default;
+    } 
+
+    button.add-to-cart {
+      background-color: #F26A21;
+      color: white;
+      padding: 10px 17px;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    /* ===== MODAL STYLES ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-top: 5px solid #00AEEF;
+      padding: 15px;
+      max-width: 500px;
+      width: 100%;
+      border-radius: 8px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-content img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
 
-<!-- Header -->
 <header class="header">
-    <div class="logo">
-      <img src="img/sufurias_and_lids.jpeg" alt="Logo">
-      <h1>Kitchen Essentials</h1>
-      <p>High-quality utensils and kitchen appliances.</p>
-    </div>
+  <div class="logo">
+    <img src="img/sufurias_and_lids.jpeg" alt="Logo">
+    <h1>Kitchen Essentials</h1>
+    <p>High-quality utensils and kitchen appliances.</p>
+  </div>
 
-    <div class="search-bar">
-      <input type="search" placeholder="Search for utensils..." />
-    </div>
+  <div class="search-bar">
+    <input type="search" placeholder="Search for utensils..." />
+  </div>
 </header>
 
-<!-- Navigation -->
 <nav class="navbar">
   <a href="index.html">Home</a>
   <a href="kitchen.html" class="active">Kitchen</a>
@@ -43,112 +90,178 @@
   </a>
 </nav>
 
-<!-- Main Section -->
 <main class="products">
 
   <div class="product-card">
     <img src="img/sufurias_and_lids.jpeg" alt="Sufuria with Lid">
     <h2>Sufuria and Lids</h2>
-    <p>Price: $35</p>
+    <p>Durable aluminium sufurias with heat-resistant lids.</p>
+    <p>Price: Sh 3,500</p>
     <button class="add-to-cart"
       data-id="1"
       data-name="Sufuria and Lids"
-      data-price="35"
-      data-image="img/sufurias_and_lids.jpeg">
-      Add to Cart
+      data-price="3500"
+      data-image="img/sufurias_and_lids.jpeg"
+      data-description="Durable aluminium sufurias with heat-resistant lids.">
+      View Product
     </button>
   </div>
 
   <div class="product-card">
     <img src="img/stainless_spoons_fork.jpeg" alt="Cutlery Set">
     <h2>Stainless Cutlery Set</h2>
-    <p>Price: $13</p>
+    <p>Premium stainless steel spoons and forks.</p>
+    <p>Price: Sh 3,000</p>
     <button class="add-to-cart"
       data-id="2"
       data-name="Stainless Cutlery Set"
-      data-price="13"
-      data-image="img/stainless_spoons_fork.jpeg">
-      Add to Cart
+      data-price="3000"
+      data-image="img/stainless_spoons_fork.jpeg"
+      data-description="Premium stainless steel spoons and forks.">
+      View Product
     </button>
   </div>
 
   <div class="product-card">
     <img src="img/modified_blender.jpeg" alt="Blender">
     <h2>HQ Modern Blender</h2>
-    <p>Price: $25</p>
+    <p>Powerful blender ideal for smoothies and food prep.</p>
+    <p>Price: Sh 5,000</p>
     <button class="add-to-cart"
       data-id="3"
       data-name="HQ Modern Blender"
-      data-price="25"
-      data-image="img/modified_blender.jpeg">
-      Add to Cart
+      data-price="5000"
+      data-image="img/modified_blender.jpeg"
+      data-description="Powerful blender ideal for smoothies and food prep.">
+      View Product
     </button>
   </div>
 
   <div class="product-card">
     <img src="img/classic_knives.jpeg" alt="Knives">
     <h2>Stainless Steel Knives</h2>
-    <p>Price: $13</p>
+    <p>Sharp stainless steel knives for daily kitchen use.</p>
+    <p>Price: Sh 2,500</p>
     <button class="add-to-cart"
       data-id="4"
       data-name="Stainless Set Knives"
-      data-price="13"
-      data-image="img/classic_knives.jpeg">
-      Add to Cart
+      data-price="2500"
+      data-image="img/classic_knives.jpeg"
+      data-description="Sharp stainless steel knives for daily kitchen use.">
+      View Product
     </button>
   </div>
 
   <div class="product-card">
-    <img src="img/design_knife.jpeg" alt="Cutlery Knives">
+    <img src="img/design_knife.jpeg" alt="Design Knife">
     <h2>Design Knife</h2>
-    <p>Price: $10</p>
+    <p>Elegant designer knife with ergonomic handle.</p>
+    <p>Price: Sh 2,000</p>
     <button class="add-to-cart"
       data-id="5"
       data-name="Design Knife"
-      data-price="10"
-      data-image="img/design_knife.jpeg">
-      Add to Cart
+      data-price="2000"
+      data-image="img/design_knife.jpeg"
+      data-description="Elegant designer knife with ergonomic handle.">
+      View Product
     </button>
   </div>
 
   <div class="product-card">
     <img src="img/modern_sufurias.jpeg" alt="Sufurias">
     <h2>Modern Sufurias</h2>
-    <p>Price: $15</p>
+    <p>Modern non-stick sufurias for efficient cooking.</p>
+    <p>Price: Sh 6,000</p>
     <button class="add-to-cart"
       data-id="6"
       data-name="Modern Sufurias"
-      data-price="15"
-      data-image="img/modern_sufurias.jpeg">
-      Add to Cart
+      data-price="6000"
+      data-image="img/modern_sufurias.jpeg"
+      data-description="Modern non-stick sufurias for efficient cooking.">
+      View Product
     </button>
   </div>
 
   <div class="product-card">
-    <img src="img/wooden_spoons.jpeg" alt="Spoons">
+    <img src="img/wooden_spoons.jpeg" alt="Wooden Spoons">
     <h2>Wooden Spoons</h2>
-    <p>Price: $18</p>
+    <p>Eco-friendly wooden spoons safe for cookware.</p>
+    <p>Price: Sh 900</p>
     <button class="add-to-cart"
       data-id="7"
       data-name="Wooden Spoons"
-      data-price="18"
-      data-image="img/wooden_spoons.jpeg">
-      Add to Cart
+      data-price="900"
+      data-image="img/wooden_spoons.jpeg"
+      data-description="Eco-friendly wooden spoons safe for cookware.">
+      View Product
     </button>
   </div>
 
 </main>
 
-<hr>
+<!-- ===== PRODUCT MODAL ===== -->
+<div id="product-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img id="modal-image" src="" alt="">
+    <h2 id="modal-name"></h2>
+    <p id="modal-description"></p>
+    <p id="modal-price"></p>
 
-<!-- Footer -->
+    <button id="modal-add-to-cart" class="add-to-cart">
+      Add to Cart
+    </button>
+  </div>
+</div>
 
-
-<!-- Connect to global cart.js -->
 <script src="cart.js"></script>
+
+<script>
+  const modal = document.getElementById("product-modal");
+  const modalImage = document.getElementById("modal-image");
+  const modalName = document.getElementById("modal-name");
+  const modalPrice = document.getElementById("modal-price");
+  const modalDescription = document.getElementById("modal-description");
+  const modalAddBtn = document.getElementById("modal-add-to-cart");
+  const closeBtn = document.querySelector(".close");
+
+  document.querySelectorAll(".product-card .add-to-cart").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+
+      modalImage.src = btn.dataset.image;
+      modalName.textContent = btn.dataset.name;
+      modalPrice.textContent = `Price: Sh ${btn.dataset.price}`;
+      modalDescription.textContent = btn.dataset.description;
+
+      modalAddBtn.dataset.id = btn.dataset.id;
+      modalAddBtn.dataset.name = btn.dataset.name;
+      modalAddBtn.dataset.price = btn.dataset.price;
+      modalAddBtn.dataset.image = btn.dataset.image;
+
+      modalAddBtn.textContent = "Add to Cart";
+      modalAddBtn.classList.remove("added");
+
+      modal.style.display = "flex";
+    });
+  });
+
+  modalAddBtn.addEventListener("click", () => {
+    modalAddBtn.textContent = "Added";
+    modalAddBtn.classList.add("added");
+  });
+
+  closeBtn.onclick = () => modal.style.display = "none";
+  window.onclick = e => {
+    if (e.target === modal) modal.style.display = "none";
+  };
+</script>
+
+
 
 </body>
 <footer>
   <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
 </footer>
 </html>
+

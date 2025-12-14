@@ -7,140 +7,247 @@
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    /* Matches kitchen.html behavior */
     button.added {
       background-color: #4CAF50;
       color: white;
       cursor: default;
+    }
+
+    button.add-to-cart {
+      background-color: #F26A21;
+      color: white;
+      padding: 10px 17px;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    /* ===== MODAL STYLES ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      border-top: 5px solid #00AEEF;
+      padding: 15px;
+      max-width: 500px;
+      width: 100%;
+      border-radius: 8px;
+      text-align: center;
+      position: relative;
+    }
+
+    .modal-content img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="logo">
-      <img src="img/bed.jpeg" alt="Logo">
-      <h1>Beddings</h1>
-      <p>Our website. Our marketplace. Our goods</p>
-      <p>Comfortable beds, mattresses, and bedroom essentials.</p>
-    </div>
+<header class="header">
+  <div class="logo">
+    <img src="img/bed.jpeg" alt="Logo">
+    <h1>Beddings</h1>
+    <p>Our website. Our marketplace. Our goods</p>
+    <p>Comfortable beds, mattresses, and bedroom essentials.</p>
+  </div>
 
-    <div class="search-bar">
-      <input type="search" placeholder="Search for bedroom layouts..." />
-    </div>
-  </header>
+  <div class="search-bar">
+    <input type="search" placeholder="Search for bedroom layouts..." />
+  </div>
+</header>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="kitchen.html">Kitchen</a>
-    <a href="electronics.html">Electronics</a>
-    <a href="motorvehicle.html">Motor Vehicles</a>
-    <a href="Bedroom_layout.html" class="active">Bedroom Layouts</a>
-    <a href="cart.html" class="cart-link">
-      <span id="cart-logo">🛒</span> Cart 
-      <span id="cart-count" class="cart-count">0</span>
-    </a>
-  </nav>
+<nav class="navbar">
+  <a href="index.html">Home</a>
+  <a href="kitchen.html">Kitchen</a>
+  <a href="electronics.html">Electronics</a>
+  <a href="motorvehicle.html">Motor Vehicles</a>
+  <a href="Bedroom_layout.html" class="active">Bedroom Layouts</a>
+  <a href="cart.html" class="cart-link">
+    <span id="cart-logo">🛒</span> Cart 
+    <span id="cart-count" class="cart-count">0</span>
+  </a>
+</nav>
 
-  <!-- Main Section -->
-  <main class="products">
+<main class="products">
 
-    <!-- Product 1 -->
-    <div class="product-card">
-      <img src="img/bed.jpeg" alt="Luxury Bed">
-      <h2>Luxury Bed</h2>
-      <p>Price: $18</p>
-      <button class="add-to-cart"
-        data-id="201"
-        data-name="Luxury Bed"
-        data-price="18"
-        data-image="img/bed.jpeg">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/bed.jpeg" alt="Luxury Bed">
+    <h2>Luxury Bed</h2>
+    <p>Premium luxury bed designed for maximum comfort.</p>
+    <p>Price: Sh 50,000</p>
+    <button class="add-to-cart"
+      data-id="201"
+      data-name="Luxury Bed"
+      data-price="50000"
+      data-image="img/bed.jpeg"
+      data-description="Premium luxury bed designed for maximum comfort.">
+      View Product
+    </button>
+  </div>
 
-    <!-- Product 2 -->
-    <div class="product-card">
-      <img src="img/billy.jpeg" alt="Foam Mattress">
-      <h2>Memory Foam Mattress</h2>
-      <p>Price: $38</p>
-      <button class="add-to-cart"
-        data-id="202"
-        data-name="Memory Foam Mattress"
-        data-price="38"
-        data-image="img/billy.jpeg">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/billy.jpeg" alt="Foam Mattress">
+    <h2>Memory Foam Mattress</h2>
+    <p>High-quality memory foam mattress that adapts to your body.</p>
+    <p>Price: Sh 55,000</p>
+    <button class="add-to-cart"
+      data-id="202"
+      data-name="Memory Foam Mattress"
+      data-price="55000"
+      data-image="img/billy.jpeg"
+      data-description="High-quality memory foam mattress that adapts to your body.">
+      View Product
+    </button>
+  </div>
 
-    <!-- Product 3 -->
-    <div class="product-card">
-      <img src="img/gill.jpeg" alt="Bedroom Set">
-      <h2>Bedroom Set</h2>
-      <p>Wardrobe + Bed + Tables</p>
-      <button class="add-to-cart"
-        data-id="203"
-        data-name="Bedroom Set"
-        data-price="38"
-        data-image="img/gill.jpeg">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/gill.jpeg" alt="Bedroom Set">
+    <h2>Bedroom Set</h2>
+    <p>Complete set including wardrobe, bed, and side tables.</p>
+    <p>Price: Sh 45,000</p>
+    <button class="add-to-cart"
+      data-id="203"
+      data-name="Bedroom Set"
+      data-price="45000"
+      data-image="img/gill.jpeg"
+      data-description="Complete set including wardrobe, bed, and side tables.">
+      View Product
+    </button>
+  </div>
 
-    <!-- Product 4 -->
-    <div class="product-card">
-      <img src="img/gil.jpeg" alt="Bedroom Wardrobe">
-      <h2>Bedroom Wardrobe</h2>
-      <p>Nice wardrobe</p>
-      <button class="add-to-cart"
-        data-id="204"
-        data-name="Bedroom Wardrobe"
-        data-price="35"
-        data-image="img/gil.jpeg">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/gil.jpeg" alt="Bedroom Wardrobe">
+    <h2>Bedroom Wardrobe</h2>
+    <p>Spacious modern wardrobe with elegant design.</p>
+    <p>Price: Sh 50,000</p>
+    <button class="add-to-cart"
+      data-id="204"
+      data-name="Bedroom Wardrobe"
+      data-price="50000"
+      data-image="img/gil.jpeg"
+      data-description="Spacious modern wardrobe with elegant design.">
+      View Product
+    </button>
+  </div>
 
-    <!-- Product 5 -->
-    <div class="product-card">
-      <img src="img/bill.jpeg" alt="Wardrobe Set">
-      <h2>Bedroom Wardrobe Set</h2>
-      <p>Nice wardrobe</p>
-      <button class="add-to-cart"
-        data-id="205"
-        data-name="Bedroom Wardrobe Set"
-        data-price="32"
-        data-image="img/bill.jpeg">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/bill.jpeg" alt="Wardrobe Set">
+    <h2>Bedroom Wardrobe Set</h2>
+    <p>Elegant wardrobe set suitable for all bedroom sizes.</p>
+    <p>Price: Sh 52,000</p>
+    <button class="add-to-cart"
+      data-id="205"
+      data-name="Bedroom Wardrobe Set"
+      data-price="52000"
+      data-image="img/bill.jpeg"
+      data-description="Elegant wardrobe set suitable for all bedroom sizes.">
+      View Product
+    </button>
+  </div>
 
-    <!-- Product 6 -->
-    <div class="product-card">
-      <img src="img/bed.jpeg" alt="Bed">
-      <h2>Modern Bed</h2>
-      <p>Nice bed</p>
-      <button class="add-to-cart"
-        data-id="206"
-        data-name="Modern Bed"
-        data-price="18"
-        data-image="img/bed.jpeg">
-        Add to Cart
-      </button>
-    </div>
+  <div class="product-card">
+    <img src="img/bed.jpeg" alt="Bed">
+    <h2>Modern Bed</h2>
+    <p>Stylish modern bed crafted with durable materials.</p>
+    <p>Price: Sh 40,000</p>
+    <button class="add-to-cart"
+      data-id="206"
+      data-name="Modern Bed"
+      data-price="40000"
+      data-image="img/bed.jpeg"
+      data-description="Stylish modern bed crafted with durable materials.">
+      View Product
+    </button>
+  </div>
 
-  </main>
+</main>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
-  </footer>
+<!-- ===== PRODUCT MODAL ===== -->
+<div id="product-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img id="modal-image" src="" alt="">
+    <h2 id="modal-name"></h2>
+    <p id="modal-description"></p>
+    <p id="modal-price"></p>
 
-  <!-- Uses global cart.js -->
-  <script src="cart.js"></script>
+    <button id="modal-add-to-cart" class="add-to-cart">
+      Add to Cart
+    </button>
+  </div>
+</div>
+
+<script src="cart.js"></script>
+
+<script>
+  const modal = document.getElementById("product-modal");
+  const modalImage = document.getElementById("modal-image");
+  const modalName = document.getElementById("modal-name");
+  const modalPrice = document.getElementById("modal-price");
+  const modalDescription = document.getElementById("modal-description");
+  const modalAddBtn = document.getElementById("modal-add-to-cart");
+  const closeBtn = document.querySelector(".close");
+
+  document.querySelectorAll(".product-card .add-to-cart").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+
+      modalImage.src = btn.dataset.image;
+      modalName.textContent = btn.dataset.name;
+      modalPrice.textContent = `Price: Sh ${btn.dataset.price}`;
+      modalDescription.textContent = btn.dataset.description;
+
+      modalAddBtn.dataset.id = btn.dataset.id;
+      modalAddBtn.dataset.name = btn.dataset.name;
+      modalAddBtn.dataset.price = btn.dataset.price;
+      modalAddBtn.dataset.image = btn.dataset.image;
+
+      modalAddBtn.textContent = "Add to Cart";
+      modalAddBtn.classList.remove("added");
+
+      modal.style.display = "flex";
+    });
+  });
+
+  modalAddBtn.addEventListener("click", () => {
+    modalAddBtn.textContent = "Added";
+    modalAddBtn.classList.add("added");
+  });
+
+  closeBtn.onclick = () => modal.style.display = "none";
+  window.onclick = e => {
+    if (e.target === modal) modal.style.display = "none";
+  };
+</script>
+
 
 </body>
+
+<footer>
+  <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
+</footer>
 </html>
+

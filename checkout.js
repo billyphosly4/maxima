@@ -54,4 +54,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadCheckout();
 });
+function checkout() {
+  if (cart.length === 0) {
+    alert("Your cart is empty. Add items before checking out.");
+    return;
+  }
+
+  let receipt = "🧾 RECEIPT\n------------------------------\n";
+  let total = 0;
+
+  cart.forEach(item => {
+    let cost = item.quantity * item.price;
+    total += cost;
+    receipt += `${item.name} x${item.quantity} = $${cost}\n`;
+  });
+
+  receipt += "------------------------------\n";
+  receipt += `TOTAL: $${total}\n\n`;
+  receipt += "Thank you for shopping at Maximall!";
+
+  alert(receipt);
+
+  // clear after checkout
+  cart = [];
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  updateCartCount();
+  loadCartItems();
+}
 
