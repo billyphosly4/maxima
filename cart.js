@@ -4,9 +4,11 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 /* 🔧 FIX OLD CART ITEMS (VERY IMPORTANT) */
 cart = cart.map(item => {
   const fixedQty = Number(item.qty ?? item.quantity ?? 1);
+  const fixedPrice = Number(item.price) || 0; // ✅ FIX PRICE
 
   return {
     ...item,
+    price: fixedPrice,        // ✅ ensure numeric price
     quantity: fixedQty,
     qty: fixedQty
   };
@@ -20,7 +22,11 @@ function updateCartCount() {
   const cartCount = document.getElementById("cart-count");
   if (!cartCount) return;
 
-  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalItems = cart.reduce(
+    (sum, item) => sum + Number(item.quantity || 0), // ✅ safe number
+    0
+  );
+
   cartCount.textContent = totalItems;
 }
 
@@ -34,6 +40,7 @@ function addToCart(product) {
   } else {
     cart.push({
       ...product,
+      price: Number(product.price) || 0, // ✅ ensure price
       quantity: 1,
       qty: 1
     });
@@ -51,7 +58,7 @@ document.addEventListener("click", e => {
     const product = {
       id: btn.dataset.id,
       name: btn.dataset.name,
-      price: Number(btn.dataset.price),
+      price: Number(btn.dataset.price) || 0, // ✅ FIX
       image: btn.dataset.image
     };
 
