@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>M-Pesa Payment (Simulation)</title>
+  <style>
+    body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb;padding:20px}
+    .container{max-width:700px;margin:auto;background:#fff;padding:20px;border-radius:12px;box-shadow:0 8px 22px rgba(0,0,0,.06)}
+    h2{color:#3c3f99}
+    .muted{color:#666;font-size:13px}
+    .item{display:flex;gap:12px;margin-bottom:10px;align-items:center}
+    .thumb{width:64px;height:64px;object-fit:cover;border-radius:8px}
+    .btn{padding:12px;border-radius:8px;border:none;background:#3c3f99;color:#fff;cursor:pointer}
+    .btn-secondary{background:#25D366}
+    .danger{background:#dc3545}
+    #receipt{margin-top:16px;padding:12px;border:1px dashed #ddd;border-radius:8px;background:#fafafa}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>M-Pesa Payment (Simulation)</h2>
+    <div id="info" class="muted">Loading order...</div>
+
+    <div id="orderDetails" style="margin-top:12px"></div>
+
+    <div style="margin-top:12px">
+      <label>M-Pesa Phone</label><br/>
+      <input id="payPhone" placeholder="2547XXXXXXXX" style="padding:10px;border-radius:6px;border:1px solid #ddd;width:100%;max-width:320px" />
+    </div>
+
+    <div style="margin-top:12px;display:flex;gap:8px">
+      <button id="payBtn" class="btn">Simulate Pay (Success)</button>
+      <button id="failBtn" class="btn danger">Simulate Failure</button>
+      <button id="backBtn" class="btn btn-secondary">Back to Checkout</button>
+    </div>
+
+    <div id="receipt"></div>
+  </div>
+
+  <script type="module" src="mpesa.js"></script>
+</body>
+</html>

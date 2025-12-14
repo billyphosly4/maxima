@@ -1,207 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
   <title>Checkout</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6fb;
       padding: 20px;
-      background: #f2f2f2;
     }
-
-    .checkout-container {
-      max-width: 800px;
+    /* drawing modal + persistent button */
+    #drawArea { position: fixed; left: 50%; transform: translateX(-50%); top: 10vh; z-index: 60; width: 720px; max-width: calc(100% - 24px); box-shadow: 0 8px 30px rgba(0,0,0,.12); }
+    #drawPersistentBtn { position: fixed; right: 18px; bottom: 18px; z-index: 70; width:48px;height:48px;border-radius:50%;background:#3c3f99;color:#fff;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.12); }
+    .container {
+      max-width: 600px;
       margin: auto;
-      background: white;
+      background: #fff;
       padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #ccc;
+      border-radius: 12px;
+      box-shadow: 0 8px 22px rgba(0,0,0,.08);
     }
-
     h2 {
-      text-align: center;
-      margin-bottom: 20px;
+      color: #3c3f99;
+      margin-bottom: 10px;
     }
-
-    .checkout-item {
+    .item {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .item .left {
       display: flex;
       align-items: center;
-      background: #f9f9f9;
-      padding: 10px;
-      margin-bottom: 10px;
+      gap: 12px;
+    }
+    .thumb {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
       border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,.06);
     }
-
-    .checkout-item img {
-      width: 80px;
-      height: 80px;
-      margin-right: 15px;
-      border-radius: 8px;
-    }
-
-    .checkout-item-info {
-      flex: 1;
-    }
-
-    .checkout-total {
-      font-size: 22px;
+    .total {
+      font-size: 18px;
       font-weight: bold;
-      text-align: right;
-      margin-top: 20px;
+      margin-top: 10px;
     }
-
-    button {
-      padding: 12px 20px;
-      font-size: 16px;
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
       border: none;
-      border-radius: 8px;
       cursor: pointer;
-      width: 100%;
-      margin-top: 15px;
+      color: #fff;
+      background: #3c3f99;
+      font-size: 15px;
     }
-
-    #whatsapp-btn {
-      background-color: #25D366;
-      color: white;
+    .btn-whatsapp {
+      background: #25D366;
     }
-    .btn{
-     background-color: #25D366;
-      color: white;  
+    #receiptContainer {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px dashed #ccc;
+      border-radius: 8px;
+      background: #fafafa;
     }
-    /* Customer details form */
-    .customer-details {
-      margin-top: 25px;
-      margin-bottom: 20px;
-    }
-
-    .customer-details label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-
-    .customer-details input, 
-    .customer-details textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
-    }
-
-    .customer-details textarea {
-      resize: vertical;
-      min-height: 60px;
+    .muted {
+      color: #666;
+      font-size: 13px;
     }
   </style>
 </head>
 <body>
 
-<div class="checkout-container">
+<div class="container">
   <h2>Checkout</h2>
+  <p id="authMessage" class="muted" style="margin-top:4px"></p>
 
-  <div id="checkout-items"></div>
-  <p class="checkout-total">Total: $<span id="checkout-total">0</span></p>
+  <div id="cartItems"></div>
+  <div class="total">Total: KES <span id="totalAmount">0</span></div>
 
-  <!-- Customer Details Form -->
-  <div class="customer-details">
-    <h3>Your Details</h3>
-    <label for="customer-name">Name</label>
-    <input type="text" id="customer-name" placeholder="Your full name" required>
-
-    <label for="customer-phone">Phone</label>
-    <input type="tel" id="customer-phone" placeholder="e.g., +1234567890" required>
-
-    <label for="customer-email">Email</label>
-    <input type="email" id="customer-email" placeholder="Your email" required>
-
-    <label for="customer-address">Address</label>
-    <textarea id="customer-address" placeholder="Your delivery address" required></textarea>
-  </div>
-<div style="margin-bottom: 20px;"><button id="whatsapp-btn">Send Order via WhatsApp</button></div>
-           <center><p>OR</p></center>
-     <div style="margin-bottom:10px;">
-        <button onclick="placeOrder()" class="btn">Place Order & Pay (M-Pesa)</button>
+  <!-- CUSTOMER DETAILS -->
+  <div style="margin:12px 0;padding:12px;background:#fbfbff;border-radius:8px;border:1px solid #eee;">
+    <h4 style="margin:0 0 8px 0;">Customer Details</h4>
+    <div style="display:flex;gap:8px;flex-direction:column;">
+      <input id="customerName" placeholder="Full name" style="padding:10px;border-radius:6px;border:1px solid #ddd;" />
+      <input id="customerPhone" placeholder="Phone (e.g. 2547XXXXXXXX)" style="padding:10px;border-radius:6px;border:1px solid #ddd;" />
+      <input id="customerAddress" placeholder="Delivery address (optional)" style="padding:10px;border-radius:6px;border:1px solid #ddd;" />
+    </div>
+  
+    <!-- Draw signature area (hidden until requested) -->
+    <div id="drawArea" style="display:none;margin-top:10px;padding:10px;border:1px dashed #e6e6e6;border-radius:6px;background:#fff">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <div style="font-weight:600">Draw your signature</div>
+        <div class="muted" style="font-size:13px">Use mouse or touch</div>
       </div>
+      <canvas id="sigCanvas" width="600" height="140" style="width:100%;height:140px;border:1px solid #ddd;border-radius:6px;background:#fff;touch-action:none"></canvas>
+      <div style="margin-top:8px;display:flex;gap:8px">
+        <button id="saveDrawBtn" type="button" style="padding:8px 10px;border-radius:6px;background:#3c3f99;color:#fff;border:none;cursor:pointer">Save Drawing</button>
+        <button id="clearDrawBtn" type="button" style="padding:8px 10px;border-radius:6px;background:#fff;border:1px solid #ddd;cursor:pointer">Clear</button>
+        <button id="closeDrawBtn" type="button" style="padding:8px 10px;border-radius:6px;background:#fff;border:1px solid #ddd;cursor:pointer">Close</button>
+      </div>
+    </div>
+    <p class="muted" style="margin-top:8px;font-size:13px;">Tip: Configure shop WhatsApp number in <strong>checkout.js</strong> (see top of file).</p>
+  </div>
+  <!-- persistent draw button -->
+  <button id="drawPersistentBtn" title="Edit Signature">✍</button>
 
+  <!-- PLACE ORDER -->
+  <div style="margin-bottom:10px;">
+    <button id="placeOrderBtn" type="button" class="btn" onclick="placeOrder()">
+      Place Order & Pay (M-Pesa)
+    </button>
+  </div>
+
+  <!-- WHATSAPP ORDER -->
+  <div style="margin-bottom:10px;">
+    <button type="button" class="btn btn-whatsapp" onclick="orderViaWhatsApp()">
+      Order via WhatsApp
+    </button>
+  </div>
+
+  <!-- WhatsApp PDF area: populated by JS when PDF is ready -->
+  <div id="waPdfArea" style="margin-bottom:12px;display:none;padding:10px;border-radius:8px;background:#f7fff6;border:1px solid #e6f6ea"></div>
+
+  <!-- RECEIPT -->
+  <div id="receiptContainer"></div>
 </div>
 
-<script>
-  // Load cart from localStorage
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const checkoutItemsContainer = document.getElementById("checkout-items");
-  const checkoutTotalElement = document.getElementById("checkout-total");
-
-  function loadCheckout() {
-    checkoutItemsContainer.innerHTML = "";
-    let total = 0;
-
-    if (cart.length === 0) {
-      checkoutItemsContainer.innerHTML = "<p>Your cart is empty <a href='kitchen.html'>Shop Now</a></p>";
-      checkoutTotalElement.textContent = "0.00";
-      return;
-    }
-
-    cart.forEach(item => {
-      const div = document.createElement("div");
-      div.classList.add("checkout-item");
-      div.innerHTML = `
-        <img src="${item.image}" alt="${item.name}">
-        <div class="checkout-item-info">
-          <h4>${item.name}</h4>
-          <p>Price: $${item.price} × ${item.quantity}</p>
-          <p>Subtotal: $${(item.price * item.quantity).toFixed(2)}</p>
-        </div>
-      `;
-      checkoutItemsContainer.appendChild(div);
-      total += item.price * item.quantity;
-    });
-
-    checkoutTotalElement.textContent = total.toFixed(2);
-  }
-
-  loadCheckout();
-
-  // WhatsApp order button
-  document.getElementById("whatsapp-btn").addEventListener("click", () => {
-    if (cart.length === 0) {
-      alert("Your cart is empty!");
-      return;
-    }
-
-    const name = document.getElementById("customer-name").value.trim();
-    const phone = document.getElementById("customer-phone").value.trim();
-    const email = document.getElementById("customer-email").value.trim();
-    const address = document.getElementById("customer-address").value.trim();
-
-    if (!name || !phone || !email || !address) {
-      alert("Please fill in all your details.");
-      return;
-    }
-
-    let message = `*New Order*\n\nCustomer Details:\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nAddress: ${address}\n\nOrder Items:\n`;
-
-    cart.forEach(item => {
-      message += `- ${item.name} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}\n`;
-    });
-
-    message += `\n*Total:* $${cart.reduce((sum, item) => sum + item.price * item.quantity, 0).toFixed(2)}`;
-
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappNumber = "+254 117345789 "; // Replace with your number
-    window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, "_blank");
-  });
-</script>
-<script src="cart.js"></script>
+<!-- jsPDF (for PDF generation) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script type="module" src="checkout.js"></script>
 </body>
 </html>
-
-
- 
-
-
-
-

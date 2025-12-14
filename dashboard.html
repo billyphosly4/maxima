@@ -1,131 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Account</title>
-    <link rel="stylesheet" href="styled.css">
-    <style>
-        :root{--accent:#3c3f99;--muted:#666}
-        body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f6fb;padding:20px}
-        .layout{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:320px 1fr;gap:20px}
-        .card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 22px rgba(15,15,15,0.06)}
-        .center{text-align:center}
-        #profilePic{height:86px;width:86px;border-radius:50%;object-fit:cover;border:3px solid var(--accent);}
-        h2{color:var(--accent);margin:8px 0}
-        .muted{color:var(--muted);font-size:13px}
-        .row{display:flex;gap:12px;flex-wrap:wrap}
-        .label{font-weight:600;font-size:13px}
-        input[type=text],input[type=email],input[type=password]{width:100%;padding:10px;border:1px solid #e6e6e6;border-radius:8px}
-        button{padding:10px 12px;border-radius:8px;border:0;background:var(--accent);color:#fff;cursor:pointer}
-        .small{padding:6px 8px;font-size:13px}
-        /* Order status */
-        .status-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:12px}
-        .status-card{padding:12px;border-radius:8px;background:linear-gradient(180deg,#fff,#f8f9ff);border:1px solid #eef;display:flex;flex-direction:column;align-items:flex-start}
-        .status-card strong{font-size:18px}
-        /* Recent orders */
-        .orders-list{margin-top:12px}
-        .order-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f1f1f1}
-        .actions{display:flex;gap:8px;margin-top:12px}
-        .edit-mode{border:1px dashed #ddd;padding:10px;border-radius:8px;background:#fafafa}
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Account</title>
+
+  <link rel="stylesheet" href="styled.css"/>
+
+  <style>
+    :root { --accent:#3c3f99; --muted:#666; }
+    body {
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:#f4f6fb;
+      padding:20px;
+    }
+    .layout {
+      max-width:1100px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:320px 1fr;
+      gap:20px;
+    }
+    .card {
+      background:#fff;
+      padding:18px;
+      border-radius:12px;
+      box-shadow:0 8px 22px rgba(15,15,15,.06);
+    }
+    .center { text-align:center }
+    #profilePic {
+      height:86px;
+      width:86px;
+      border-radius:50%;
+      object-fit:cover;
+      border:3px solid var(--accent);
+    }
+    h2 { color:var(--accent); margin:8px 0 }
+    .muted { color:var(--muted); font-size:13px }
+    .row { display:flex; gap:12px; flex-wrap:wrap }
+    .label { font-weight:600; font-size:13px }
+    input {
+      width:100%;
+      padding:10px;
+      border:1px solid #e6e6e6;
+      border-radius:8px;
+    }
+    button {
+      padding:10px 12px;
+      border-radius:8px;
+      border:0;
+      background:var(--accent);
+      color:#fff;
+      cursor:pointer;
+    }
+    .small {
+      padding:6px 8px;
+      font-size:13px;
+    }
+    .status-grid {
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+    .status-card {
+      padding:12px;
+      border-radius:8px;
+      background:#f8f9ff;
+      border:1px solid #eef;
+    }
+    .orders-list { margin-top:12px }
+    .order-item {
+      display:flex;
+      justify-content:space-between;
+      padding:10px 0;
+      border-bottom:1px solid #f1f1f1;
+    }
+    .actions {
+      display:flex;
+      gap:8px;
+      margin-top:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+  </style>
 </head>
+
 <body>
 
 <div class="layout">
-    <!-- Left column: profile summary + quick actions + order status -->
-    <div>
-        <div class="card center">
-            <img id="profilePic" src="/img/image.png" alt="Profile">
-            <h2 id="displayName">My Profile</h2>
-            <div style="display:flex;justify-content:center;align-items:center;gap:8px">
-                <p class="muted" id="emailDisplaySimple">Loading...</p>
-                <button id="editEmailLeftBtn" class="small">Edit</button>
-            </div>
-            <div class="actions">
-                <button id="viewOrdersBtn" class="small">View Orders</button>
-                <button id="editProfileBtn" class="small">Edit Profile</button>
-            </div>
-        </div>
 
-        <div class="card" style="margin-top:14px">
-            <h3 style="margin:0 0 8px 0">Order Status</h3>
-            <div class="status-grid" id="statusGrid">
-                <!-- status cards injected here -->
-            </div>
-        </div>
+  <!-- LEFT COLUMN -->
+  <div>
+
+    <!-- PROFILE CARD -->
+    <div class="card center">
+      <img id="profilePic" src="/img/image.png" alt="Profile">
+      <h2 id="displayName">My Profile</h2>
+
+      <p id="emailDisplaySimple" class="muted">Loading...</p>
+
+      <div class="actions">
+        <button id="editEmailLeftBtn" class="small">Edit Email</button>
+        <button id="viewOrdersBtn" class="small">Checkout</button>
+        <button id="editProfileBtn" class="small">Edit Profile</button>
+        <!-- Logout button injected by JS -->
+      </div>
     </div>
 
-    <!-- Right column: account details, orders and settings -->
-    <div>
-        <div class="card">
-            <h3>Account Details</h3>
-            <p class="muted">Manage email, password, contact info, wishlist and recent orders.</p>
-
-            <div class="row" style="margin-top:12px">
-                <div style="flex:1 1 260px">
-                    <label class="label">Email</label>
-                    <input id="emailInput" type="email" readonly>
-                </div>
-                <div style="flex:1 1 160px">
-                    <label class="label">User ID</label>
-                    <input id="uidInput" type="text" readonly>
-                </div>
-            </div>
-
-            <hr style="margin:14px 0">
-
-            <h4>Profile Info</h4>
-            <div id="profileEditArea">
-                <div class="row">
-                    <div style="flex:1 1 260px">
-                        <label class="label">Phone</label>
-                        <input id="phoneInput" type="text" placeholder="e.g. +2547...">
-                    </div>
-                    <div style="flex:1 1 260px">
-                        <label class="label">WhatsApp</label>
-                        <input id="whatsappInput" type="text" placeholder="optional">
-                    </div>
-                </div>
-                <div style="margin-top:10px">
-                    <button id="saveProfileBtn">Save Contact Info</button>
-                    <span id="saveProfileMsg" class="muted" style="margin-left:12px"></span>
-                </div>
-            </div>
-
-            <hr style="margin:14px 0">
-
-            <h4>Security</h4>
-            <div class="row">
-                <div style="flex:1 1 300px">
-                    <label class="label">New Password</label>
-                    <input id="newPasswordInput" type="password" placeholder="at least 6 characters">
-                </div>
-                <div style="flex:1 1 300px">
-                    <label class="label">Confirm Password</label>
-                    <input id="confirmPasswordInput" type="password" placeholder="confirm">
-                </div>
-            </div>
-            <div style="margin-top:10px">
-                <button id="changePasswordBtn">Update Password</button>
-                <span id="passwordMsg" class="muted" style="margin-left:12px"></span>
-            </div>
-        </div>
-
-        <div class="card" style="margin-top:14px">
-            <h3>Recent Orders</h3>
-            <div id="ordersList" class="orders-list">
-                <!-- recent orders appear here -->
-            </div>
-            <div style="margin-top:12px">
-                <button id="viewAllOrdersBtn" class="small">View All Orders</button>
-            </div>
-        </div>
+    <!-- CHECKOUT STATUS -->
+    <div class="card" style="margin-top:14px">
+      <h3>Checkout Status</h3>
+      <div id="statusGrid" class="status-grid"></div>
     </div>
+
+  </div>
+
+  <!-- RIGHT COLUMN -->
+  <div>
+
+    <!-- ACCOUNT DETAILS -->
+    <div class="card">
+      <h3>Account Details</h3>
+      <p class="muted">Your sign-up and contact information</p>
+
+      <div class="row">
+        <div style="flex:1">
+          <label class="label">Email</label>
+          <input id="emailInput" type="email" readonly>
+        </div>
+        <div style="flex:1">
+          <label class="label">User ID</label>
+          <input id="uidInput" type="text" readonly>
+        </div>
+      </div>
+
+      <hr style="margin:14px 0">
+
+      <!-- PROFILE INFO -->
+      <h4>Profile Info</h4>
+      <div class="row">
+        <div style="flex:1">
+          <label class="label">Phone</label>
+          <input id="phoneInput" type="text">
+        </div>
+        <div style="flex:1">
+          <label class="label">WhatsApp</label>
+          <input id="whatsappInput" type="text">
+        </div>
+      </div>
+
+      <div style="margin-top:10px">
+        <button id="saveProfileBtn">Save Contact Info</button>
+        <span id="saveProfileMsg" class="muted"></span>
+      </div>
+
+      <hr style="margin:14px 0">
+
+      <!-- SECURITY -->
+      <h4>Security</h4>
+      <div class="row">
+        <input id="newPasswordInput" type="password" placeholder="New password">
+        <input id="confirmPasswordInput" type="password" placeholder="Confirm password">
+      </div>
+
+      <div style="margin-top:10px">
+        <button id="changePasswordBtn">Update Password</button>
+        <span id="passwordMsg" class="muted"></span>
+      </div>
+    </div>
+
+    <!-- RECENT CHECKOUT -->
+    <div class="card" style="margin-top:14px">
+      <h3>Recent Checkout</h3>
+      <div id="ordersList" class="orders-list"></div>
+
+      <button id="viewAllOrdersBtn" class="small" style="margin-top:10px">
+        View All Checkout
+      </button>
+    </div>
+
+  </div>
 </div>
 
 <script type="module" src="dashboard.js"></script>
 </body>
 </html>
-
 
