@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>M-Pesa Payment (Simulation)</title>
+
   <style>
     body{font-family:Arial,Helvetica,sans-serif;background:#f4f6fb;padding:20px}
     .container{max-width:700px;margin:auto;background:#fff;padding:20px;border-radius:12px;box-shadow:0 8px 22px rgba(0,0,0,.06)}
@@ -14,9 +15,16 @@
     .btn{padding:12px;border-radius:8px;border:none;background:#3c3f99;color:#fff;cursor:pointer}
     .btn-secondary{background:#25D366}
     .danger{background:#dc3545}
-    #receipt{margin-top:16px;padding:12px;border:1px dashed #ddd;border-radius:8px;background:#fafafa}
+    #receipt{margin-top:16px}
+
+    /* PRINT CLEAN */
+    @media print {
+      button { display:none }
+      body { background:#fff }
+    }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h2>M-Pesa Payment (Simulation)</h2>
@@ -26,18 +34,46 @@
 
     <div style="margin-top:12px">
       <label>M-Pesa Phone</label><br/>
-      <input id="payPhone" placeholder="2547XXXXXXXX" style="padding:10px;border-radius:6px;border:1px solid #ddd;width:100%;max-width:320px" />
+      <input id="payPhone" placeholder="2547XXXXXXXX"
+        style="padding:10px;border-radius:6px;border:1px solid #ddd;width:100%;max-width:320px" />
     </div>
 
-    <div style="margin-top:12px;display:flex;gap:8px">
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
       <button id="payBtn" class="btn">Simulate Pay (Success)</button>
       <button id="failBtn" class="btn danger">Simulate Failure</button>
       <button id="backBtn" class="btn btn-secondary">Back to Checkout</button>
     </div>
 
+    <!-- RECEIPT GOES HERE -->
     <div id="receipt"></div>
   </div>
 
+  <!-- SIGNATURE MODAL (ADDED) -->
+  <div id="signatureModal" style="
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.4);
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+  ">
+    <div style="background:#fff;padding:16px;border-radius:10px;width:320px">
+      <h3>Sign Receipt</h3>
+
+      <canvas id="signaturePad" width="280" height="120"
+        style="border:1px solid #ccc;border-radius:6px"></canvas>
+
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <button onclick="clearSignature()">Clear</button>
+        <button onclick="saveSignature()">Save</button>
+        <button onclick="closeSignature()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- YOUR EXISTING LOGIC FILE -->
   <script type="module" src="mpesa.js"></script>
 </body>
 </html>
+

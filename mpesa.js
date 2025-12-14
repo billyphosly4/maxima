@@ -1,9 +1,9 @@
 /* M-Pesa Simulation Page
-   - Reads ?docId=<firestoreDocId> from URL
-   - Loads checkout document, displays items & totals
-   - Simulates payment success/failure; on success updates checkout doc (status=Paid)
-   - Generates a printable receipt and clears local cart
+   - Accepts ?checkoutId=... as the primary source of truth
+   - Optionally reads Firestore doc if ?docId=... exists
+   - Falls back safely without throwing "Missing order id"
 */
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 import {
@@ -14,34 +14,21 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
-// Firebase config (same as checkout.js)
+/* ================= FIREBASE ================= */
 const firebaseConfig = {
   apiKey: "AIzaSyBYrk0pA2n36c-fk9NvpwJYw2mcTBYsAnc",
   authDomain: "maxima-6f4dc.firebaseapp.com",
   projectId: "maxima-6f4dc",
   storageBucket: "maxima-6f4dc.firebasestorage.app",
   messagingSenderId: "294387008300",
-  appId: "1:294387008300:web:6b276d0689742576432289",
-  measurementId: "G-D6W9MKN7PD"
+  appId: "1:294387008300:web:6b276d0689742576432289"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Shop details for receipts
-const SHOP_NAME = "Maxima";
-const SHOP_ADDRESS = "123 Market St, Kakamega, Kenya";
-const SHOP_LOGO = "img/logo.png";
-const SHOP_COLOR = "#3c3f99";
-const SHOP_WEBSITE = "https://maxima-shopping-com.vercel.app/";
-const SHOP_EMAIL = "info@maximal-shop.com";
-const SHOP_PHONE = "+25417345789";
-// Authorized signature (company)
-const SHOP_AUTH_SIGNATURE = "img/auth-signature.png"; // put your authorized signature image here
-
-let currentUser = null;
-
+/* ================= UI ELEMENTS ================= */
 const infoEl = document.getElementById('info');
 const orderDetailsEl = document.getElementById('orderDetails');
 const payPhoneEl = document.getElementById('payPhone');
@@ -50,188 +37,199 @@ const failBtn = document.getElementById('failBtn');
 const backBtn = document.getElementById('backBtn');
 const receiptEl = document.getElementById('receipt');
 
-// get docId or checkoutId from query; allow fallback to local pending order in localStorage
+/* ================= URL PARAMS ================= */
 const params = new URLSearchParams(window.location.search);
+let checkoutId = params.get('checkoutId');
 const docId = params.get('docId');
-const checkoutIdParam = params.get('checkoutId');
+
+/* ================= STATE ================= */
 let checkoutDoc = null;
 let localOnly = false;
 
-onAuthStateChanged(auth, (user) => {
-  currentUser = user;
-  loadOrder();
-});
+/* ================= AUTH ================= */
+onAuthStateChanged(auth, () => loadOrder());
 
+/* ================= LOAD ORDER ================= */
 async function loadOrder() {
-  // prefer Firestore doc id if present
-  if (docId) {
-    const dref = doc(db, 'checkout', docId);
-    const snap = await getDoc(dref);
-    if (!snap.exists()) {
-      infoEl.textContent = 'Order not found.';
-      return;
-    }
-    checkoutDoc = { id: snap.id, ...snap.data() };
-
-    // if order is not a guest order, require the owner to be logged in
-    if (checkoutDoc.userId && checkoutDoc.userId !== 'guest' && (!currentUser || currentUser.uid !== checkoutDoc.userId)) {
-      infoEl.innerHTML = 'Please <a href="login.html">log in</a> with the account that placed this order to complete payment.';
-      return;
-    }
-  } else {
-    // fallback to local pending order
-    const pendingRaw = localStorage.getItem('pendingOrder');
-    const pendingDocId = localStorage.getItem('pendingOrderDocId');
-    if (pendingRaw) {
-      const pending = JSON.parse(pendingRaw);
-      // if checkoutId param provided, ensure it matches
-      if (checkoutIdParam && pending.checkoutId !== checkoutIdParam) {
-        infoEl.textContent = 'Order not found.';
-        return;
-      }
-      checkoutDoc = { id: pending.checkoutId, ...pending };
-      localOnly = !pendingDocId;
-    } else {
-      infoEl.textContent = 'Missing order id.';
-      return;
-    }
+  if (!checkoutId) {
+    try {
+      const pending = JSON.parse(localStorage.getItem('pendingOrder'));
+      if (pending?.checkoutId) checkoutId = pending.checkoutId;
+    } catch {}
   }
 
+  if (checkoutId && docId) {
+    try {
+      const snap = await getDoc(doc(db, 'checkout', docId));
+      if (snap.exists()) {
+        checkoutDoc = { id: snap.id, ...snap.data() };
+        renderOrder(checkoutDoc);
+        return;
+      }
+    } catch {}
+  }
+
+  try {
+    const pending = JSON.parse(localStorage.getItem('pendingOrder'));
+    if (pending?.checkoutId === checkoutId) {
+      checkoutDoc = { id: pending.checkoutId, ...pending };
+      localOnly = true;
+      renderOrder(checkoutDoc);
+      return;
+    }
+  } catch {}
+
+  checkoutDoc = {
+    checkoutId: checkoutId || 'LOCAL-' + Date.now(),
+    items: [],
+    total: 0,
+    status: 'Pending',
+    customerName: 'Guest'
+  };
+  localOnly = true;
   renderOrder(checkoutDoc);
 }
 
+/* ================= RENDER ================= */
 function renderOrder(order) {
   infoEl.textContent = `Order ${order.checkoutId} — Status: ${order.status}`;
 
-  let html = '';
-  html += `<div class="muted">Customer: ${order.customerName || order.email}</div>`;
-  if (order.customerPhone) html += `<div class="muted">Phone: ${order.customerPhone}</div>`;
-  if (order.customerAddress) html += `<div class="muted">Address: ${order.customerAddress}</div>`;
+  let html = `<div class="muted">Customer: ${order.customerName || 'Guest'}</div><hr/>`;
 
-  html += '<hr />';
   order.items.forEach(it => {
     const price = Number(it.price || 0);
-    const qty = Number(it.quantity || it.qty || 1);
-    html += `<div class="item"><img class="thumb" src="${it.image || 'img/image.png'}" /><div><strong>${it.name}</strong><div class="muted">x${qty} @ KES ${price.toLocaleString()}</div></div><div style="margin-left:auto"><strong>KES ${(price*qty).toLocaleString()}</strong></div></div>`;
+    const qty = Number(it.quantity || 1);
+    html += `
+      <div class="item">
+        <img class="thumb" src="${it.image || 'img/image.png'}"/>
+        <div>
+          <strong>${it.name}</strong>
+          <div class="muted">x${qty} @ KES ${price}</div>
+        </div>
+        <div style="margin-left:auto"><strong>KES ${price * qty}</strong></div>
+      </div>`;
   });
 
-  html += `<div style="text-align:right;margin-top:10px"><strong>Total: KES ${Number(order.total).toLocaleString()}</strong></div>`;
+  html += `<div style="text-align:right"><strong>Total: KES ${order.total}</strong></div>`;
   orderDetailsEl.innerHTML = html;
 
-  // prefill phone if available
-  if (order.mpesaPhone) payPhoneEl.value = order.mpesaPhone;
-  else if (order.customerPhone) payPhoneEl.value = order.customerPhone;
-
-  // attach handlers
   payBtn.onclick = () => simulatePayment(true);
   failBtn.onclick = () => simulatePayment(false);
-  backBtn.onclick = () => window.location.href = 'checkout.html';
+  backBtn.onclick = () => location.href = 'checkout.html';
 }
 
+/* ================= PAYMENT ================= */
 async function simulatePayment(success) {
-  if (!checkoutDoc) return;
-  const phone = payPhoneEl.value.trim();
-  if (!phone) return alert('Enter M-Pesa phone number');
-
   if (!success) {
-    receiptEl.innerHTML = `<div style="padding:12px;border-radius:8px;background:#fff;border:1px solid #f5c6cb;color:#721c24">Payment failed (simulated).</div>`;
+    receiptEl.innerHTML = `<div style="color:red">Payment failed</div>`;
     return;
   }
 
-  if (!localOnly) {
-    // update Firestore document: mark as Paid
+  const phone = payPhoneEl.value.trim();
+  if (!phone) return alert('Enter M-Pesa phone number');
+
+  if (!localOnly && docId) {
     try {
-      const dref = doc(db, 'checkout', checkoutDoc.id);
-      await updateDoc(dref, {
+      await updateDoc(doc(db, 'checkout', docId), {
         status: 'Paid',
         paidAt: serverTimestamp(),
         paidPhone: phone
       });
-    } catch (err) {
-      console.warn('Failed to update server doc, falling back to local receipt', err);
-      localOnly = true;
-    }
+    } catch {}
   }
 
-  // generate receipt in page
-  generateReceipt(checkoutDoc, phone);
+  const receiptNo = 'MP' + Math.floor(Math.random() * 1e9);
+  const paidDate = new Date().toLocaleString();
 
-  // clear cart and pending order now that payment is done
-  localStorage.removeItem('cart');
-  localStorage.removeItem('pendingOrder');
-  localStorage.removeItem('pendingOrderDocId');
+  receiptEl.innerHTML = `
+<div id="receiptBox" style="max-width:420px;margin:20px auto;padding:20px;border:1px solid #ddd;border-radius:12px;background:#fff;font-family:Segoe UI,Roboto,Arial,sans-serif">
+
+  <div style="text-align:center">
+    <img src="img/logo.png" style="height:48px"/>
+    <h2 style="margin:6px 0;color:#1b5e20">MAXIMA STORES</h2>
+    <div style="font-size:13px;color:#666">Quality Furniture • Electronics • Home Essentials</div>
+  </div>
+
+  <hr/>
+
+  <div style="font-size:14px">
+    <div><strong>Receipt No:</strong> ${receiptNo}</div>
+    <div><strong>Order ID:</strong> ${checkoutDoc.checkoutId}</div>
+    <div><strong>Date:</strong> ${paidDate}</div>
+    <div><strong>M-Pesa Phone:</strong> ${phone}</div>
+    <div><strong>Status:</strong> <span style="color:#1b5e20">PAID</span></div>
+  </div>
+
+  <hr/>
+
+  ${checkoutDoc.items.map(it => `
+    <div style="display:flex;justify-content:space-between">
+      <span>${it.name} × ${it.quantity || 1}</span>
+      <strong>KES ${it.price * (it.quantity || 1)}</strong>
+    </div>`).join('')}
+
+  <hr/>
+
+  <div style="display:flex;justify-content:space-between;font-size:16px">
+    <strong>Total Paid</strong>
+    <strong>KES ${checkoutDoc.total}</strong>
+  </div>
+
+  <div style="margin-top:12px;text-align:center;font-size:12px;color:#555">
+    Thank you for shopping with <strong>MAXIMA STORES</strong><br/>
+    📍 Kenya | 📞 0117345789
+  </div>
+
+  <div style="margin-top:14px;display:flex;justify-content:space-between">
+    <span>Authorized Signature</span>
+    <img id="sigPreview" style="height:40px"/>
+  </div>
+
+  <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+    <button style="background:#1b5e20;color:#fff;border:none;padding:8px 12px;border-radius:6px" onclick="downloadPDF()">Print</button>
+    <button style="background:#1b5e20;color:#fff;border:none;padding:8px 12px;border-radius:6px" onclick="openSignature()">Sign</button>
+    <button style="background:#1b5e20;color:#fff;border:none;padding:8px 12px;border-radius:6px" onclick="downloadPDF()">PDF</button>
+    <button style="background:#1b5e20;color:#fff;border:none;padding:8px 12px;border-radius:6px" onclick="sendWhatsApp()">WhatsApp</button>
+  </div>
+</div>`;
 }
 
-function generateReceipt(order, phone) {
-  const savedSig = localStorage.getItem('userSignature');
-  // build table rows
-  let rows = '';
-  order.items.forEach(it => {
-    const price = Number(it.price || 0);
-    const qty = Number(it.quantity || it.qty || 1);
-    rows += `<tr><td style="padding:8px;border-bottom:1px solid #eee">${it.name}</td><td style="padding:8px;border-bottom:1px solid #eee">${qty}</td><td style="padding:8px;border-bottom:1px solid #eee">KES ${price.toLocaleString()}</td><td style="padding:8px;border-bottom:1px solid #eee;text-align:right">KES ${(price*qty).toLocaleString()}</td></tr>`;
-  });
+/* ================= SIGNATURE ================= */
+const modal = document.getElementById('signatureModal');
+const canvas = document.getElementById('signaturePad');
+const ctx = canvas?.getContext('2d');
+let drawing = false;
 
-  const paidHtml = `
-    <div style="font-family:Montserrat,Arial,Helvetica,sans-serif;max-width:720px;margin:12px auto;padding:12px;background:#fff;border-radius:6px;border:1px solid #eee;font-size:13px">
-      <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
-        @page { size: A4; margin: 10mm }
-        body{font-family:Montserrat,Arial,Helvetica,sans-serif}
-        table{width:100%;border-collapse:collapse;font-size:12px}
-        th,td{padding:6px;border-bottom:1px solid #eee}
-        .muted{color:#666;font-size:12px}
-        .no-break{page-break-inside:avoid}
-      </style>
-
-      <div style="height:6px;background:${SHOP_COLOR};border-radius:4px;margin-bottom:8px"></div>
-      <div style="display:flex;align-items:center;gap:12px">
-        <img src="${SHOP_LOGO}" alt="logo" style="width:56px;height:56px;object-fit:contain" />
-        <div>
-          <div style="font-size:16px;font-weight:700;color:${SHOP_COLOR}">${SHOP_NAME}</div>
-          <div class="muted">${SHOP_ADDRESS}</div>
-          <div class="muted">${SHOP_WEBSITE} · ${SHOP_EMAIL} · ${SHOP_PHONE}</div>
-        </div>
-        <div style="margin-left:auto;text-align:right">
-          <div style="font-size:13px;font-weight:700">Receipt (Paid)</div>
-          <div class="muted">${new Date().toLocaleString()}</div>
-        </div>
-      </div>
-
-      <div style="margin-top:10px">
-        <div class="muted">Order ID</div>
-        <div style="font-weight:700">${order.checkoutId}</div>
-      </div>
-
-      <div style="margin-top:8px">
-        <div class="muted">Customer</div>
-        <div>${order.customerName || order.email} ${order.customerPhone ? `<div class="muted">${order.customerPhone}</div>` : ''}</div>
-      </div>
-
-      <table class="no-break" style="margin-top:10px">
-        <thead><tr style="text-align:left;color:#666;font-size:12px"><th>Item</th><th style="width:48px">Qty</th><th style="width:90px">Unit</th><th style="text-align:right;width:110px">Total</th></tr></thead>
-        <tbody>${rows}</tbody>
-        <tfoot><tr><td></td><td></td><td style="font-weight:700;padding:6px">Grand Total</td><td style="text-align:right;font-weight:700;padding:6px">KES ${Number(order.total).toLocaleString()}</td></tr></tfoot>
-      </table>
-
-      <div style="margin-top:12px;display:flex;gap:8px;align-items:center"><button class="btn" onclick="window.print()" style="padding:8px 10px;border-radius:6px;background:${SHOP_COLOR};color:#fff;border:none;cursor:pointer">Print Receipt</button> <a href="checkout.html">Back to shop</a></div>
-
-      <div style="margin-top:14px;padding-top:10px;border-top:1px dashed #e6e6e6;display:flex;gap:16px;align-items:flex-start;">
-        <div style="flex:1">
-          <div style="font-weight:700;margin-bottom:6px">Customer Signature</div>
-          ${savedSig ? `<img src="${savedSig}" style="max-height:48px;border:1px solid #ddd;border-radius:6px" />` : `<div style="height:48px;border:1px solid #ddd;border-radius:6px;background:#fafafa"></div>`}
-        </div>
-        <div style="flex:1;text-align:right">
-          <div style="font-weight:700;margin-bottom:6px">Authorized Signature</div>
-        <p>MAXIMAL</p>
-        </div>
-      </div>
-
-      <div style="text-align:center;margin-top:10px;color:#666;font-size:12px">Thank you for your purchase — ${SHOP_NAME}</div>
-      <div style="text-align:center;margin-top:6px;color:${SHOP_COLOR};font-size:12px">${SHOP_WEBSITE} · ${SHOP_EMAIL} · ${SHOP_PHONE}</div>
-    </div>
-  `;
-
-  receiptEl.innerHTML = paidHtml;
-  infoEl.textContent = `Order ${order.checkoutId} — Status: Paid`;
+function pos(e) {
+  const r = canvas.getBoundingClientRect();
+  const t = e.touches ? e.touches[0] : e;
+  return { x: t.clientX - r.left, y: t.clientY - r.top };
 }
+
+canvas?.addEventListener('mousedown', e => { drawing = true; ctx.beginPath(); const p = pos(e); ctx.moveTo(p.x, p.y); });
+canvas?.addEventListener('mousemove', e => { if (!drawing) return; const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
+canvas?.addEventListener('mouseup', () => drawing = false);
+canvas?.addEventListener('touchstart', e => { drawing = true; ctx.beginPath(); const p = pos(e); ctx.moveTo(p.x, p.y); });
+canvas?.addEventListener('touchmove', e => { if (!drawing) return; const p = pos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); });
+canvas?.addEventListener('touchend', () => drawing = false);
+
+window.openSignature = () => modal.style.display = 'flex';
+window.closeSignature = () => modal.style.display = 'none';
+window.saveSignature = () => {
+  document.getElementById('sigPreview').src = canvas.toDataURL();
+  modal.style.display = 'none';
+};
+
+/* ================= PDF / PRINT ================= */
+window.downloadPDF = () => {
+  const box = document.getElementById('receiptBox');
+  const w = window.open('', '', 'width=800,height=1000');
+  w.document.write(`<style>@page{margin:10mm}*{page-break-inside:avoid}</style>${box.outerHTML}`);
+  w.document.close();
+  w.print();
+};
+
+window.sendWhatsApp = () => {
+  const msg = `MAXIMA STORES\nOrder: ${checkoutDoc.checkoutId}\nTotal: KES ${checkoutDoc.total}\nStatus: PAID`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank');
+};

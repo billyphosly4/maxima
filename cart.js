@@ -1,6 +1,20 @@
 // ================= CART STORAGE =================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
+/* 🔧 FIX OLD CART ITEMS (VERY IMPORTANT) */
+cart = cart.map(item => {
+  const fixedQty = Number(item.qty ?? item.quantity ?? 1);
+
+  return {
+    ...item,
+    quantity: fixedQty,
+    qty: fixedQty
+  };
+});
+
+// Save fixed cart back
+localStorage.setItem("cart", JSON.stringify(cart));
+
 // ================= UPDATE CART COUNT =================
 function updateCartCount() {
   const cartCount = document.getElementById("cart-count");
@@ -16,8 +30,13 @@ function addToCart(product) {
 
   if (existingItem) {
     existingItem.quantity += 1;
+    existingItem.qty += 1;
   } else {
-    cart.push({ ...product, quantity: 1 });
+    cart.push({
+      ...product,
+      quantity: 1,
+      qty: 1
+    });
   }
 
   localStorage.setItem("cart", JSON.stringify(cart));
@@ -28,7 +47,6 @@ function addToCart(product) {
 document.addEventListener("click", e => {
   const btn = e.target;
 
-  // ONLY modal button is allowed to add
   if (btn.id === "modal-add-to-cart") {
     const product = {
       id: btn.dataset.id,
@@ -39,7 +57,6 @@ document.addEventListener("click", e => {
 
     addToCart(product);
 
-    // UI feedback (modal only)
     btn.textContent = "Added";
     btn.classList.add("added");
   }
