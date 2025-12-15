@@ -110,7 +110,7 @@ window.orderViaWhatsApp = function () {
 
   message += `%0A*Total:* KES ${total}`;
 
-  const whatsappNumber = "2547XXXXXXXX"; // CHANGE THIS
+  const whatsappNumber = "254117345789"; // CHANGE THIS
   const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
 
   window.open(whatsappURL, "_blank");
