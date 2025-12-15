@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kitchen</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    button.added {
+      background-color: #4CAF50;
+      color: white;
+      cursor: default;
+    } 
+
+    button.add-to-cart {
+      background-color: #F26A21;
+      color: white;
+      padding: 10px 17px;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    /* ===== MODAL STYLES ===== */
+      .modal {
+      
+     display: none; 
+     position: fixed; 
+     top: 0; 
+     left: 0; 
+     width: 100%;
+     height: 100%;
+     background: rgba(0,0,0,0.5); 
+     align-items: center; 
+     justify-content: center; 
+     z-index: 1000;">
+    }
+
+    .modal-content {
+      background: white; 
+      padding: 24px;
+    border-top: 5px solid #00AEEF;
+      border-radius: 12px; 
+     max-width: 500px;
+      max-height: 80vh; 
+      overflow-y: auto;
+      position:relative ;
+    }
+
+    .modal-content img {
+      width: 100%; 
+      border-radius: 8px; 
+      margin-bottom: 16px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">
+    <img src="img/sufurias_and_lids.jpeg" alt="Logo">
+    <h1>Kitchen Essentials</h1>
+    <p>High-quality utensils and kitchen appliances.</p>
+  </div>
+
+  <div class="search-bar">
+    <input type="search" placeholder="Search for utensils..." />
+  </div>
+</header>
+
+<nav class="navbar">
+  <a href="index.html">Home</a>
+  <a href="kitchen.html" class="active">Kitchen</a>
+  <a href="electronics.html">Electronics</a>
+  <a href="motorvehicle.html">Motor Vehicles</a>
+  <a href="Bedroom_layout.html">Bedroom Layouts</a>
+  <a href="cart.html" class="cart-link">
+    <span id="cart-logo">🛒</span> Cart 
+    <span id="cart-count" class="cart-count">0</span>
+  </a>
+</nav>
+
+<main class="products">
+
+  <div class="product-card">
+    <img src="" alt="">
+    <h2></h2>
+    <p></p>
+    <p></p>
+    <button class="add-to-cart"
+      data-id="1"
+      data-name="Sufuria and Lids"
+      data-price="3500"
+      data-image="img/sufurias_and_lids.jpeg"
+      data-description="Durable aluminium sufurias with heat-resistant lids.">
+      View Product
+    </button>
+  </div>
+
+  <div class="product-card">
+    <img src="" alt="">
+    <h2></h2>
+    <p></p>
+    <p></p>
+    <button class="add-to-cart"
+      data-id="2"
+      data-name="Stainless Cutlery Set"
+      data-price="3000"
+      data-image="img/stainless_spoons_fork.jpeg"
+      data-description="Premium stainless steel spoons and forks.">
+      View Product
+    </button>
+  </div>
+
+  <div class="product-card">
+    <img src="" alt="">
+    <h2></h2>
+    <p>.</p>
+    <p></p>
+    <button class="add-to-cart"
+      data-id="3"
+      data-name="HQ Modern Blender"
+      data-price="5000"
+      data-image="img/modified_blender.jpeg"
+      data-description="Powerful blender ideal for smoothies and food prep.">
+      View Product
+    </button>
+  </div>
+
+  <div class="product-card">
+    <img src="" alt="">
+    <h2></h2>
+    <p>.</p>
+    <p></p>
+    <button class="add-to-cart"
+      data-id="4"
+      data-name="Stainless Set Knives"
+      data-price="2500"
+      data-image="img/classic_knives.jpeg"
+      data-description="Sharp stainless steel knives for daily kitchen use.">
+      View Product
+    </button>
+  </div>
+
+  <div class="product-card">
+    <img src="" alt="">
+    <h2></h2>
+    <p>.</p>
+    <p></p>
+    <button class="add-to-cart"
+      data-id="5"
+      data-name="Design Knife"
+      data-price="2000"
+      data-image="img/design_knife.jpeg"
+      data-description="Elegant designer knife with ergonomic handle.">
+      View Product
+    </button>
+  </div>
+
+  <div class="product-card">
+    <img src="" alt="">
+    <h2></h2>
+    <p>.</p>
+    <p></p>
+    <button class="add-to-cart"
+      data-id="6"
+      data-name="Modern Sufurias"
+      data-price="6000"
+      data-image="img/modern_sufurias.jpeg"
+      data-description="Modern non-stick sufurias for efficient cooking.">
+      View Product
+    </button>
+  </div>
+
+  <div class="product-card">
+    <img src="" alt="">
+    <h2></h2>
+    <p>.</p>
+    <p></p>
+    <button class="add-to-cart"
+      data-id="7"
+      data-name="Wooden Spoons"
+      data-price="900"
+      data-image="img/wooden_spoons.jpeg"
+      data-description="Eco-friendly wooden spoons safe for cookware.">
+      View Product
+    </button>
+  </div>
+
+</main>
+
+<!-- ===== PRODUCT MODAL ===== -->
+<div id="product-modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img id="modal-image" src="" alt="">
+    <h2 id="modal-name"></h2>
+    <p id="modal-description"></p>
+    <p id="modal-price"></p>
+
+    <button id="modal-add-to-cart" class="add-to-cart">
+      Add to Cart
+    </button>
+  </div>
+</div>
+
+<script src="cart.js"></script>
+
+<script>
+  const modal = document.getElementById("product-modal");
+  const modalImage = document.getElementById("modal-image");
+  const modalName = document.getElementById("modal-name");
+  const modalPrice = document.getElementById("modal-price");
+  const modalDescription = document.getElementById("modal-description");
+  const modalAddBtn = document.getElementById("modal-add-to-cart");
+  const closeBtn = document.querySelector(".close");
+
+  document.querySelectorAll(".product-card .add-to-cart").forEach(btn => {
+    btn.addEventListener("click", e => {
+      e.preventDefault();
+
+      modalImage.src = btn.dataset.image;
+      modalName.textContent = btn.dataset.name;
+      modalPrice.textContent = `Price: Sh ${btn.dataset.price}`;
+      modalDescription.textContent = btn.dataset.description;
+
+      modalAddBtn.dataset.id = btn.dataset.id;
+      modalAddBtn.dataset.name = btn.dataset.name;
+      modalAddBtn.dataset.price = btn.dataset.price;
+      modalAddBtn.dataset.image = btn.dataset.image;
+
+      modalAddBtn.textContent = "Add to Cart";
+      modalAddBtn.classList.remove("added");
+
+      modal.style.display = "flex";
+    });
+  });
+
+  modalAddBtn.addEventListener("click", () => {
+    modalAddBtn.textContent = "Added";
+    modalAddBtn.classList.add("added");
+  });
+
+  closeBtn.onclick = () => modal.style.display = "none";
+  window.onclick = e => {
+    if (e.target === modal) modal.style.display = "none";
+  };
+</script>
+
+
+
+</body>
+<footer>
+  <p>&copy; 2025 Maximall. All rights reserved. | Designed with 💙 by Billy & White Wizard.</p>
+</footer>
+</html>
+
