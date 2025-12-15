@@ -4,11 +4,12 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 /* 🔧 FIX OLD CART ITEMS (VERY IMPORTANT) */
 cart = cart.map(item => {
   const fixedQty = Number(item.qty ?? item.quantity ?? 1);
-  const fixedPrice = Number(item.price) || 0; // ✅ FIX PRICE
+  const fixedPrice = Number(item.price) || 0;
 
   return {
     ...item,
-    price: fixedPrice,        // ✅ ensure numeric price
+    id: String(item.id),        // ✅ FIX
+    price: fixedPrice,
     quantity: fixedQty,
     qty: fixedQty
   };
@@ -23,7 +24,7 @@ function updateCartCount() {
   if (!cartCount) return;
 
   const totalItems = cart.reduce(
-    (sum, item) => sum + Number(item.quantity || 0), // ✅ safe number
+    (sum, item) => sum + Number(item.quantity || 0),
     0
   );
 
@@ -32,7 +33,9 @@ function updateCartCount() {
 
 // ================= ADD TO CART FUNCTION =================
 function addToCart(product) {
-  const existingItem = cart.find(item => item.id === product.id);
+  const existingItem = cart.find(
+    item => String(item.id) === String(product.id) // ✅ FIX
+  );
 
   if (existingItem) {
     existingItem.quantity += 1;
@@ -40,7 +43,8 @@ function addToCart(product) {
   } else {
     cart.push({
       ...product,
-      price: Number(product.price) || 0, // ✅ ensure price
+      id: String(product.id),   // ✅ FIX
+      price: Number(product.price) || 0,
       quantity: 1,
       qty: 1
     });
@@ -56,9 +60,9 @@ document.addEventListener("click", e => {
 
   if (btn.id === "modal-add-to-cart") {
     const product = {
-      id: btn.dataset.id,
+      id: String(btn.dataset.id),   // ✅ FIX
       name: btn.dataset.name,
-      price: Number(btn.dataset.price) || 0, // ✅ FIX
+      price: Number(btn.dataset.price) || 0,
       image: btn.dataset.image
     };
 

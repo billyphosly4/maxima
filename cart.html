@@ -60,7 +60,6 @@
       color: #333;
     }
 
-    /* Quantity Controls */
     .qty-controls {
       display: flex;
       align-items: center;
@@ -76,8 +75,6 @@
       border: none;
     }
 
-    
-
     .qty-number {
       margin: 0 12px;
       font-size: 18px;
@@ -86,7 +83,6 @@
       text-align: center;
     }
 
-    /* Remove button */
     .remove-btn {
       background: #ff4d4d;
       color: white;
@@ -103,7 +99,6 @@
       background: #e60000;
     }
 
-    /* Totals + Buttons */
     .cart-total {
       font-size: 24px;
       font-weight: bold;
@@ -143,7 +138,7 @@
 
   <div id="cart-items"></div>
 
-  <p class="cart-total">Total: sh<span id="cart-total">0</span></p>
+  <p class="cart-total">Total: KSh <span id="cart-total">0</span></p>
 
   <button id="checkout-btn">Proceed to Checkout</button>
   <button id="clear-btn">Clear Cart</button>
@@ -160,12 +155,16 @@ function loadCart() {
   let total = 0;
 
   if (cart.length === 0) {
-    cartItemsContainer.innerHTML = "<p>Your cart is empty <a href='kitchen.html'>Shop Now</a></p>";
-    cartTotalElement.textContent = "0.00";
+    cartItemsContainer.innerHTML =
+      "<p>Your cart is empty <a href='kitchen.html'>Shop Now</a></p>";
+    cartTotalElement.textContent = "0";
     return;
   }
 
   cart.forEach(item => {
+    const price = Number(item.price) || 0;      // ✅ FIX
+    const qty = Number(item.quantity) || 1;     // ✅ FIX
+
     const div = document.createElement("div");
     div.classList.add("cart-item");
 
@@ -173,11 +172,11 @@ function loadCart() {
       <img src="${item.image}" alt="${item.name}">
       <div class="cart-item-info">
         <h3>${item.name}</h3>
-        <p class="price">Price: sh${item.price}</p>
+        <p class="price">Price: KSh ${price.toLocaleString()}</p>
 
         <div class="qty-controls">
           <button class="qty-btn minus" data-id="${item.id}">-</button>
-          <span class="qty-number">${item.quantity}</span>
+          <span class="qty-number">${qty}</span>
           <button class="qty-btn plus" data-id="${item.id}">+</button>
         </div>
       </div>
@@ -186,10 +185,10 @@ function loadCart() {
     `;
 
     cartItemsContainer.appendChild(div);
-    total += item.price * item.quantity;
+    total += price * qty;
   });
 
-  cartTotalElement.textContent = total.toFixed(2);
+  cartTotalElement.textContent = total.toLocaleString(); // ✅ FIX
 }
 
 loadCart();
@@ -197,7 +196,6 @@ loadCart();
 /* Quantity Controls */
 cartItemsContainer.addEventListener("click", (e) => {
   const id = e.target.getAttribute("data-id");
-
   if (!id) return;
 
   const product = cart.find(p => p.id == id);
@@ -242,8 +240,6 @@ document.getElementById("clear-btn").addEventListener("click", () => {
 
 </body>
 </html>
-
-
 
 
 
