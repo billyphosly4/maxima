@@ -181,7 +181,7 @@ async function simulatePayment(success) {
   </div>
 
   <div style="margin-top:14px;display:flex;justify-content:space-between">
-    <span>Authorized Signature</span>
+    <span>Customer Signature</span>
     <img id="sigPreview" style="height:40px"/>
   </div>
 
